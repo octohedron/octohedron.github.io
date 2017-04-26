@@ -82,7 +82,7 @@ window.onload = function () {
 	// make a new websocket connection when switching rooms
 	function connectWs(room) {
 		if (window["WebSocket"]) {
-			conn = new WebSocket("ws://" +
+			conn = new WebSocket("wss://" +
 				document.location.host + "/room/" + room);
 			conn.onopen = function(evt) {
 				var item = document.createElement("div");
