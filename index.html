@@ -15,7 +15,7 @@ window.onload = function () {
 		while (log.hasChildNodes()) {
 			log.removeChild(log.lastChild);
 		}
-		fetch('http://52.58.76.202:9000/history/' + room, {
+		fetch('https://52.58.76.202:9000/history/' + room, {
 			method: 'get'
 		}).then(function(response) {
 			console.log('loaded the history of ' + room + ' room');
