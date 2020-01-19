@@ -1,0 +1,22 @@
+[about]
+other = "Equipo"
+[service]
+other = "Servicios"
+[portfolio]
+other = "Proyectos"
+[blog]
+other = "Blog"
+[contact]
+other = "Contacto"
+
+[graphicdesign]
+other = "Reconocimiento de imágenes"
+[webdesign]
+other = "Keras"
+[webdevelopment]
+other = "Tensorflow"
+
+[partners]
+other = "Partners"
+[faqs]
+other = "Preguntas frecuentes"

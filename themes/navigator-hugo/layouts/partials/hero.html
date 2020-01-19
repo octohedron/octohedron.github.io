@@ -1,0 +1,32 @@
+{{ if .Site.Params.hero.enable }}
+{{ "<!-- Hero Area -->" | safeHTML }}
+<section class="hero-area" style="background-image: url({{ with .Site.Params.hero.heroBGURL }}{{.| absURL }}{{ end }})">
+    <video poster="{{ with .Site.Params.heroBGURL }}{{ . | absURL }}{{ end }}" id="bgvid" playsinline autoplay muted loop>
+        <!-- 
+      - Video needs to be muted, since Chrome 66+ will not autoplay video with sound.
+      WCAG general accessibility recommendation is that media such as background video play through only once. Loop turned on for the purposes of illustration; if removed, the end of the video will fade in the same way created by pressing the "Pause" button  -->
+      <source src="{{ with .Site.Params.bgMP4 }}{{ . | absURL }}{{ end }}" type="video/mp4">
+    </video>
+    <div class="hero-container container">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="block">
+                        {{ with .Site.Params.hero.heading }}
+                        <h2>{{ . }}</h2>
+                        {{ end }}
+                        {{ with .Site.Params.hero.description }}
+                        <p>{{ . }}</p>
+                        {{ end }}
+                        {{ if .Site.Params.hero.button }}
+                        <ul class="list-inline wow fadeInUp" data-wow-duration=".5s" data-wow-delay=".7s">
+                            <li class="list-inline-item">
+                                <a href="{{ with .Site.Params.hero.btnURL }}{{.}}{{ end }}" target="_blank" class="btn btn-main">{{ with .Site.Params.hero.btnText }}{{.}}{{ end }}</a>
+                            </li>
+                        </ul>
+                        {{ end }}
+                    </div>
+                </div>
+            </div>
+    </div>
+</section>
+{{ end }}

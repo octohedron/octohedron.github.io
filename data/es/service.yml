@@ -1,0 +1,28 @@
+enable    : true
+topTitle  : NUESTRO TRABAJO
+title     : Nuestros Servicios
+subtitle  : Técnicas avanzadas en servicios de integración de Inteligencia Artificial.
+item      :
+  - icon  : tf-ion-ios-copy-outline
+    title : Big Data
+    list  :
+      - name : Data Pipelines
+      - name : Data Processing
+      - name : Database Clusters
+      - name : Extracción de datos
+
+  - icon  : tf-ion-ios-book-outline
+    title : Inteligencia Artificial
+    list  :
+      - name : Machine Learning
+      - name : Neural Networks
+      - name : Procesamiento del lenguaje
+      - name : Reconocimiento de Imágenes
+
+  - icon  : tf-ion-ios-alarm-outline
+    title : Automatización
+    list  :
+      - name : A.I. Powered Bots
+      - name : Automated Decision Making
+      - name : Autoscaling
+      - name : Distributed Systems

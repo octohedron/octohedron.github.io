@@ -1,0 +1,16 @@
+enable  : true
+item  :
+  - icon  : tf-linegraph
+    title : Forecasting
+    description : >
+      We train machine learning models to predict future demand for products across retailer’s stores down to the stock keeping level.
+
+  - icon  : tf-telescope
+    title : Vision
+    description : >
+      Classify your images into any custom set of categories by just giving the names of the categories, we take care of the rest.
+
+  - icon  : tf-happy
+    title : Personality
+    description : >
+      Gain insight into how and why people think, act, and feel the way they do, applying linguistic analytics and personality theory to text.

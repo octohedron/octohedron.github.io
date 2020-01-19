@@ -1,0 +1,22 @@
+enable    : true
+title     : Nos apasiona nuestro trabajo
+description: >
+  Nos encanta lo que hacemos y nos gusta trabajar con una amplia variedad de clientes. La inteligencia artificial se puede aplicar a todas las industrias y queremos dar a nuestros clientes una ventaja en el mercado. Nos centramos en las necesidades comerciales y lo que el cliente debe lograr para impulsar el rendimiento empresarial y diseñamos un plan de integración para proporcionar el mayor valor para todos nuestros clientes.
+image     : images/about/about-1.jpg
+servicelist:
+  - name    : Salud
+  - name    : Social Media
+  - name    : Tiendas de venta
+  - name    : Demografía
+  - name    : Big Data
+clientLogo:
+  # - image   : images/client-logo/logo1.png
+  # - image   : images/client-logo/logo-2.png
+  # - image   : images/client-logo/logo-3.png
+  # - image   : images/client-logo/logo-4.png
+  # - image   : images/client-logo/logo-5.png
+  # - image   : images/client-logo/logo1.png
+  # - image   : images/client-logo/logo-2.png
+  # - image   : images/client-logo/logo-3.png
+  # - image   : images/client-logo/logo-4.png
+  # - image   : images/client-logo/logo-5.png

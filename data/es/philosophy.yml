@@ -1,0 +1,25 @@
+enable    : true
+topTitle   : SOMOS BIG DATA
+title     : Dedicación
+subtitle  : Trabajamos con tecnologías de Big Data y proporcionamos análisis en tiempo real a nuestros clientes en todo el mundo.
+tabItem   :
+  - id        : philosophy
+    title     : Valores
+    heading   : Nuestros Valores
+    content   : >
+     Queremos proporcionar a todas las empresas la ventaja competitiva que la I.A. tiene para ofrecer. El futuro es brillante para las empresas que adopten la Inteligencia Artificial a su modelo de negocios, podemos aumentar los ingresos, la calidad de los servicios, reducir los costos y mejorar todos los aspectos de una empresa al proporcionar inteligencia clave para tomar decisiones y mejorar el rendimiento.
+    image     : images/company/company-image.jpg
+
+  - id        : mission
+    title     : Misión
+    heading   : Nuestra Misión
+    content   : >
+      Nuestra misión es llevar a las empresas a la vanguardia en la era de la I.A. proporcionando las herramientas de ingeniería y estadística más avanzadas del mercado a nuestros clientes. Con nuestras nuevas técnicas de integración, todas las empresas pueden beneficiarse de la Inteligencia Artificial. Desarrollamos, implementamos y monitoreamos procesos de integración de datos avanzados para todas las necesidades.
+    image     : images/company/company-image-2.jpg
+
+  - id        : vision
+    title     : Vision
+    heading   : Nuestra Visión
+    content   : >
+      Con varios años de experiencia en una amplia variedad de proyectos, hemos aprendido a aprovechar las diferentes tecnologías que las empresas pequeñas, medianas y grandes necesitan para tener una ventaja competitiva. Hemos aprendido cómo trabajar con diferentes tipos de clientes en diferentes industrias y con diferentes presupuestos.
+    image     : images/company/company-image-3.jpg
