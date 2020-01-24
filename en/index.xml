@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Rapid AI Integration services</title>
@@ -17,7 +17,7 @@
       <pubDate>Sun, 28 Apr 2019 17:30:40 +0600</pubDate>
       
       <guid>https://raise.systems/en/blog/big-data-charts/</guid>
-      <description>What is Big Data?  We often hear about Big Data and wonder what it means, what are the implications, and how we can get value from it, and here we&#39;ll provide some examples.
+      <description>What is Big Data? We often hear about Big Data and wonder what it means, what are the implications, and how we can get value from it, and here we&amp;rsquo;ll provide some examples.
 First of all, we need to define what is Big Data, and considering the broadness of the term, we will limit ourselves to the amount of records, and consider Big Data hundreds of millions to billions or more.</description>
     </item>
     
@@ -27,7 +27,7 @@ First of all, we need to define what is Big Data, and considering the broadness 
       <pubDate>Thu, 18 Apr 2019 17:30:40 +0600</pubDate>
       
       <guid>https://raise.systems/en/blog/deep-neural-network-api-minimal-example/</guid>
-      <description>How to build a simple sentiment analysis classifier API  In this blog post, we would like to show you a minimal example on how to build a simple deep neural network API for sentiment analysis. From designing the model and training of the data to the deployment of the API.
+      <description>How to build a simple sentiment analysis classifier API In this blog post, we would like to show you a minimal example on how to build a simple deep neural network API for sentiment analysis. From designing the model and training of the data to the deployment of the API.
 A very common use case for A.I. is to classify text, which is not an easy task even for advanced models.</description>
     </item>
     
@@ -37,7 +37,7 @@ A very common use case for A.I. is to classify text, which is not an easy task e
       <pubDate>Sun, 14 Apr 2019 17:30:40 +0600</pubDate>
       
       <guid>https://raise.systems/en/blog/personality-integration-example/</guid>
-      <description>How we integrated Watson Personality Insights to analyze hundreds of millions of users  One of our biggest clients needed to pair social media influencers with brands, and a great way to use A.I. for that purpose would be to use Watson&#39;s personality insights to figure out which influencers would be a good pair for each brand.
+      <description>How we integrated Watson Personality Insights to analyze hundreds of millions of users One of our biggest clients needed to pair social media influencers with brands, and a great way to use A.I. for that purpose would be to use Watson&amp;rsquo;s personality insights to figure out which influencers would be a good pair for each brand.
 For example, Red Bull is associated with extreme sports, and it would make sense to match it with someone that is extroverted, thriving for adventure, very active, etc.</description>
     </item>
     
