@@ -107,13 +107,13 @@
     <priority>0</priority>
     <xhtml:link
                 rel="alternate"
-                hreflang="en"
-                href="https://raise.systems/en/categories/"
+                hreflang="es"
+                href="https://raise.systems/es/categories/"
                 />
     <xhtml:link
                 rel="alternate"
-                hreflang="es"
-                href="https://raise.systems/es/categories/"
+                hreflang="en"
+                href="https://raise.systems/en/categories/"
                 />
     <xhtml:link
                 rel="alternate"
@@ -147,13 +147,13 @@
     <priority>0</priority>
     <xhtml:link
                 rel="alternate"
-                hreflang="en"
-                href="https://raise.systems/en/tags/"
+                hreflang="es"
+                href="https://raise.systems/es/tags/"
                 />
     <xhtml:link
                 rel="alternate"
-                hreflang="es"
-                href="https://raise.systems/es/tags/"
+                hreflang="en"
+                href="https://raise.systems/en/tags/"
                 />
     <xhtml:link
                 rel="alternate"
