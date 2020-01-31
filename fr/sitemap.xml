@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
@@ -104,16 +104,15 @@
   
   <url>
     <loc>https://raise.systems/fr/categories/</loc>
-    <priority>0</priority>
-    <xhtml:link
-                rel="alternate"
-                hreflang="es"
-                href="https://raise.systems/es/categories/"
-                />
     <xhtml:link
                 rel="alternate"
                 hreflang="en"
                 href="https://raise.systems/en/categories/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="es"
+                href="https://raise.systems/es/categories/"
                 />
     <xhtml:link
                 rel="alternate"
@@ -124,7 +123,6 @@
   
   <url>
     <loc>https://raise.systems/fr/</loc>
-    <priority>0</priority>
     <xhtml:link
                 rel="alternate"
                 hreflang="es"
@@ -144,16 +142,15 @@
   
   <url>
     <loc>https://raise.systems/fr/tags/</loc>
-    <priority>0</priority>
-    <xhtml:link
-                rel="alternate"
-                hreflang="es"
-                href="https://raise.systems/es/tags/"
-                />
     <xhtml:link
                 rel="alternate"
                 hreflang="en"
                 href="https://raise.systems/en/tags/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="es"
+                href="https://raise.systems/es/tags/"
                 />
     <xhtml:link
                 rel="alternate"
