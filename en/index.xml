@@ -18,7 +18,7 @@
       
       <guid>https://raise.systems/en/blog/aws-fargate-github-actions-complete-example/</guid>
       <description>How to set up a container deployment pipeline with AWS Fargate and GitHub actions  There are many tutorials online and scattered documentation on how to do this, but not a single guide you can follow from start to finish, so here you have an attempt to do that.
-Requirements For this to work you will need a few things set up first, some of them won&#39;t be covered entirely because we want to focus on the AWS Fargate deployment pipeline.</description>
+Requirements For this to work, you will need a few things set up first, some of them won&#39;t be covered entirely because we want to focus on the AWS Fargate deployment pipeline.</description>
     </item>
     
     <item>
