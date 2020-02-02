@@ -125,13 +125,13 @@
     <loc>https://raise.systems/fr/</loc>
     <xhtml:link
                 rel="alternate"
-                hreflang="es"
-                href="https://raise.systems/es/"
+                hreflang="en"
+                href="https://raise.systems/en/"
                 />
     <xhtml:link
                 rel="alternate"
-                hreflang="en"
-                href="https://raise.systems/en/"
+                hreflang="es"
+                href="https://raise.systems/es/"
                 />
     <xhtml:link
                 rel="alternate"
