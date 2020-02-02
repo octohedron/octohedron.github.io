@@ -142,7 +142,7 @@
     <div class="container">
         <div class="row">
             <div class="col-md-8 mx-auto">
-                <img src="https://raise.systems/images/blog/aws-deployment-0.png" class="w-100 mb-3" alt="Post-Image">
+                <img src="https://raise.systems/images/blog/aws-deployment-1.png" class="w-100 mb-3" alt="Post-Image">
                 <h2>Container deployment pipeline with AWS Fargate and GitHub actions - complete guide</h2>
                 <div class="post-meta mb-5">
                     <ul class="list-inline">
@@ -152,7 +152,7 @@
                         </li>
                         <li class="list-inline-item">
                             <span>at</span>
-                            <span>February 1, 2020</span>
+                            <span>February 2, 2020</span>
                         </li>
                     </ul>
                 </div>
@@ -162,14 +162,14 @@
 <h4 id="requirements">Requirements</h4>
 <p>For this to work, you will need a few things set up first, some of them won't be covered entirely because we want to focus on the AWS Fargate deployment pipeline.</p>
 <h5 id="1-aws-cli">1. AWS CLI</h5>
-<p>We'll use the AWS CLI to set up some of the requirements, so <a href="https://docs.aws.amazon.com/cli/latest/userguide/cli-chap-welcome.html">follow the installation and set up guide here</a></p>
+<p>We'll use the <strong>AWS CLI</strong> to set up some of the requirements, so <a href="https://docs.aws.amazon.com/cli/latest/userguide/cli-chap-welcome.html">follow the installation and set up guide here</a></p>
 <h5 id="2-a-iam-user-with-the-right-permissions">2. A IAM user with the right permissions</h5>
 <p>This is very important and sometimes not easy to get right.</p>
 <ol>
 <li>Open the <a href="https://console.aws.amazon.com/iam/home">IAM console</a></li>
 <li>Go to roles on the left</li>
 <li>Go to ecsTaskExecutionRole (if it's not present, <a href="https://docs.aws.amazon.com/batch/latest/userguide/instance_IAM_role.html">follow this guide to create it</a>)</li>
-<li>Add inline policy, select <code>JSON</code></li>
+<li>Add <strong>inline policy</strong>, select <code>JSON</code></li>
 <li>Paste the following <code>JSON</code> on it, replace <code>${YOUR IAM}</code> with your IAM</li>
 </ol>
 <div class="highlight"><pre style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-json" data-lang="json">{
@@ -179,14 +179,16 @@
       <span style="color:#309;font-weight:bold">&#34;Effect&#34;</span>: <span style="color:#c30">&#34;Allow&#34;</span>,
       <span style="color:#309;font-weight:bold">&#34;Action&#34;</span>: [<span style="color:#c30">&#34;kms:Decrypt&#34;</span>, <span style="color:#c30">&#34;secretsmanager:GetSecretValue&#34;</span>],
       <span style="color:#309;font-weight:bold">&#34;Resource&#34;</span>: [
-        <span style="color:#c30">&#34;arn:aws:secretsmanager:us-east-2:${YOUR IAM}:secret:secret_name&#34;</span>,
-        <span style="color:#c30">&#34;arn:aws:kms:us-east-2:${YOUR IAM}:key/key_id&#34;</span>
+        <span style="color:#c30">&#34;arn:aws:secretsmanager:${YOUR_REGION}:${YOUR IAM}:secret:secret_name&#34;</span>,
+        <span style="color:#c30">&#34;arn:aws:kms:${YOUR_REGION}:${YOUR IAM}:key/key_id&#34;</span>
       ]
     }
   ]
 }
 </code></pre></div><ol start="6">
+<li>Replace <code>${YOUR_REGION}</code> and <code>${YOUR IAM}</code> with your values</li>
 <li>Name the policy and create it</li>
+<li>Make sure your IAM has access to ECS and ECR</li>
 </ol>
 <h5 id="3-a-github-repository-and-project-with-a-docker-image">3. A GitHub repository and project with a Docker image</h5>
 <p>Let's say you have a GitHub NodeJS repository with the following files</p>
@@ -225,7 +227,7 @@ app.listen(port, () =&gt; console.log(<span style="color:#c30">`</span><span sty
 </span><span style="color:#a00;background-color:#faa"></span><span style="color:#09f;font-style:italic"># Run</span><span style="color:#a00;background-color:#faa">
 </span><span style="color:#a00;background-color:#faa"></span><span style="color:#069;font-weight:bold">CMD</span> [<span style="color:#c30">&#34;node&#34;</span>, <span style="color:#c30">&#34;index.js&#34;</span>]<span style="color:#a00;background-color:#faa">
 </span></code></pre></div><h4 id="the-workflow">The workflow</h4>
-<p>Now let's add the GitHub actions starter workflow template that tells us what we need to do and that we can find in the <a href="https://github.com/actions/starter-workflows/blob/master/ci/aws.yml">AWS GitHub actions repository</a> and follow the instructions</p>
+<p>Now let's add the <strong>GitHub actions starter workflow</strong> template that tells us what we need to do and that we can find in the <a href="https://github.com/actions/starter-workflows/blob/master/ci/aws.yml">AWS GitHub actions repository</a> and follow the instructions</p>
 <p>The following <strong>workflow</strong> will build and push a new <strong>container image</strong> to <strong>Amazon ECR</strong>, and then will deploy a new task definition to <strong>Amazon ECS</strong>, on every push
 to the master branch, the task will pull the docker image from the amazon registry, ECR, and deploy it.</p>
 <p>Create a new folder called <code>.github/workflows</code> in your project root and add this file on it as <code>aws.yml</code></p>
@@ -366,11 +368,11 @@ to the master branch, the task will pull the docker image from the amazon regist
 <p>If there's any issue, you can try adding an additional secret to the repository: <code>ACTIONS_STEP_DEBUG</code> which will give you additional information of everything going on in each step of the workflow for easier debugging.</p>
 <p>Finally, go to the Task in the console, and you can see the external IP address and check out your service.</p>
 <ol>
-<li>Go to the ECS section in the AWS console</li>
+<li>Go to the <strong>ECS</strong> section on the AWS console</li>
 <li>Select Clusters on the left</li>
-<li>Select the test-cluster</li>
-<li>Select the test-service</li>
-<li>Switch to the Tasks tab</li>
+<li>Select the <strong>test-cluster</strong></li>
+<li>Select the <strong>test-service</strong></li>
+<li>Switch to the <strong>Tasks</strong> tab</li>
 <li>Select the task, which should be <strong>RUNNING</strong> and you will find the <strong>Public IP</strong></li>
 </ol>
 
