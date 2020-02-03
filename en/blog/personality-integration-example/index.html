@@ -156,70 +156,102 @@
                         </li>
                     </ul>
                 </div>
-                
-
-<h3 id="how-we-integrated-watson-personality-insights-to-analyze-hundreds-of-millions-of-users">How we integrated Watson Personality Insights to analyze hundreds of millions of users</h3>
-
-<hr />
-
-<p>One of our biggest clients needed to <strong>pair social media influencers with brands</strong>, and a great way to use <strong>A.I.</strong> for that purpose would be to use Watson&rsquo;s personality insights to figure out which influencers would be a good pair for each brand.</p>
-
+                <h3 id="how-we-integrated-watson-personality-insights-to-analyze-hundreds-of-millions-of-users">How we integrated Watson Personality Insights to analyze hundreds of millions of users</h3>
+<hr>
+<p>One of our biggest clients needed to <strong>pair social media influencers with brands</strong>, and a great way to use <strong>A.I.</strong> for that purpose would be to use Watson's personality insights to figure out which influencers would be a good pair for each brand.</p>
 <p>For example, Red Bull is associated with extreme sports, and it would make sense to match it with someone that is extroverted, thriving for adventure, very active, etc.</p>
-
-<p>All we had to do was integrate our client&rsquo;s data pipeline with Watson&rsquo;s API, and now the client can do queries in their database to find out which profiles would be a better match than others.</p>
-
-<p>This sounds easy in practice but there&rsquo;s a lot of things that could go wrong and implementation details I would like to tell you about.</p>
-
-<h4 id="step-1-designing-our-pipeline">Step 1 - Designing our pipeline</h4>
-
+<p>All we had to do was integrate our client's data pipeline with Watson's API, and now the client can do queries in their database to find out which profiles would be a better match than others.</p>
+<p>This sounds easy in practice but there's a lot of things that could go wrong and implementation details I would like to tell you about.</p>
+<h4 id="step-1---designing-our-pipeline">Step 1 - Designing our pipeline</h4>
 <p>We need to define a way in which we can do this fast, but asynchronously. To make a good Watson analysis, we need as much data as possible, and that requires a lot of requests, which can take some time. So, the best way to do this is to use a job state pattern.</p>
-
 <p>The way it works is simple, as simple as possible.</p>
-
 <ul>
-<li>1. A request of analysis for a user is made to the API.</li>
-<li>2. The API sets the status as &ldquo;requested&rdquo; for the user.</li>
-<li>3. The API calls a different service and schedules the request of the data for the analysis.</li>
-<li>4. The data requester service downloads the data.</li>
-<li>5. The data is cleaned up of hashtags and mentions symbols that don&rsquo;t add up to the analysis.</li>
-<li>5. A new request to Watson&rsquo;s API is made with the clean data.</li>
-<li>6. The analysis results from the Watson API are stored in the server.</li>
-<li>7. The state of the job is updated.</li>
+<li>
+<ol>
+<li>A request of analysis for a user is made to the API.</li>
+</ol>
+</li>
+<li>
+<ol start="2">
+<li>The API sets the status as &ldquo;requested&rdquo; for the user.</li>
+</ol>
+</li>
+<li>
+<ol start="3">
+<li>The API calls a different service and schedules the request of the data for the analysis.</li>
+</ol>
+</li>
+<li>
+<ol start="4">
+<li>The data requester service downloads the data.</li>
+</ol>
+</li>
+<li>
+<ol start="5">
+<li>The data is cleaned up of hashtags and mentions symbols that don't add up to the analysis.</li>
+</ol>
+</li>
+<li>
+<ol start="5">
+<li>A new request to Watson's API is made with the clean data.</li>
+</ol>
+</li>
+<li>
+<ol start="6">
+<li>The analysis results from the Watson API are stored in the server.</li>
+</ol>
+</li>
+<li>
+<ol start="7">
+<li>The state of the job is updated.</li>
+</ol>
+</li>
 </ul>
-
-<hr />
-
+<hr>
 <p>After all steps are complete, when a new request is made to the same endpoint, instead of scheduling a job, it should return the analysis results.</p>
-
-<h4 id="step-2-the-technology">Step 2 - The technology</h4>
-
+<h4 id="step-2---the-technology">Step 2 - The technology</h4>
 <p>To implement this type of pipeline, we will need a few things to make it easier and simpler.</p>
-
 <ul>
-<li>1. An API to handle the state, return results, schedule jobs, etc.</li>
-<li>2. A service to request, clean and and save analysis results.</li>
-<li>3. Something to glue everything together, i.e. a global shared state.</li>
+<li>
+<ol>
+<li>An API to handle the state, return results, schedule jobs, etc.</li>
+</ol>
+</li>
+<li>
+<ol start="2">
+<li>A service to request, clean and and save analysis results.</li>
+</ol>
+</li>
+<li>
+<ol start="3">
+<li>Something to glue everything together, i.e. a global shared state.</li>
+</ol>
+</li>
 </ul>
-
-<hr />
-
+<hr>
 <p>For this project we chose 3 technologies that gave us the advantage for a few reasons.</p>
-
 <ul>
-<li>1. We implemented the API in <strong>Go</strong>, because it&rsquo;s perfect for that type of service.</li>
-<li>2. We implemented the data requesting service in <strong>Python</strong> because of all the solutions already made for it and quick development time.</li>
-<li>3. We chose <strong>redis</strong> as a global shared state because of performance and features.</li>
+<li>
+<ol>
+<li>We implemented the API in <strong>Go</strong>, because it's perfect for that type of service.</li>
+</ol>
+</li>
+<li>
+<ol start="2">
+<li>We implemented the data requesting service in <strong>Python</strong> because of all the solutions already made for it and quick development time.</li>
+</ol>
+</li>
+<li>
+<ol start="3">
+<li>We chose <strong>redis</strong> as a global shared state because of performance and features.</li>
+</ol>
+</li>
 </ul>
-
-<hr />
-
+<hr>
 <p>By choosing these technologies, we managed to implement the whole pipeline in just a few hours, by leveraging the best and fastest to implement technologies for each step.</p>
-
-<h4 id="step-3-state-handling-and-orchestration-implementation">Step 3 - State handling and orchestration implementation</h4>
-
+<h4 id="step-3---state-handling-and-orchestration-implementation">Step 3 - State handling and orchestration implementation</h4>
 <p>We implement a simple state handling and orchestration API in Go.</p>
-
-<p>The concept is simple, as simple as possible. When an analysis request is made to the API, the status of the job is checked in the global state. If it&rsquo;s found to be completed, it means that the data was already requested, processed, analyzed and the final result saved in the database, in which case we just need to fetch it and return it. Otherwise it will schedule it.</p>
+<p>The concept is simple, as simple as possible. When an analysis request is made to the API, the status of the job is checked in the global state. If it's found to be completed, it means that the data was already requested, processed, analyzed and the final result saved in the database, in which case we just need to fetch it and return it. Otherwise it will schedule it.</p>
 <div class="highlight"><pre style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go"><span style="color:#09f;font-style:italic">// Analyze a user making a POST request to /analyze with raw payload &#34;username&#34;
 </span><span style="color:#09f;font-style:italic"></span><span style="color:#069;font-weight:bold">func</span> <span style="color:#c0f">analyze</span>(w http.ResponseWriter, r <span style="color:#555">*</span>http.Request) {
   <span style="color:#09f;font-style:italic">// Only allow POST requests in this endpoint
@@ -260,69 +292,63 @@
 </span><span style="color:#09f;font-style:italic"></span>    w.<span style="color:#c0f">Write</span>([]<span style="color:#366">byte</span>(<span style="color:#c30">&#34;scheduled&#34;</span>))
   <span style="color:#069;font-weight:bold">case</span> <span style="color:#c30">&#34;completed&#34;</span>:
     <span style="color:#09f;font-style:italic">// fetch the analysis data from the database and return it
-</span><span style="color:#09f;font-style:italic"></span>    w.<span style="color:#c0f">Write</span>([]<span style="color:#366">byte</span>(<span style="color:#c30">&#34;...&#34;</span>))</code></pre></div>
-<p>We&rsquo;re leaving out the part of fetching the data from the database because that&rsquo;s quite simple, we just want to illustrate the concept of a simple integration.</p>
-
-<h4 id="step-4-a-data-requesting-processing-and-analyzing-service">Step 4 - A data requesting, processing and analyzing service</h4>
-
-<p>For these steps of the pipeline, we use a of really powerful python tool that it&rsquo;s extremely simple and fast to set up and configure, <strong>scrapy</strong>.</p>
-
-<p>Scrapy can be easily orchestrated with <strong>scrapyd</strong>. It&rsquo;s as simple as making a request to the scrapyd service and it will schedule a job.</p>
-
+</span><span style="color:#09f;font-style:italic"></span>    w.<span style="color:#c0f">Write</span>([]<span style="color:#366">byte</span>(<span style="color:#c30">&#34;...&#34;</span>))
+</code></pre></div><p>We're leaving out the part of fetching the data from the database because that's quite simple, we just want to illustrate the concept of a simple integration.</p>
+<h4 id="step-4---a-data-requesting-processing-and-analyzing-service">Step 4 - A data requesting, processing and analyzing service</h4>
+<p>For these steps of the pipeline, we use a of really powerful python tool that it's extremely simple and fast to set up and configure, <strong>scrapy</strong>.</p>
+<p>Scrapy can be easily orchestrated with <strong>scrapyd</strong>. It's as simple as making a request to the scrapyd service and it will schedule a job.</p>
 <p>After we request the data, the pipeline is very simple</p>
-<div class="highlight"><pre style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#069;font-weight:bold">class</span> <span style="color:#0a8;font-weight:bold">AllUserDataPipeline</span>(<span style="color:#366">object</span>):
-    <span style="color:#c30">&#34;&#34;&#34;This pipeline will perform a Watson analysis&#34;&#34;&#34;</span>
-    collection_name <span style="color:#555">=</span> <span style="color:#c30">&#39;user_analysis&#39;</span>
+<div class="highlight"><pre style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">
+<span style="color:#069;font-weight:bold">class</span> <span style="color:#0a8;font-weight:bold">AllUserDataPipeline</span>(<span style="color:#366">object</span>):
+    <span style="color:#c30"></span><span style="color:#c30">&#34;&#34;&#34;</span><span style="color:#c30">This pipeline will perform a Watson analysis</span><span style="color:#c30">&#34;&#34;&#34;</span>
+    collection_name <span style="color:#555">=</span> <span style="color:#c30"></span><span style="color:#c30">&#39;</span><span style="color:#c30">user_analysis</span><span style="color:#c30">&#39;</span>
 
     <span style="color:#069;font-weight:bold">def</span> __init__(self, mongo_uri, mongo_db, redis_host, redis_port):
-      <span style="color:#c30">&#34;&#34;&#34;Set up the database connections parameters&#34;&#34;&#34;</span>
+      <span style="color:#c30"></span><span style="color:#c30">&#34;&#34;&#34;</span><span style="color:#c30">Set up the database connections parameters</span><span style="color:#c30">&#34;&#34;&#34;</span>
         self<span style="color:#555">.</span>mongo_uri <span style="color:#555">=</span> mongo_uri
         self<span style="color:#555">.</span>mongo_db <span style="color:#555">=</span> mongo_db
         self<span style="color:#555">.</span>redis_host <span style="color:#555">=</span> redis_host
         self<span style="color:#555">.</span>redis_port <span style="color:#555">=</span> redis_port
 
     <span style="color:#069;font-weight:bold">def</span> <span style="color:#c0f">open_spider</span>(self, spider):
-        <span style="color:#c30">&#34;&#34;&#34;Initialize the database connections when the spider is opened&#34;&#34;&#34;</span>
+        <span style="color:#c30"></span><span style="color:#c30">&#34;&#34;&#34;</span><span style="color:#c30">Initialize the database connections when the spider is opened</span><span style="color:#c30">&#34;&#34;&#34;</span>
         <span style="color:#09f;font-style:italic"># Initialize the database connections...</span>
         <span style="color:#09f;font-style:italic"># Set job to running when we start the crawl</span>
         self<span style="color:#555">.</span>redis_conn<span style="color:#555">.</span>hset(
-            <span style="color:#c30">&#34;analysis:&#34;</span> <span style="color:#555">+</span> spider<span style="color:#555">.</span>username,
-            <span style="color:#c30">&#34;status&#34;</span>, <span style="color:#c30">&#34;running&#34;</span>)
+            <span style="color:#c30"></span><span style="color:#c30">&#34;</span><span style="color:#c30">analysis:</span><span style="color:#c30">&#34;</span> <span style="color:#555">+</span> spider<span style="color:#555">.</span>username,
+            <span style="color:#c30"></span><span style="color:#c30">&#34;</span><span style="color:#c30">status</span><span style="color:#c30">&#34;</span>, <span style="color:#c30"></span><span style="color:#c30">&#34;</span><span style="color:#c30">running</span><span style="color:#c30">&#34;</span>)
 
     <span style="color:#069;font-weight:bold">def</span> <span style="color:#c0f">close_spider</span>(self, spider):
-        <span style="color:#c30">&#34;&#34;&#34;Perform Watson analysis and update status accordingly&#34;&#34;&#34;</span>
+        <span style="color:#c30"></span><span style="color:#c30">&#34;&#34;&#34;</span><span style="color:#c30">Perform Watson analysis and update status accordingly</span><span style="color:#c30">&#34;&#34;&#34;</span>
         <span style="color:#09f;font-style:italic"># Get data from the spider (no data is saved)</span>
         text <span style="color:#555">=</span> spider<span style="color:#555">.</span>data
         <span style="color:#09f;font-style:italic"># Remove hashtags and mentions symbols</span>
-        text <span style="color:#555">=</span> text<span style="color:#555">.</span>replace(<span style="color:#c30">&#34;#&#34;</span>, <span style="color:#c30">&#34; &#34;</span>)
-        text <span style="color:#555">=</span> text<span style="color:#555">.</span>replace(<span style="color:#c30">&#34;@&#34;</span>, <span style="color:#c30">&#34; &#34;</span>)
+        text <span style="color:#555">=</span> text<span style="color:#555">.</span>replace(<span style="color:#c30"></span><span style="color:#c30">&#34;</span><span style="color:#c30">#</span><span style="color:#c30">&#34;</span>, <span style="color:#c30"></span><span style="color:#c30">&#34;</span><span style="color:#c30"> </span><span style="color:#c30">&#34;</span>)
+        text <span style="color:#555">=</span> text<span style="color:#555">.</span>replace(<span style="color:#c30"></span><span style="color:#c30">&#34;</span><span style="color:#c30">@</span><span style="color:#c30">&#34;</span>, <span style="color:#c30"></span><span style="color:#c30">&#34;</span><span style="color:#c30"> </span><span style="color:#c30">&#34;</span>)
         <span style="color:#09f;font-style:italic"># If we have enough text for a decent analysis</span>
         <span style="color:#069;font-weight:bold">if</span> <span style="color:#366">len</span>(text) <span style="color:#555">&gt;</span> <span style="color:#f60">200</span>:
             <span style="color:#09f;font-style:italic"># Initialize request with Watson URL</span>
             res <span style="color:#555">=</span> requests<span style="color:#555">.</span>post(
-                <span style="color:#c30">&#34;https://gateway-fra.watsonplatform.net/personality-insights&#34;</span> <span style="color:#555">+</span>
-                <span style="color:#c30">&#34;/api/v3/profile?version=2017-10-13&amp;raw_scores=true&#34;</span>,
+                <span style="color:#c30"></span><span style="color:#c30">&#34;</span><span style="color:#c30">https://gateway-fra.watsonplatform.net/personality-insights</span><span style="color:#c30">&#34;</span> <span style="color:#555">+</span>
+                <span style="color:#c30"></span><span style="color:#c30">&#34;</span><span style="color:#c30">/api/v3/profile?version=2017-10-13&amp;raw_scores=true</span><span style="color:#c30">&#34;</span>,
                 auth<span style="color:#555">=</span>(
-                    <span style="color:#c30">&#34;api_key&#34;</span>, <span style="color:#c30">&#34;your_key&#34;</span>),
+                    <span style="color:#c30"></span><span style="color:#c30">&#34;</span><span style="color:#c30">api_key</span><span style="color:#c30">&#34;</span>, <span style="color:#c30"></span><span style="color:#c30">&#34;</span><span style="color:#c30">your_key</span><span style="color:#c30">&#34;</span>),
                 headers<span style="color:#555">=</span>{
-                    <span style="color:#c30">&#34;content-type&#34;</span>: <span style="color:#c30">&#34;text/plain&#34;</span>, <span style="color:#c30">&#34;Accept&#34;</span>: <span style="color:#c30">&#34;application/json&#34;</span>},
-                data<span style="color:#555">=</span>text<span style="color:#555">.</span>encode(<span style="color:#c30">&#34;utf-8&#34;</span>)
+                    <span style="color:#c30"></span><span style="color:#c30">&#34;</span><span style="color:#c30">content-type</span><span style="color:#c30">&#34;</span>: <span style="color:#c30"></span><span style="color:#c30">&#34;</span><span style="color:#c30">text/plain</span><span style="color:#c30">&#34;</span>, <span style="color:#c30"></span><span style="color:#c30">&#34;</span><span style="color:#c30">Accept</span><span style="color:#c30">&#34;</span>: <span style="color:#c30"></span><span style="color:#c30">&#34;</span><span style="color:#c30">application/json</span><span style="color:#c30">&#34;</span>},
+                data<span style="color:#555">=</span>text<span style="color:#555">.</span>encode(<span style="color:#c30"></span><span style="color:#c30">&#34;</span><span style="color:#c30">utf-8</span><span style="color:#c30">&#34;</span>)
             )
             <span style="color:#09f;font-style:italic"># Save result</span>
             self<span style="color:#555">.</span>db[self<span style="color:#555">.</span>collection_name] \
-                <span style="color:#555">.</span>update({<span style="color:#c30">&#39;username&#39;</span>: spider<span style="color:#555">.</span>username},
-                        {<span style="color:#c30">&#34;$set&#34;</span>: {<span style="color:#c30">&#34;watson_result&#34;</span>: json<span style="color:#555">.</span>loads(res<span style="color:#555">.</span>text)}}, True)
+                <span style="color:#555">.</span>update({<span style="color:#c30"></span><span style="color:#c30">&#39;</span><span style="color:#c30">username</span><span style="color:#c30">&#39;</span>: spider<span style="color:#555">.</span>username},
+                        {<span style="color:#c30"></span><span style="color:#c30">&#34;</span><span style="color:#c30">$set</span><span style="color:#c30">&#34;</span>: {<span style="color:#c30"></span><span style="color:#c30">&#34;</span><span style="color:#c30">watson_result</span><span style="color:#c30">&#34;</span>: json<span style="color:#555">.</span>loads(res<span style="color:#555">.</span>text)}}, True)
         <span style="color:#09f;font-style:italic"># Set status</span>
-        self<span style="color:#555">.</span>redis_conn<span style="color:#555">.</span>hset(<span style="color:#c30">&#34;analysis:&#34;</span> <span style="color:#555">+</span> spider<span style="color:#555">.</span>username, <span style="color:#c30">&#34;status&#34;</span>, <span style="color:#c30">&#34;completed&#34;</span>)
+        self<span style="color:#555">.</span>redis_conn<span style="color:#555">.</span>hset(<span style="color:#c30"></span><span style="color:#c30">&#34;</span><span style="color:#c30">analysis:</span><span style="color:#c30">&#34;</span> <span style="color:#555">+</span> spider<span style="color:#555">.</span>username, <span style="color:#c30"></span><span style="color:#c30">&#34;</span><span style="color:#c30">status</span><span style="color:#c30">&#34;</span>, <span style="color:#c30"></span><span style="color:#c30">&#34;</span><span style="color:#c30">completed</span><span style="color:#c30">&#34;</span>)
         <span style="color:#09f;font-style:italic"># Close database connection</span>
-        self<span style="color:#555">.</span>client<span style="color:#555">.</span>close()</code></pre></div>
-<p>As you can see, with just a few lines of python we can process the data, request an analysis and save the results.</p>
-
+        self<span style="color:#555">.</span>client<span style="color:#555">.</span>close()
+</code></pre></div><p>As you can see, with just a few lines of python we can process the data, request an analysis and save the results.</p>
 <p>Now, what we have is a <strong>scheduled system</strong> that can process a virtually unlimited amount of requests as long as we have enough hardware to run it. It will automatically allocate as much schedule jobs as we can for our hardware set up.</p>
-
-<p>For example, if we requested 10 million analysis at once, and we can only do 20 at a time because we don&rsquo;t have enough hardware resources, it will only have at most 20 jobs running at once, but will eventually complete all of them.</p>
-
-<p><em>DISCLAIMER: No data is stored in our client&rsquo;s server, each analysis is performed on the fly.</em></p>
+<p>For example, if we requested 10 million analysis at once, and we can only do 20 at a time because we don't have enough hardware resources, it will only have at most 20 jobs running at once, but will eventually complete all of them.</p>
+<p><em>DISCLAIMER: No data is stored in our client's server, each analysis is performed on the fly.</em></p>
 
             </div>
         </div>
