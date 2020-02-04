@@ -165,88 +165,32 @@
 <h4 id="step-1---designing-our-pipeline">Step 1 - Designing our pipeline</h4>
 <p>We need to define a way in which we can do this fast, but asynchronously. To make a good Watson analysis, we need as much data as possible, and that requires a lot of requests, which can take some time. So, the best way to do this is to use a job state pattern.</p>
 <p>The way it works is simple, as simple as possible.</p>
-<ul>
-<li>
 <ol>
 <li>A request of analysis for a user is made to the API.</li>
-</ol>
-</li>
-<li>
-<ol start="2">
 <li>The API sets the status as &ldquo;requested&rdquo; for the user.</li>
-</ol>
-</li>
-<li>
-<ol start="3">
 <li>The API calls a different service and schedules the request of the data for the analysis.</li>
-</ol>
-</li>
-<li>
-<ol start="4">
 <li>The data requester service downloads the data.</li>
-</ol>
-</li>
-<li>
-<ol start="5">
 <li>The data is cleaned up of hashtags and mentions symbols that don't add up to the analysis.</li>
-</ol>
-</li>
-<li>
-<ol start="5">
 <li>A new request to Watson's API is made with the clean data.</li>
-</ol>
-</li>
-<li>
-<ol start="6">
 <li>The analysis results from the Watson API are stored in the server.</li>
-</ol>
-</li>
-<li>
-<ol start="7">
 <li>The state of the job is updated.</li>
 </ol>
-</li>
-</ul>
 <hr>
 <p>After all steps are complete, when a new request is made to the same endpoint, instead of scheduling a job, it should return the analysis results.</p>
 <h4 id="step-2---the-technology">Step 2 - The technology</h4>
 <p>To implement this type of pipeline, we will need a few things to make it easier and simpler.</p>
-<ul>
-<li>
 <ol>
 <li>An API to handle the state, return results, schedule jobs, etc.</li>
-</ol>
-</li>
-<li>
-<ol start="2">
 <li>A service to request, clean and and save analysis results.</li>
-</ol>
-</li>
-<li>
-<ol start="3">
 <li>Something to glue everything together, i.e. a global shared state.</li>
 </ol>
-</li>
-</ul>
 <hr>
 <p>For this project we chose 3 technologies that gave us the advantage for a few reasons.</p>
-<ul>
-<li>
 <ol>
 <li>We implemented the API in <strong>Go</strong>, because it's perfect for that type of service.</li>
-</ol>
-</li>
-<li>
-<ol start="2">
 <li>We implemented the data requesting service in <strong>Python</strong> because of all the solutions already made for it and quick development time.</li>
-</ol>
-</li>
-<li>
-<ol start="3">
 <li>We chose <strong>redis</strong> as a global shared state because of performance and features.</li>
 </ol>
-</li>
-</ul>
 <hr>
 <p>By choosing these technologies, we managed to implement the whole pipeline in just a few hours, by leveraging the best and fastest to implement technologies for each step.</p>
 <h4 id="step-3---state-handling-and-orchestration-implementation">Step 3 - State handling and orchestration implementation</h4>

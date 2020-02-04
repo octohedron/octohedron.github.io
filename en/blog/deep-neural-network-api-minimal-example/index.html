@@ -353,23 +353,11 @@ estimator <span style="color:#555">=</span> tf<span style="color:#555">.</span>e
 <p>All the code is available for use on github: <a href="https://github.com/octohedron/sclapi">https://github.com/octohedron/sclapi</a> which also contains the dnn_loader file that I omitted because it's not so important.</p>
 <h4 id="step-4---local-deployment">Step 4 - Local deployment</h4>
 <p>Now that we have everything set up, we can run our Flask app in localhost to test that everything is working.</p>
-<ul>
-<li>
 <ol>
 <li>Export flask app, <code>export FLASK_APP=$(pwd)/api.py</code></li>
-</ol>
-</li>
-<li>
-<ol start="2">
 <li>Run it with <code>flask run</code></li>
-</ol>
-</li>
-<li>
-<ol start="3">
 <li>Make a <code>POST</code> request to <code>http://127.0.0.1:5000/api</code> with <code>form-data</code> field <code>text</code> and some text, i.e. <code>Today was a wonderful day</code>, should return <code>Positive</code>.</li>
 </ol>
-</li>
-</ul>
 <hr>
 <p>Although this is not a production set up, it works for development and illustration of a working deployment.</p>
 
