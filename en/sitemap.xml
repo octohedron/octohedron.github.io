@@ -103,22 +103,22 @@
   </url>
   
   <url>
-    <loc>https://raise.systems/en/service/</loc>
+    <loc>https://raise.systems/en/services/</loc>
     <lastmod>2018-07-07T14:53:13+06:00</lastmod>
     <xhtml:link
                 rel="alternate"
                 hreflang="fr"
-                href="https://raise.systems/fr/service/"
+                href="https://raise.systems/fr/services/"
                 />
     <xhtml:link
                 rel="alternate"
                 hreflang="es"
-                href="https://raise.systems/es/service/"
+                href="https://raise.systems/es/services/"
                 />
     <xhtml:link
                 rel="alternate"
                 hreflang="en"
-                href="https://raise.systems/en/service/"
+                href="https://raise.systems/en/services/"
                 />
   </url>
   
