@@ -139,24 +139,28 @@
 <div id="content">
 
 <section class="blog-single section">
-    <div class="container">
-        <div class="row">
-            <div class="col-md-8 mx-auto">
-                <img src="https://raise.systems/images/blog/tensorflow-0.jpg" class="w-100 mb-3" alt="Post-Image">
-                <h2>A simple deep neural network text classifier API</h2>
-                <div class="post-meta mb-5">
-                    <ul class="list-inline">
-                        <li class="list-inline-item">
-                            <span>By</span>
-                            Gustavo Rodríguez
-                        </li>
-                        <li class="list-inline-item">
-                            <span>at</span>
-                            <span>18 April, 2019</span>
-                        </li>
-                    </ul>
-                </div>
-                <h3 id="how-to-build-a-simple-sentiment-analysis-classifier-api">How to build a simple sentiment analysis classifier API</h3>
+  <div class="container">
+    <div class="row">
+      <div class="col-md-8 mx-auto">
+        <img
+          src="https://raise.systems/images/blog/tensorflow-0.jpg"
+          class="w-100 mb-3"
+          alt="Post-Image"
+        />
+        <h2>A simple deep neural network text classifier API</h2>
+        <div class="post-meta mb-5">
+          <ul class="list-inline">
+            <li class="list-inline-item">
+              <span>By</span>
+              Gustavo Rodríguez
+            </li>
+            <li class="list-inline-item">
+              <span>at</span>
+              <span>18 April, 2019</span>
+            </li>
+          </ul>
+        </div>
+        <h3 id="how-to-build-a-simple-sentiment-analysis-classifier-api">How to build a simple sentiment analysis classifier API</h3>
 <hr>
 <p>In this blog post, we would like to show you a minimal example on how to build a <strong>simple deep neural network API</strong> for sentiment analysis. From designing the model and training of the data to the deployment of the API.</p>
 <p>A very <strong>common use case for A.I. is to classify text</strong>, which is not an easy task even for advanced models. This type of tool is particularly useful when we need to classify comments, such as reviews in review sites, comments on social media and so on.</p>
@@ -361,9 +365,31 @@ estimator <span style="color:#555">=</span> tf<span style="color:#555">.</span>e
 <hr>
 <p>Although this is not a production set up, it works for development and illustration of a working deployment.</p>
 
-            </div>
-        </div>
+        <div class="col-md-8 mx-auto"></div>
+        <h3>Comments</h3>
+        <div id="disqus_thread"></div>
+<script type="application/javascript">
+    var disqus_config = function () {
+    
+    
+    
+    };
+    (function() {
+        if (["localhost", "127.0.0.1"].indexOf(window.location.hostname) != -1) {
+            document.getElementById('disqus_thread').innerHTML = 'Disqus comments not available by default when the website is previewed locally.';
+            return;
+        }
+        var d = document, s = d.createElement('script'); s.async = true;
+        s.src = '//' + "raise-systems" + '.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="https://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+      </div>
     </div>
+  </div>
 </section>
 
 

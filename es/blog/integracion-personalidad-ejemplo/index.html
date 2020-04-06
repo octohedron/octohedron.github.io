@@ -139,24 +139,28 @@
 <div id="content">
 
 <section class="blog-single section">
-    <div class="container">
-        <div class="row">
-            <div class="col-md-8 mx-auto">
-                <img src="https://raise.systems/images/blog/watson-integration.jpg" class="w-100 mb-3" alt="Post-Image">
-                <h2>Personality insights: Integrating IBM Watson example</h2>
-                <div class="post-meta mb-5">
-                    <ul class="list-inline">
-                        <li class="list-inline-item">
-                            <span>By</span>
-                            Gustavo Rodríguez
-                        </li>
-                        <li class="list-inline-item">
-                            <span>at</span>
-                            <span>14 April, 2019</span>
-                        </li>
-                    </ul>
-                </div>
-                <h3 id="how-we-integrated-watson-personality-insights-to-analyze-hundreds-of-millions-of-users">How we integrated Watson Personality Insights to analyze hundreds of millions of users</h3>
+  <div class="container">
+    <div class="row">
+      <div class="col-md-8 mx-auto">
+        <img
+          src="https://raise.systems/images/blog/watson-integration.jpg"
+          class="w-100 mb-3"
+          alt="Post-Image"
+        />
+        <h2>Personality insights: Integrating IBM Watson example</h2>
+        <div class="post-meta mb-5">
+          <ul class="list-inline">
+            <li class="list-inline-item">
+              <span>By</span>
+              Gustavo Rodríguez
+            </li>
+            <li class="list-inline-item">
+              <span>at</span>
+              <span>14 April, 2019</span>
+            </li>
+          </ul>
+        </div>
+        <h3 id="how-we-integrated-watson-personality-insights-to-analyze-hundreds-of-millions-of-users">How we integrated Watson Personality Insights to analyze hundreds of millions of users</h3>
 <hr>
 <p>One of our biggest clients needed to <strong>pair social media influencers with brands</strong>, and a great way to use <strong>A.I.</strong> for that purpose would be to use Watson's personality insights to figure out which influencers would be a good pair for each brand.</p>
 <p>For example, Red Bull is associated with extreme sports, and it would make sense to match it with someone that is extroverted, thriving for adventure, very active, etc.</p>
@@ -294,9 +298,31 @@
 <p>For example, if we requested 10 million analysis at once, and we can only do 20 at a time because we don't have enough hardware resources, it will only have at most 20 jobs running at once, but will eventually complete all of them.</p>
 <p><em>DISCLAIMER: No data is stored in our client's server, each analysis is performed on the fly.</em></p>
 
-            </div>
-        </div>
+        <div class="col-md-8 mx-auto"></div>
+        <h3>Comments</h3>
+        <div id="disqus_thread"></div>
+<script type="application/javascript">
+    var disqus_config = function () {
+    
+    
+    
+    };
+    (function() {
+        if (["localhost", "127.0.0.1"].indexOf(window.location.hostname) != -1) {
+            document.getElementById('disqus_thread').innerHTML = 'Disqus comments not available by default when the website is previewed locally.';
+            return;
+        }
+        var d = document, s = d.createElement('script'); s.async = true;
+        s.src = '//' + "raise-systems" + '.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="https://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+      </div>
     </div>
+  </div>
 </section>
 
 

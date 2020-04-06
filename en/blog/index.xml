@@ -12,6 +12,17 @@
     
     
     <item>
+      <title>Guide for setting up FARGATE services with the AWS CLI</title>
+      <link>https://raise.systems/en/blog/aws-fargate-deployment-cli/</link>
+      <pubDate>Mon, 06 Apr 2020 10:00:28 +0000</pubDate>
+      
+      <guid>https://raise.systems/en/blog/aws-fargate-deployment-cli/</guid>
+      <description>Setting up a new service in an existing FARGATE cluster In this document we&#39;ll describe how to set up a new FARGATE service from the aws-cli.
+Note: because this is an advanced subject which may require some troubleshooting and additional steps not listed here, you can let me know in the comments if something didn&#39;t work out and I&#39;ll do my best to help you out
+Requirements For setting up the new FARGATE service with the AWS cli, we need some things already in place and configured</description>
+    </item>
+    
+    <item>
       <title>Container deployment pipeline with AWS Fargate and GitHub actions - complete guide</title>
       <link>https://raise.systems/en/blog/aws-fargate-github-actions-complete-example/</link>
       <pubDate>Sun, 02 Feb 2020 13:30:28 +0000</pubDate>

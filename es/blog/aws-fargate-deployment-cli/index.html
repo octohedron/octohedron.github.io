@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+<html class="no-js" lang="es-es"><head>
+  
+
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-138569784-1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-138569784-1');
+</script>
+
+
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="description" content="RAISE Rapid AI integration services">
+<meta name="author" content="Rapid AI integration services">
+
+<title>Integración rápida de tecnologías de Inteligencia Artificial</title>
+
+<!-- Mobile Specific Meta -->
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<!-- Favicon -->
+<link rel="shortcut icon" type="image/x-icon" href="https://raise.systems/images/favicon.ico" />
+
+<!-- Stylesheets -->
+<!-- Themefisher Icon font -->
+<link rel="stylesheet" href="https://raise.systems/plugins/themefisher-font/style.css">
+<!-- bootstrap.min css -->
+<link rel="stylesheet" href="https://raise.systems/plugins/bootstrap/dist/css/bootstrap.min.css">
+<!-- Lightbox.min css -->
+<link rel="stylesheet" href="https://raise.systems/plugins/lightbox2/dist/css/lightbox.min.css">
+<!-- Slick Carousel -->
+<link rel="stylesheet" href="https://raise.systems/plugins/slick-carousel/slick/slick.css">
+<link rel="stylesheet" href="https://raise.systems/plugins/slick-carousel/slick/slick-theme.css">
+<!-- Main Stylesheet -->
+
+
+<link rel="stylesheet" href="https://raise.systems/css/style.min.css" integrity="" media="screen">
+
+</head>
+<body id="body">
+        <!-- Start Preloader -->
+<div id="preloader">
+    <div class="preloader">
+        <div class="sk-circle1 sk-child"></div>
+        <div class="sk-circle2 sk-child"></div>
+        <div class="sk-circle3 sk-child"></div>
+        <div class="sk-circle4 sk-child"></div>
+        <div class="sk-circle5 sk-child"></div>
+        <div class="sk-circle6 sk-child"></div>
+        <div class="sk-circle7 sk-child"></div>
+        <div class="sk-circle8 sk-child"></div>
+        <div class="sk-circle9 sk-child"></div>
+        <div class="sk-circle10 sk-child"></div>
+        <div class="sk-circle11 sk-child"></div>
+        <div class="sk-circle12 sk-child"></div>
+    </div>
+</div>
+<!-- End Preloader --><!-- Fixed Navigation -->
+
+
+    <section class="header navigation">
+
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <nav class="navbar navbar-expand-md">
+                    <a class="navbar-brand" href="https://raise.systems/">
+                        <img src="https://raise.systems/images/logo.png" alt="logo">
+                    </a>
+                    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navigation" aria-controls="navigation"
+                        aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="tf-ion-android-menu"></span>
+                    </button>
+                    
+                    <div id="drapeaux">
+                        
+                        
+                            
+
+
+
+
+
+
+    <a href="https://raise.systems/en"><img src= https://raise.systems/images/logos/lang-en.gif alt="IMAGE" />
+
+</a>
+
+                        
+                            
+
+
+
+
+
+
+    <a href="https://raise.systems/es" class="selected"><img src= https://raise.systems/images/logos/lang-es.gif alt="IMAGE" />es
+    
+</a>
+
+                        
+                    </div>
+                    <div class="collapse navbar-collapse" id="navigation">
+                        <ul class="navbar-nav ml-auto">
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://raise.systems/">Inicio</a>
+                            </li>
+                            
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://raise.systems/es/about">Equipo</a>
+                            </li>
+                            
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://raise.systems/es/services">Servicios</a>
+                            </li>
+                            
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://raise.systems/es/portfolio">Proyectos</a>
+                            </li>
+                            
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://raise.systems/es/blog">Blog</a>
+                            </li>
+                            
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://raise.systems/es/contact">Contacto</a>
+                            </li>
+                            
+                        </ul>
+                    </div>
+                </nav>
+            </div>
+        </div>
+    </div>
+</section>
+<div id="content">
+
+<section class="blog-single section">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-8 mx-auto">
+        <img
+          src="https://raise.systems/images/blog/aws-fargate-0.png"
+          class="w-100 mb-3"
+          alt="Post-Image"
+        />
+        <h2>Guide for setting up FARGATE services with the AWS CLI</h2>
+        <div class="post-meta mb-5">
+          <ul class="list-inline">
+            <li class="list-inline-item">
+              <span>By</span>
+              Gustavo Rodríguez
+            </li>
+            <li class="list-inline-item">
+              <span>at</span>
+              <span>6 April, 2020</span>
+            </li>
+          </ul>
+        </div>
+        <h3 id="setting-up-a-new-service-in-an-existing-fargate-cluster">Setting up a new service in an existing FARGATE cluster</h3>
+<p>In this document we'll describe how to set up a new FARGATE service from the <strong>aws-cli</strong>.</p>
+<p>Note: because this is an advanced subject which may require some troubleshooting and additional steps not listed here, it might be more useful as a guide</p>
+<h3 id="requirements">Requirements</h3>
+<p>For setting up the new FARGATE service with the AWS cli, we need some things already in place and configured</p>
+<ol>
+<li>An AWS <strong>IAM</strong> with the required permissions</li>
+<li>The <strong>aws-cli</strong> installed and configured</li>
+<li>A <strong>FARGATE</strong> cluster already deployed and configured</li>
+<li>A <strong>load balancer</strong> already configured</li>
+<li>A <strong>domain/route 53</strong> configuration</li>
+<li>A project with a <strong>docker image</strong> and a <strong>Task Definition</strong> to deploy</li>
+</ol>
+<h4 id="create-a-load-balancer-target-group-to-route-requests">Create a load balancer <code>target group</code> to route requests</h4>
+<div class="highlight"><pre style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ aws create-target-group --name <span style="color:#a00">${</span><span style="color:#033">service</span>-name<span style="color:#a00">}</span> <span style="color:#c30;font-weight:bold">\ </span><span style="color:#09f;font-style:italic"># i.e. newservice</span>
+                          --protocol HTTP <span style="color:#c30;font-weight:bold">\
+</span><span style="color:#c30;font-weight:bold"></span>                          --port <span style="color:#a00">${</span><span style="color:#033">PORT</span><span style="color:#a00">}</span> <span style="color:#c30;font-weight:bold">\ </span><span style="color:#09f;font-style:italic"># i.e. the port of the container</span>
+                          --vpc-id <span style="color:#a00">${</span><span style="color:#033">vpc</span>-id<span style="color:#a00">}</span> <span style="color:#09f;font-style:italic"># The VPC you&#39;re using, i.e. vpc-821cc9ww</span>
+                          --health-check-protocol HTTP <span style="color:#09f;font-style:italic"># This should be OK in most cases</span>
+                          --health-check-port <span style="color:#a00">${</span><span style="color:#033">PORT</span><span style="color:#a00">}</span> <span style="color:#09f;font-style:italic"># same as the container in most cases</span>
+                          --health-check-enabled <span style="color:#09f;font-style:italic"># Enable health checks</span>
+                          --target-type ip <span style="color:#09f;font-style:italic"># For FARGATE</span>
+</code></pre></div><p>Note the resulting target group ARN returned from the CLI for passing when creating the service and the load balancer routing rule</p>
+<h4 id="register-the-target-group-in-the-load-balancer-with-a-new-rule">Register the target group in the load balancer with a new rule</h4>
+<div class="highlight"><pre style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ aws create-rule --listener-arn <span style="color:#a00">${</span><span style="color:#033">listener</span>-arn<span style="color:#a00">}</span> <span style="color:#09f;font-style:italic"># the load balancer ARN</span>
+                  --conditions conditions.json <span style="color:#09f;font-style:italic"># see the file contents</span>
+                  --priority <span style="color:#f60">12</span> <span style="color:#09f;font-style:italic"># Can&#39;t have more than 1 service with the same value</span>
+                  --actions <span style="color:#033">Type</span><span style="color:#555">=</span>forward,TargetGroupArn<span style="color:#555">=</span><span style="color:#a00">${</span><span style="color:#033">targetGroupARN</span><span style="color:#a00">}</span> <span style="color:#09f;font-style:italic"># Forward to your target group created above</span>
+</code></pre></div><p>File <code>conditions.json</code></p>
+<div class="highlight"><pre style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-json" data-lang="json">[
+  {
+    <span style="color:#309;font-weight:bold">&#34;Field&#34;</span>: <span style="color:#c30">&#34;host-header&#34;</span>,
+    <span style="color:#309;font-weight:bold">&#34;HostHeaderConfig&#34;</span>: {
+      <span style="color:#309;font-weight:bold">&#34;Values&#34;</span>: [<span style="color:#c30">&#34;newservice.example.com&#34;</span>]
+    }
+  }
+]
+</code></pre></div><h4 id="register-the-task-definition">Register the Task Definition</h4>
+<div class="highlight"><pre style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ aws ecs register-task-definition --cli-input-json file://task-definition.json
+</code></pre></div><p>Note the Task Definition ARN for passing when creating the service</p>
+<h4 id="create-the-service">Create the service</h4>
+<div class="highlight"><pre style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ aws create-service --cluster <span style="color:#a00">${</span><span style="color:#033">cluster</span>-name<span style="color:#a00">}</span> <span style="color:#c30;font-weight:bold">\
+</span><span style="color:#c30;font-weight:bold"></span>                     --service <span style="color:#a00">${</span><span style="color:#033">service</span>-name<span style="color:#a00">}</span> <span style="color:#c30;font-weight:bold">\
+</span><span style="color:#c30;font-weight:bold"></span>                     --task-definition <span style="color:#a00">${</span><span style="color:#033">task</span>-definition<span style="color:#a00">}</span> <span style="color:#c30;font-weight:bold">\ </span><span style="color:#09f;font-style:italic"># This is the family:revision, i.e. service-name:LATEST</span>
+                     --load-balancers <span style="color:#a00">${</span><span style="color:#033">targetGroupArn</span>=string,loadBalancerName=string,containerName=string,containerPort integer<span style="color:#a00">}</span> <span style="color:#c30;font-weight:bold">\
+</span><span style="color:#c30;font-weight:bold"></span>                     --desired-count <span style="color:#a00">${</span><span style="color:#033">desired</span>-count<span style="color:#a00">}</span> <span style="color:#c30;font-weight:bold">\ </span><span style="color:#09f;font-style:italic"># I.e. 1 for 1 instance</span>
+                     --launch-type FARGATE
+                     --network-configuration <span style="color:#c30">&#34;awsvpcConfiguration={subnets=[subnet-12344321],securityGroups=[sg-12344321],assignPublicIp=ENABLED}&#34;</span>
+</code></pre></div><p>Now, you can head to the <strong>Route 53</strong> in the AWS console and add the service to the load balancer, then check the requests.</p>
+
+        <div class="col-md-8 mx-auto"></div>
+        <h3>Comments</h3>
+        <div id="disqus_thread"></div>
+<script type="application/javascript">
+    var disqus_config = function () {
+    
+    
+    
+    };
+    (function() {
+        if (["localhost", "127.0.0.1"].indexOf(window.location.hostname) != -1) {
+            document.getElementById('disqus_thread').innerHTML = 'Disqus comments not available by default when the website is previewed locally.';
+            return;
+        }
+        var d = document, s = d.createElement('script'); s.async = true;
+        s.src = '//' + "raise-systems" + '.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="https://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+        </div><!-- Footer Start -->
+<footer id="footer" class="bg-one">
+    <div class="top-footer">
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-3 col-md-3 col-lg-3">
+                    <h3>Equipo</h3>
+                    <p>Nos apasiona la Inteligencia Artificial y el aumento del rendimiento empresarial. Hemos estado trabajando con sistemas de Machine Learning y Big Data durante años y hemos proporcionado a varias empresas una ventaja competitiva.</p>
+                </div>
+                <div class="col-sm-3 col-md-3 col-lg-3">
+                    <h3>Servicios</h3>
+                    <ul>
+                        
+                        <li>
+                            <a href="https://raise.systems/es/services">Reconocimiento de imágenes</a>
+                        </li>
+                        
+                        <li>
+                            <a href="https://raise.systems/es/services">Keras</a>
+                        </li>
+                        
+                        <li>
+                            <a href="https://raise.systems/es/services">Tensorflow</a>
+                        </li>
+                        
+                    </ul>
+                </div>
+                <div class="col-sm-3 col-md-3 col-lg-3">
+                    <h3>Enlaces</h3>
+                    <ul>
+                        
+                        <li>
+                            <a href="https://raise.systems/es/about">Partners</a>
+                        </li>
+                        
+                        <li>
+                            <a href="https://raise.systems/es/about">Equipo</a>
+                        </li>
+                        
+                        <li>
+                            <a href="https://raise.systems/es/about">Preguntas frecuentes</a>
+                        </li>
+                        
+                    </ul>
+                </div>
+                <div class="col-sm-3 col-md-3 col-lg-3">
+                    <h3>Suscribirse</h3>
+                    <form class="subscribe-form">
+                        <div class="form-group">
+                            <input type="email" class="form-control" id="subscribe-email" aria-describedby="emailHelp" placeholder="Enter email">
+                        </div>
+                        <button type="submit" class="btn btn-main-sm" id="subscribe-btn">Subscribe Now</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="footer-bottom">
+        <h5>Copyright 2019 RAISE - All rights reserved. Inteligencia Artificial en Valencia.</h5>
+    </div>
+</footer>
+<!-- end footer -->
+
+
+<!-- Essential Scripts -->
+
+<!-- jQuery -->
+<script src="https://raise.systems/plugins/jquery/dist/jquery.min.js"></script>
+<!-- Bootstrap -->
+<script src="https://raise.systems/plugins/bootstrap/dist/js/popper.min.js"></script>
+<script src="https://raise.systems/plugins/bootstrap/dist/js/bootstrap.min.js"></script>
+<!-- Parallax -->
+<script src="https://raise.systems/plugins/parallax/jquery.parallax-1.1.3.js"></script>
+<!-- lightbox -->
+<script src="https://raise.systems/plugins/lightbox2/dist/js/lightbox.min.js"></script>
+<!-- Slick Carousel -->
+<script src="https://raise.systems/plugins/slick-carousel/slick/slick.min.js"></script>
+<!-- Portfolio Filtering -->
+<script src="https://raise.systems/plugins/filterzr/jquery.filterizr.min.js"></script>
+<!-- Smooth Scroll js -->
+<script src="https://raise.systems/plugins/smooth-scroll/dist/js/smooth-scroll.min.js"></script>
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA5vKrNIizbS7TpGjQOeA-RWVft-LEidoA"></script>
+<!-- Main Script -->
+
+<script src="https://raise.systems/js/script.min.js"></script>
+</body>
+</html>

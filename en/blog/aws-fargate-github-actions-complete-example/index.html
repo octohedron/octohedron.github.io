@@ -139,24 +139,28 @@
 <div id="content">
 
 <section class="blog-single section">
-    <div class="container">
-        <div class="row">
-            <div class="col-md-8 mx-auto">
-                <img src="https://raise.systems/images/blog/aws-deployment-1.png" class="w-100 mb-3" alt="Post-Image">
-                <h2>Container deployment pipeline with AWS Fargate and GitHub actions - complete guide</h2>
-                <div class="post-meta mb-5">
-                    <ul class="list-inline">
-                        <li class="list-inline-item">
-                            <span>By</span>
-                            Gustavo Rodríguez
-                        </li>
-                        <li class="list-inline-item">
-                            <span>at</span>
-                            <span>February 2, 2020</span>
-                        </li>
-                    </ul>
-                </div>
-                <h3 id="how-to-set-up-a-container-deployment-pipeline-with-aws-fargate-and-github-actions">How to set up a container deployment pipeline with AWS Fargate and GitHub actions</h3>
+  <div class="container">
+    <div class="row">
+      <div class="col-md-8 mx-auto">
+        <img
+          src="https://raise.systems/images/blog/aws-deployment-1.png"
+          class="w-100 mb-3"
+          alt="Post-Image"
+        />
+        <h2>Container deployment pipeline with AWS Fargate and GitHub actions - complete guide</h2>
+        <div class="post-meta mb-5">
+          <ul class="list-inline">
+            <li class="list-inline-item">
+              <span>By</span>
+              Gustavo Rodríguez
+            </li>
+            <li class="list-inline-item">
+              <span>at</span>
+              <span>February 2, 2020</span>
+            </li>
+          </ul>
+        </div>
+        <h3 id="how-to-set-up-a-container-deployment-pipeline-with-aws-fargate-and-github-actions">How to set up a container deployment pipeline with AWS Fargate and GitHub actions</h3>
 <hr>
 <p>There are many tutorials online and scattered documentation on how to do this, but not a single guide you can follow from start to finish, so here you have an attempt to do that.</p>
 <h4 id="requirements">Requirements</h4>
@@ -375,9 +379,31 @@ app.listen(port, () =&gt; console.log(<span style="color:#c30">`</span><span sty
 <li>Navigate to the public IP in your browser and you should see <code>Hello World!</code></li>
 </ol>
 
-            </div>
-        </div>
+        <div class="col-md-8 mx-auto"></div>
+        <h3>Comments</h3>
+        <div id="disqus_thread"></div>
+<script type="application/javascript">
+    var disqus_config = function () {
+    
+    
+    
+    };
+    (function() {
+        if (["localhost", "127.0.0.1"].indexOf(window.location.hostname) != -1) {
+            document.getElementById('disqus_thread').innerHTML = 'Disqus comments not available by default when the website is previewed locally.';
+            return;
+        }
+        var d = document, s = d.createElement('script'); s.async = true;
+        s.src = '//' + "raise-systems" + '.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="https://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+      </div>
     </div>
+  </div>
 </section>
 
 
