@@ -6,10 +6,20 @@
     <description>Recent content on Rapid AI Integration services</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Mon, 06 Apr 2020 10:00:28 +0000</lastBuildDate>
+    <lastBuildDate>Tue, 07 Apr 2020 10:30:28 +0000</lastBuildDate>
     
 	<atom:link href="https://raise.systems/en/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Creating a word cloud with coronavirus news titles</title>
+      <link>https://raise.systems/en/blog/simple-word-cloud-corona/</link>
+      <pubDate>Tue, 07 Apr 2020 10:30:28 +0000</pubDate>
+      
+      <guid>https://raise.systems/en/blog/simple-word-cloud-corona/</guid>
+      <description>Creating a word cloud with data from MongoDB in a Jupyter Notebook  Word clouds can be an interesting way to display data, but they look better with a shape, so in this example we&#39;re going to show how to make a word cloud with the shape coming form from a PNG image
+Requirements Most importantly, you&#39;ll need a dataset with the news titles, if you want you can ask me and I&#39;ll provide it, send us an email.</description>
+    </item>
     
     <item>
       <title>Guide for setting up FARGATE services with the AWS CLI</title>

@@ -1,0 +1,367 @@
+<!DOCTYPE html>
+<html class="no-js" lang="es-es"><head>
+  
+
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-138569784-1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-138569784-1');
+</script>
+
+
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="description" content="RAISE Rapid AI integration services">
+<meta name="author" content="Rapid AI integration services">
+
+<title>Integración rápida de tecnologías de Inteligencia Artificial</title>
+
+<!-- Mobile Specific Meta -->
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<!-- Favicon -->
+<link rel="shortcut icon" type="image/x-icon" href="https://raise.systems/images/favicon.ico" />
+
+<!-- Stylesheets -->
+<!-- Themefisher Icon font -->
+<link rel="stylesheet" href="https://raise.systems/plugins/themefisher-font/style.css">
+<!-- bootstrap.min css -->
+<link rel="stylesheet" href="https://raise.systems/plugins/bootstrap/dist/css/bootstrap.min.css">
+<!-- Lightbox.min css -->
+<link rel="stylesheet" href="https://raise.systems/plugins/lightbox2/dist/css/lightbox.min.css">
+<!-- Slick Carousel -->
+<link rel="stylesheet" href="https://raise.systems/plugins/slick-carousel/slick/slick.css">
+<link rel="stylesheet" href="https://raise.systems/plugins/slick-carousel/slick/slick-theme.css">
+<!-- Main Stylesheet -->
+
+
+<link rel="stylesheet" href="https://raise.systems/css/style.min.css" integrity="" media="screen">
+
+</head>
+<body id="body">
+        <!-- Start Preloader -->
+<div id="preloader">
+    <div class="preloader">
+        <div class="sk-circle1 sk-child"></div>
+        <div class="sk-circle2 sk-child"></div>
+        <div class="sk-circle3 sk-child"></div>
+        <div class="sk-circle4 sk-child"></div>
+        <div class="sk-circle5 sk-child"></div>
+        <div class="sk-circle6 sk-child"></div>
+        <div class="sk-circle7 sk-child"></div>
+        <div class="sk-circle8 sk-child"></div>
+        <div class="sk-circle9 sk-child"></div>
+        <div class="sk-circle10 sk-child"></div>
+        <div class="sk-circle11 sk-child"></div>
+        <div class="sk-circle12 sk-child"></div>
+    </div>
+</div>
+<!-- End Preloader --><!-- Fixed Navigation -->
+
+
+    <section class="header navigation">
+
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <nav class="navbar navbar-expand-md">
+                    <a class="navbar-brand" href="https://raise.systems/">
+                        <img src="https://raise.systems/images/logo.png" alt="logo">
+                    </a>
+                    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navigation" aria-controls="navigation"
+                        aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="tf-ion-android-menu"></span>
+                    </button>
+                    
+                    <div id="drapeaux">
+                        
+                        
+                            
+
+
+
+
+
+
+    <a href="https://raise.systems/en"><img src= https://raise.systems/images/logos/lang-en.gif alt="IMAGE" />
+
+</a>
+
+                        
+                            
+
+
+
+
+
+
+    <a href="https://raise.systems/es" class="selected"><img src= https://raise.systems/images/logos/lang-es.gif alt="IMAGE" />es
+    
+</a>
+
+                        
+                    </div>
+                    <div class="collapse navbar-collapse" id="navigation">
+                        <ul class="navbar-nav ml-auto">
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://raise.systems/">Inicio</a>
+                            </li>
+                            
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://raise.systems/es/about">Equipo</a>
+                            </li>
+                            
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://raise.systems/es/services">Servicios</a>
+                            </li>
+                            
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://raise.systems/es/portfolio">Proyectos</a>
+                            </li>
+                            
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://raise.systems/es/blog">Blog</a>
+                            </li>
+                            
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://raise.systems/es/contact">Contacto</a>
+                            </li>
+                            
+                        </ul>
+                    </div>
+                </nav>
+            </div>
+        </div>
+    </div>
+</section>
+<div id="content">
+
+<section class="blog-single section">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-8 mx-auto">
+        <img
+          src="https://raise.systems/images/blog/coronares.png"
+          class="w-100 mb-3"
+          alt="Post-Image"
+        />
+        <h2>Creating a word cloud with coronavirus news titles</h2>
+        <div class="post-meta mb-5">
+          <ul class="list-inline">
+            <li class="list-inline-item">
+              <span>By</span>
+              Gustavo Rodríguez
+            </li>
+            <li class="list-inline-item">
+              <span>at</span>
+              <span>7 April, 2020</span>
+            </li>
+          </ul>
+        </div>
+        <h3 id="creating-a-word-cloud-with-data-from-mongodb-in-a-jupyter-notebook">Creating a word cloud with data from MongoDB in a Jupyter Notebook</h3>
+<hr>
+<p>Word clouds can be an interesting way to show display data, but without a shape they're a bit useless, so in this example we're going to show how to make a word cloud with a form from a PNG image</p>
+<h3 id="requirements">Requirements</h3>
+<p>Python packages</p>
+<ol>
+<li>pymongo</li>
+<li>numpy</li>
+<li>PIL, the python image library</li>
+<li>matplotlib</li>
+<li>wordcloud</li>
+</ol>
+<p>We'll also need a PNG image in black and white with the shape we want to display, note that the image mode should be in grey scale to avoid the wrong pixel values in the numpy arrays</p>
+<p>The image should look like this
+<img src="images/blog/coronares0.png" alt="image"></p>
+<h3 id="implementation">implementation</h3>
+<p>Launch <strong>jupyter notebook</strong> from your project's folder and create a new notebook</p>
+<p>First, add the imports</p>
+<div class="highlight"><pre style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#069;font-weight:bold">import</span> <span style="color:#0cf;font-weight:bold">pymongo</span>
+<span style="color:#069;font-weight:bold">import</span> <span style="color:#0cf;font-weight:bold">numpy</span> <span style="color:#069;font-weight:bold">as</span> <span style="color:#0cf;font-weight:bold">np</span>
+<span style="color:#069;font-weight:bold">from</span> <span style="color:#0cf;font-weight:bold">os</span> <span style="color:#069;font-weight:bold">import</span> path
+<span style="color:#069;font-weight:bold">import</span> <span style="color:#0cf;font-weight:bold">os</span>
+<span style="color:#069;font-weight:bold">from</span> <span style="color:#0cf;font-weight:bold">PIL</span> <span style="color:#069;font-weight:bold">import</span> Image
+<span style="color:#069;font-weight:bold">import</span> <span style="color:#0cf;font-weight:bold">matplotlib.pyplot</span> <span style="color:#069;font-weight:bold">as</span> <span style="color:#0cf;font-weight:bold">plt</span>
+<span style="color:#069;font-weight:bold">from</span> <span style="color:#0cf;font-weight:bold">wordcloud</span> <span style="color:#069;font-weight:bold">import</span> WordCloud, STOPWORDS
+</code></pre></div><p>That's what we'll need to work with the Word Cloud</p>
+<p>Then, we'll need to load the image and build a mask for for the word cloud</p>
+<div class="highlight"><pre style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">d <span style="color:#555">=</span> path<span style="color:#555">.</span>dirname(__file__) <span style="color:#069;font-weight:bold">if</span> <span style="color:#c30"></span><span style="color:#c30">&#34;</span><span style="color:#c30">__file__</span><span style="color:#c30">&#34;</span> <span style="color:#000;font-weight:bold">in</span> <span style="color:#366">locals</span>() <span style="color:#069;font-weight:bold">else</span> os<span style="color:#555">.</span>getcwd()
+cmask <span style="color:#555">=</span> np<span style="color:#555">.</span>array(Image<span style="color:#555">.</span>open(path<span style="color:#555">.</span>join(d, <span style="color:#c30"></span><span style="color:#c30">&#34;</span><span style="color:#c30">corona1.png</span><span style="color:#c30">&#34;</span>)))
+</code></pre></div><p>Now we'll set the <strong>STOPWORDS</strong>, words we don't want to show</p>
+<div class="highlight"><pre style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">stopwords <span style="color:#555">=</span> <span style="color:#366">set</span>(STOPWORDS)
+stopwords<span style="color:#555">.</span>add(<span style="color:#c30"></span><span style="color:#c30">&#34;</span><span style="color:#c30">coronavirus</span><span style="color:#c30">&#34;</span>)
+stopwords<span style="color:#555">.</span>add(<span style="color:#c30"></span><span style="color:#c30">&#34;</span><span style="color:#c30">will</span><span style="color:#c30">&#34;</span>)
+stopwords<span style="color:#555">.</span>add(<span style="color:#c30"></span><span style="color:#c30">&#34;</span><span style="color:#c30">say</span><span style="color:#c30">&#34;</span>)
+stopwords<span style="color:#555">.</span>add(<span style="color:#c30"></span><span style="color:#c30">&#34;</span><span style="color:#c30">says</span><span style="color:#c30">&#34;</span>)
+stopwords<span style="color:#555">.</span>add(<span style="color:#c30"></span><span style="color:#c30">&#34;</span><span style="color:#c30">now</span><span style="color:#c30">&#34;</span>)
+stopwords<span style="color:#555">.</span>add(<span style="color:#c30"></span><span style="color:#c30">&#34;</span><span style="color:#c30">covid</span><span style="color:#c30">&#34;</span>)
+</code></pre></div><p>As you can see, I added some words that I didn't want to display because they're not very relevant</p>
+<p>Now we'll define the class that we'll use for this task</p>
+<div class="highlight"><pre style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#069;font-weight:bold">class</span> <span style="color:#0a8;font-weight:bold">TextUtil</span>:
+    <span style="color:#c30"></span><span style="color:#c30">&#34;&#34;&#34;</span><span style="color:#c30">Class for working with text stored in MongoDB</span><span style="color:#c30">&#34;&#34;&#34;</span>
+
+    <span style="color:#069;font-weight:bold">def</span> __init__(self, load_amount):
+        <span style="color:#c30"></span><span style="color:#c30">&#34;&#34;&#34;</span><span style="color:#c30">Initialize the class with the amount of posts we want to load,</span><span style="color:#c30">
+</span><span style="color:#c30"></span><span style="color:#c30">           the amount of text and the MongoDB connection</span><span style="color:#c30">&#34;&#34;&#34;</span>
+        self<span style="color:#555">.</span>load_amount <span style="color:#555">=</span> load_amount
+        self<span style="color:#555">.</span>text <span style="color:#555">=</span> <span style="color:#c30"></span><span style="color:#c30">&#34;</span><span style="color:#c30">&#34;</span>
+        self<span style="color:#555">.</span>client <span style="color:#555">=</span> pymongo<span style="color:#555">.</span>MongoClient(
+            <span style="color:#c30"></span><span style="color:#c30">&#34;</span><span style="color:#c30">mongodb://ADDRESS:27017/admin</span><span style="color:#c30">&#34;</span>,
+            username<span style="color:#555">=</span><span style="color:#c30"></span><span style="color:#c30">&#39;</span><span style="color:#c30">USER</span><span style="color:#c30">&#39;</span>,
+            password<span style="color:#555">=</span><span style="color:#c30"></span><span style="color:#c30">&#39;</span><span style="color:#c30">PASSWORD</span><span style="color:#c30">&#39;</span>
+        )
+</code></pre></div><p>The constructor has one parameter which is the <code>load_amount</code>, we'll use that for setting the amount of posts we want to load from the database.</p>
+<p>We also set a new field for this class which is the text, for storing the loaded text from the database, and the <code>pymongo</code> client connection</p>
+<p>Now we need to add some class methods to work with the data, starting with <code>get_posts</code></p>
+<pre><code>    def get_posts(self):
+        &quot;&quot;&quot;Set the posts from the database&quot;&quot;&quot;
+        db = self.client[&quot;chat&quot;]
+        posts = db[&quot;posts&quot;].find({}, {&quot;title&quot;: 1}).sort(
+            &quot;timestamp&quot;, pymongo.ASCENDING).limit(self.load_amount)
+        for p in posts:
+            self.text += &quot; &quot;.join(p[&quot;title&quot;].split(&quot; &quot;)).lower()
+        print(&quot;Loaded posts&quot;) # To show the progress
+</code></pre><p>That method will get the posts from the MongoDB database and set them on the text class field for processing by the word cloud</p>
+<p>We're going to need a final method to process the data and draw the image</p>
+<div class="highlight"><pre style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">    <span style="color:#069;font-weight:bold">def</span> <span style="color:#c0f">draw_image</span>(self, filename):
+        <span style="color:#c30"></span><span style="color:#c30">&#34;&#34;&#34;</span><span style="color:#c30">Draws an image with the text</span><span style="color:#c30">&#34;&#34;&#34;</span>
+        <span style="color:#069;font-weight:bold">print</span>(<span style="color:#c30"></span><span style="color:#c30">&#34;</span><span style="color:#c30">Drawing image</span><span style="color:#c30">&#34;</span>)
+        wc <span style="color:#555">=</span> WordCloud(
+            stopwords<span style="color:#555">=</span>stopwords,
+            background_color<span style="color:#555">=</span><span style="color:#c30"></span><span style="color:#c30">&#34;</span><span style="color:#c30">white</span><span style="color:#c30">&#34;</span>,
+            max_words<span style="color:#555">=</span><span style="color:#f60">1000</span>,
+            mask<span style="color:#555">=</span>cmask,
+            contour_width<span style="color:#555">=</span><span style="color:#f60">3</span>,
+            contour_color<span style="color:#555">=</span><span style="color:#c30"></span><span style="color:#c30">&#39;</span><span style="color:#c30">steelblue</span><span style="color:#c30">&#39;</span>)
+        wc<span style="color:#555">.</span>generate(self<span style="color:#555">.</span>text)
+        wc<span style="color:#555">.</span>to_file(filename)
+        plt<span style="color:#555">.</span>imshow(wc, interpolation<span style="color:#555">=</span><span style="color:#c30"></span><span style="color:#c30">&#39;</span><span style="color:#c30">bilinear</span><span style="color:#c30">&#39;</span>)
+        plt<span style="color:#555">.</span>axis(<span style="color:#c30"></span><span style="color:#c30">&#34;</span><span style="color:#c30">off</span><span style="color:#c30">&#34;</span>)
+        plt<span style="color:#555">.</span>figure()
+        plt<span style="color:#555">.</span>imshow(cmask, cmap<span style="color:#555">=</span>plt<span style="color:#555">.</span>cm<span style="color:#555">.</span>gray, interpolation<span style="color:#555">=</span><span style="color:#c30"></span><span style="color:#c30">&#39;</span><span style="color:#c30">bilinear</span><span style="color:#c30">&#39;</span>)
+        plt<span style="color:#555">.</span>axis(<span style="color:#c30"></span><span style="color:#c30">&#34;</span><span style="color:#c30">off</span><span style="color:#c30">&#34;</span>)
+        plt<span style="color:#555">.</span>show()
+</code></pre></div><p>Finally we can create a new instance of our class with the desired amount of posts we want from the database</p>
+<div class="highlight"><pre style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">t_handler <span style="color:#555">=</span> TextUtil(<span style="color:#f60">10000</span>)  <span style="color:#09f;font-style:italic"># Amount of posts</span>
+</code></pre></div><p>And use it for getting the posts and drawing the image</p>
+<pre><code>t_handler.get_posts()
+t_handler.draw_image(&quot;coronares.png&quot;)
+</code></pre><p>Now, in the same directory, we should have a new file <code>coronares.png</code> which should be our desired image</p>
+
+        <div class="col-md-8 mx-auto"></div>
+        <h3>Comments</h3>
+        <div id="disqus_thread"></div>
+<script type="application/javascript">
+    var disqus_config = function () {
+    
+    
+    
+    };
+    (function() {
+        if (["localhost", "127.0.0.1"].indexOf(window.location.hostname) != -1) {
+            document.getElementById('disqus_thread').innerHTML = 'Disqus comments not available by default when the website is previewed locally.';
+            return;
+        }
+        var d = document, s = d.createElement('script'); s.async = true;
+        s.src = '//' + "raise-systems" + '.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="https://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+        </div><!-- Footer Start -->
+<footer id="footer" class="bg-one">
+    <div class="top-footer">
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-3 col-md-3 col-lg-3">
+                    <h3>Equipo</h3>
+                    <p>Nos apasiona la Inteligencia Artificial y el aumento del rendimiento empresarial. Hemos estado trabajando con sistemas de Machine Learning y Big Data durante años y hemos proporcionado a varias empresas una ventaja competitiva.</p>
+                </div>
+                <div class="col-sm-3 col-md-3 col-lg-3">
+                    <h3>Servicios</h3>
+                    <ul>
+                        
+                        <li>
+                            <a href="https://raise.systems/es/services">Reconocimiento de imágenes</a>
+                        </li>
+                        
+                        <li>
+                            <a href="https://raise.systems/es/services">Keras</a>
+                        </li>
+                        
+                        <li>
+                            <a href="https://raise.systems/es/services">Tensorflow</a>
+                        </li>
+                        
+                    </ul>
+                </div>
+                <div class="col-sm-3 col-md-3 col-lg-3">
+                    <h3>Enlaces</h3>
+                    <ul>
+                        
+                        <li>
+                            <a href="https://raise.systems/es/about">Partners</a>
+                        </li>
+                        
+                        <li>
+                            <a href="https://raise.systems/es/about">Equipo</a>
+                        </li>
+                        
+                        <li>
+                            <a href="https://raise.systems/es/about">Preguntas frecuentes</a>
+                        </li>
+                        
+                    </ul>
+                </div>
+                <div class="col-sm-3 col-md-3 col-lg-3">
+                    <h3>Suscribirse</h3>
+                    <form class="subscribe-form">
+                        <div class="form-group">
+                            <input type="email" class="form-control" id="subscribe-email" aria-describedby="emailHelp" placeholder="Enter email">
+                        </div>
+                        <button type="submit" class="btn btn-main-sm" id="subscribe-btn">Subscribe Now</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="footer-bottom">
+        <h5>Copyright 2019 RAISE - All rights reserved. Inteligencia Artificial en Valencia.</h5>
+    </div>
+</footer>
+<!-- end footer -->
+
+
+<!-- Essential Scripts -->
+
+<!-- jQuery -->
+<script src="https://raise.systems/plugins/jquery/dist/jquery.min.js"></script>
+<!-- Bootstrap -->
+<script src="https://raise.systems/plugins/bootstrap/dist/js/popper.min.js"></script>
+<script src="https://raise.systems/plugins/bootstrap/dist/js/bootstrap.min.js"></script>
+<!-- Parallax -->
+<script src="https://raise.systems/plugins/parallax/jquery.parallax-1.1.3.js"></script>
+<!-- lightbox -->
+<script src="https://raise.systems/plugins/lightbox2/dist/js/lightbox.min.js"></script>
+<!-- Slick Carousel -->
+<script src="https://raise.systems/plugins/slick-carousel/slick/slick.min.js"></script>
+<!-- Portfolio Filtering -->
+<script src="https://raise.systems/plugins/filterzr/jquery.filterizr.min.js"></script>
+<!-- Smooth Scroll js -->
+<script src="https://raise.systems/plugins/smooth-scroll/dist/js/smooth-scroll.min.js"></script>
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA5vKrNIizbS7TpGjQOeA-RWVft-LEidoA"></script>
+<!-- Main Script -->
+
+<script src="https://raise.systems/js/script.min.js"></script>
+</body>
+</html>

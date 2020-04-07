@@ -12,6 +12,17 @@
     
     
     <item>
+      <title>Creating a word cloud with coronavirus news titles</title>
+      <link>https://raise.systems/es/blog/simple-word-cloud-corona/</link>
+      <pubDate>Tue, 07 Apr 2020 10:30:28 +0000</pubDate>
+      
+      <guid>https://raise.systems/es/blog/simple-word-cloud-corona/</guid>
+      <description>Creating a word cloud with data from MongoDB in a Jupyter Notebook  Word clouds can be an interesting way to show display data, but without a shape they&#39;re a bit useless, so in this example we&#39;re going to show how to make a word cloud with a form from a PNG image
+Requirements Python packages
+ pymongo numpy PIL, the python image library matplotlib wordcloud  We&#39;ll also need a PNG image in black and white with the shape we want to display, note that the image mode should be in grey scale to avoid the wrong pixel values in the numpy arrays</description>
+    </item>
+    
+    <item>
       <title>Guide for setting up FARGATE services with the AWS CLI</title>
       <link>https://raise.systems/es/blog/aws-fargate-deployment-cli/</link>
       <pubDate>Mon, 06 Apr 2020 10:00:28 +0000</pubDate>

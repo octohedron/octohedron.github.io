@@ -3,23 +3,23 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
-    <loc>https://raise.systems/en/blog/aws-fargate-deployment-cli/</loc>
-    <lastmod>2020-04-06T10:00:28+00:00</lastmod>
+    <loc>https://raise.systems/en/blog/simple-word-cloud-corona/</loc>
+    <lastmod>2020-04-07T10:30:28+00:00</lastmod>
     <xhtml:link
                 rel="alternate"
                 hreflang="es"
-                href="https://raise.systems/es/blog/aws-fargate-deployment-cli/"
+                href="https://raise.systems/es/blog/simple-word-cloud-corona/"
                 />
     <xhtml:link
                 rel="alternate"
                 hreflang="en"
-                href="https://raise.systems/en/blog/aws-fargate-deployment-cli/"
+                href="https://raise.systems/en/blog/simple-word-cloud-corona/"
                 />
   </url>
   
   <url>
     <loc>https://raise.systems/en/</loc>
-    <lastmod>2020-04-06T10:00:28+00:00</lastmod>
+    <lastmod>2020-04-07T10:30:28+00:00</lastmod>
     <xhtml:link
                 rel="alternate"
                 hreflang="fr"
@@ -34,6 +34,21 @@
                 rel="alternate"
                 hreflang="en"
                 href="https://raise.systems/en/"
+                />
+  </url>
+  
+  <url>
+    <loc>https://raise.systems/en/blog/aws-fargate-deployment-cli/</loc>
+    <lastmod>2020-04-06T10:00:28+00:00</lastmod>
+    <xhtml:link
+                rel="alternate"
+                hreflang="es"
+                href="https://raise.systems/es/blog/aws-fargate-deployment-cli/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="en"
+                href="https://raise.systems/en/blog/aws-fargate-deployment-cli/"
                 />
   </url>
   
