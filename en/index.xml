@@ -18,7 +18,7 @@
       
       <guid>https://raise.systems/en/blog/aws-fargate-deployment-cli/</guid>
       <description>Setting up a new service in an existing FARGATE cluster In this document we&#39;ll describe how to set up a new FARGATE service from the aws-cli.
-Note: because this is an advanced subject which may require some troubleshooting and additional steps not listed here, you can let me know in the comments if something didn&#39;t work out and I&#39;ll do my best to help you out
+Note: because this is an advanced subject which may require some troubleshooting and additional steps not listed here, it might be more useful as a guide
 Requirements For setting up the new FARGATE service with the AWS cli, we need some things already in place and configured</description>
     </item>
     
