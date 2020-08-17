@@ -2,73 +2,73 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Blog on RAISE Systems</title>
-    <link>https://raise.systems/en/blog/</link>
+    <link>/en/blog/</link>
     <description>Recent content in Blog on RAISE Systems</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <lastBuildDate>Sat, 07 Jul 2018 18:23:33 +0600</lastBuildDate>
     
-	<atom:link href="https://raise.systems/en/blog/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="/en/blog/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>Creating a word cloud with coronavirus news titles</title>
-      <link>https://raise.systems/en/blog/simple-word-cloud-corona/</link>
+      <link>/en/blog/simple-word-cloud-corona/</link>
       <pubDate>Tue, 07 Apr 2020 10:30:28 +0000</pubDate>
       
-      <guid>https://raise.systems/en/blog/simple-word-cloud-corona/</guid>
-      <description>Creating a word cloud with data from MongoDB in a Jupyter Notebook  Word clouds can be an interesting way to display data, but they look better with a shape, so in this example we&#39;re going to show how to make a word cloud with the shape coming form from a PNG image
-Requirements Most importantly, you&#39;ll need a dataset with the news titles, if you want you can ask me and I&#39;ll provide it, send us an email.</description>
+      <guid>/en/blog/simple-word-cloud-corona/</guid>
+      <description>Creating a word cloud with data from MongoDB in a Jupyter Notebook  Word clouds can be an interesting way to display data, but they look better with a shape, so in this example we&amp;rsquo;re going to show how to make a word cloud with the shape coming form from a PNG image
+Requirements Most importantly, you&amp;rsquo;ll need a dataset with the news titles, if you want you can ask me and I&amp;rsquo;ll provide it, send us an email.</description>
     </item>
     
     <item>
       <title>Guide for setting up FARGATE services with the AWS CLI</title>
-      <link>https://raise.systems/en/blog/aws-fargate-deployment-cli/</link>
+      <link>/en/blog/aws-fargate-deployment-cli/</link>
       <pubDate>Mon, 06 Apr 2020 10:00:28 +0000</pubDate>
       
-      <guid>https://raise.systems/en/blog/aws-fargate-deployment-cli/</guid>
-      <description>Setting up a new service in an existing FARGATE cluster In this document we&#39;ll describe how to set up a new FARGATE service from the aws-cli.
+      <guid>/en/blog/aws-fargate-deployment-cli/</guid>
+      <description>Setting up a new service in an existing FARGATE cluster In this document we&amp;rsquo;ll describe how to set up a new FARGATE service from the aws-cli.
 Note: because this is an advanced subject which may require some troubleshooting and additional steps not listed here, it might be more useful as a guide
 Requirements For setting up the new FARGATE service with the AWS cli, we need some things already in place and configured</description>
     </item>
     
     <item>
       <title>Container deployment pipeline with AWS Fargate and GitHub actions - complete guide</title>
-      <link>https://raise.systems/en/blog/aws-fargate-github-actions-complete-example/</link>
+      <link>/en/blog/aws-fargate-github-actions-complete-example/</link>
       <pubDate>Sun, 02 Feb 2020 13:30:28 +0000</pubDate>
       
-      <guid>https://raise.systems/en/blog/aws-fargate-github-actions-complete-example/</guid>
+      <guid>/en/blog/aws-fargate-github-actions-complete-example/</guid>
       <description>How to set up a container deployment pipeline with AWS Fargate and GitHub actions  There are many tutorials online and scattered documentation on how to do this, but not a single guide you can follow from start to finish, so here you have an attempt to do that.
-Requirements For this to work, you will need a few things set up first, some of them won&#39;t be covered entirely because we want to focus on the AWS Fargate deployment pipeline.</description>
+Requirements For this to work, you will need a few things set up first, some of them won&amp;rsquo;t be covered entirely because we want to focus on the AWS Fargate deployment pipeline.</description>
     </item>
     
     <item>
       <title>Big Data: Analysis made simple</title>
-      <link>https://raise.systems/en/blog/big-data-charts/</link>
+      <link>/en/blog/big-data-charts/</link>
       <pubDate>Sun, 28 Apr 2019 17:30:40 +0600</pubDate>
       
-      <guid>https://raise.systems/en/blog/big-data-charts/</guid>
-      <description>What is Big Data?  We often hear about Big Data and wonder what it means, what are the implications, and how we can get value from it, and here we&#39;ll provide some examples.
+      <guid>/en/blog/big-data-charts/</guid>
+      <description>What is Big Data?  We often hear about Big Data and wonder what it means, what are the implications, and how we can get value from it, and here we&amp;rsquo;ll provide some examples.
 First of all, we need to define what is Big Data, and considering the broadness of the term, we will limit ourselves to the amount of records, and consider Big Data hundreds of millions to billions or more.</description>
     </item>
     
     <item>
       <title>A simple deep neural network text classifier API</title>
-      <link>https://raise.systems/en/blog/deep-neural-network-api-minimal-example/</link>
+      <link>/en/blog/deep-neural-network-api-minimal-example/</link>
       <pubDate>Thu, 18 Apr 2019 17:30:40 +0600</pubDate>
       
-      <guid>https://raise.systems/en/blog/deep-neural-network-api-minimal-example/</guid>
+      <guid>/en/blog/deep-neural-network-api-minimal-example/</guid>
       <description>How to build a simple sentiment analysis classifier API  In this blog post, we would like to show you a minimal example on how to build a simple deep neural network API for sentiment analysis. From designing the model and training of the data to the deployment of the API.
 A very common use case for A.I. is to classify text, which is not an easy task even for advanced models.</description>
     </item>
     
     <item>
       <title>Personality insights: Integrating IBM Watson example</title>
-      <link>https://raise.systems/en/blog/personality-integration-example/</link>
+      <link>/en/blog/personality-integration-example/</link>
       <pubDate>Sun, 14 Apr 2019 17:30:40 +0600</pubDate>
       
-      <guid>https://raise.systems/en/blog/personality-integration-example/</guid>
-      <description>How we integrated Watson Personality Insights to analyze hundreds of millions of users  One of our biggest clients needed to pair social media influencers with brands, and a great way to use A.I. for that purpose would be to use Watson&#39;s personality insights to figure out which influencers would be a good pair for each brand.
+      <guid>/en/blog/personality-integration-example/</guid>
+      <description>How we integrated Watson Personality Insights to analyze hundreds of millions of users  One of our biggest clients needed to pair social media influencers with brands, and a great way to use A.I. for that purpose would be to use Watson&amp;rsquo;s personality insights to figure out which influencers would be a good pair for each brand.
 For example, Red Bull is associated with extreme sports, and it would make sense to match it with someone that is extroverted, thriving for adventure, very active, etc.</description>
     </item>
     

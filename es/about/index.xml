@@ -2,13 +2,13 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Equipo on Integración rápida de tecnologías de Inteligencia Artificial</title>
-    <link>https://raise.systems/es/about/</link>
+    <link>/es/about/</link>
     <description>Recent content in Equipo on Integración rápida de tecnologías de Inteligencia Artificial</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>es-es</language>
     <lastBuildDate>Sat, 07 Jul 2018 12:37:52 +0600</lastBuildDate>
     
-	<atom:link href="https://raise.systems/es/about/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="/es/about/index.xml" rel="self" type="application/rss+xml" />
     
     
   </channel>

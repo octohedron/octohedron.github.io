@@ -2,13 +2,13 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>FRANCAIS Projects on FRANCAIS Example site multi-language</title>
-    <link>https://raise.systems/fr/projects/</link>
+    <link>/fr/projects/</link>
     <description>Recent content in FRANCAIS Projects on FRANCAIS Example site multi-language</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>fr-fr</language>
     <lastBuildDate>Sat, 07 Jul 2018 15:45:06 +0600</lastBuildDate>
     
-	<atom:link href="https://raise.systems/fr/projects/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="/fr/projects/index.xml" rel="self" type="application/rss+xml" />
     
     
   </channel>

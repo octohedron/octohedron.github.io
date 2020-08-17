@@ -2,13 +2,13 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>About Us ... on RAISE Systems</title>
-    <link>https://raise.systems/en/about/</link>
+    <link>/en/about/</link>
     <description>Recent content in About Us ... on RAISE Systems</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <lastBuildDate>Sat, 07 Jul 2018 12:37:52 +0600</lastBuildDate>
     
-	<atom:link href="https://raise.systems/en/about/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="/en/about/index.xml" rel="self" type="application/rss+xml" />
     
     
   </channel>

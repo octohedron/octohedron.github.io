@@ -3,210 +3,210 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
-    <loc>https://raise.systems/es/blog/simple-word-cloud-corona/</loc>
+    <loc>/es/blog/simple-word-cloud-corona/</loc>
     <lastmod>2020-04-07T10:30:28+00:00</lastmod>
     <xhtml:link
                 rel="alternate"
                 hreflang="en"
-                href="https://raise.systems/en/blog/simple-word-cloud-corona/"
+                href="/en/blog/simple-word-cloud-corona/"
                 />
     <xhtml:link
                 rel="alternate"
                 hreflang="es"
-                href="https://raise.systems/es/blog/simple-word-cloud-corona/"
+                href="/es/blog/simple-word-cloud-corona/"
                 />
   </url>
   
   <url>
-    <loc>https://raise.systems/es/</loc>
+    <loc>/es/</loc>
     <lastmod>2020-04-07T10:30:28+00:00</lastmod>
     <xhtml:link
                 rel="alternate"
                 hreflang="fr"
-                href="https://raise.systems/fr/"
+                href="/fr/"
                 />
     <xhtml:link
                 rel="alternate"
                 hreflang="en"
-                href="https://raise.systems/en/"
+                href="/en/"
                 />
     <xhtml:link
                 rel="alternate"
                 hreflang="es"
-                href="https://raise.systems/es/"
+                href="/es/"
                 />
   </url>
   
   <url>
-    <loc>https://raise.systems/es/blog/aws-fargate-deployment-cli/</loc>
+    <loc>/es/blog/aws-fargate-deployment-cli/</loc>
     <lastmod>2020-04-06T10:00:28+00:00</lastmod>
     <xhtml:link
                 rel="alternate"
                 hreflang="en"
-                href="https://raise.systems/en/blog/aws-fargate-deployment-cli/"
+                href="/en/blog/aws-fargate-deployment-cli/"
                 />
     <xhtml:link
                 rel="alternate"
                 hreflang="es"
-                href="https://raise.systems/es/blog/aws-fargate-deployment-cli/"
+                href="/es/blog/aws-fargate-deployment-cli/"
                 />
   </url>
   
   <url>
-    <loc>https://raise.systems/es/blog/aws-fargate-github-acciones-ejemplo-completo/</loc>
+    <loc>/es/blog/aws-fargate-github-acciones-ejemplo-completo/</loc>
     <lastmod>2020-02-02T13:30:28+00:00</lastmod>
   </url>
   
   <url>
-    <loc>https://raise.systems/es/blog/big-data-analisis/</loc>
+    <loc>/es/blog/big-data-analisis/</loc>
     <lastmod>2019-04-28T17:30:40+06:00</lastmod>
   </url>
   
   <url>
-    <loc>https://raise.systems/es/blog/deep-neural-network-api-ejemplo/</loc>
+    <loc>/es/blog/deep-neural-network-api-ejemplo/</loc>
     <lastmod>2019-04-18T17:30:40+06:00</lastmod>
   </url>
   
   <url>
-    <loc>https://raise.systems/es/blog/integracion-personalidad-ejemplo/</loc>
+    <loc>/es/blog/integracion-personalidad-ejemplo/</loc>
     <lastmod>2019-04-14T17:30:40+06:00</lastmod>
   </url>
   
   <url>
-    <loc>https://raise.systems/es/blog/</loc>
+    <loc>/es/blog/</loc>
     <lastmod>2018-07-07T18:23:33+06:00</lastmod>
     <xhtml:link
                 rel="alternate"
                 hreflang="fr"
-                href="https://raise.systems/fr/blog/"
+                href="/fr/blog/"
                 />
     <xhtml:link
                 rel="alternate"
                 hreflang="en"
-                href="https://raise.systems/en/blog/"
+                href="/en/blog/"
                 />
     <xhtml:link
                 rel="alternate"
                 hreflang="es"
-                href="https://raise.systems/es/blog/"
+                href="/es/blog/"
                 />
   </url>
   
   <url>
-    <loc>https://raise.systems/es/contact/</loc>
+    <loc>/es/contact/</loc>
     <lastmod>2018-07-07T15:53:27+06:00</lastmod>
     <xhtml:link
                 rel="alternate"
                 hreflang="fr"
-                href="https://raise.systems/fr/contact/"
+                href="/fr/contact/"
                 />
     <xhtml:link
                 rel="alternate"
                 hreflang="en"
-                href="https://raise.systems/en/contact/"
+                href="/en/contact/"
                 />
     <xhtml:link
                 rel="alternate"
                 hreflang="es"
-                href="https://raise.systems/es/contact/"
+                href="/es/contact/"
                 />
   </url>
   
   <url>
-    <loc>https://raise.systems/es/projects/</loc>
+    <loc>/es/projects/</loc>
     <lastmod>2018-07-07T15:45:06+06:00</lastmod>
     <xhtml:link
                 rel="alternate"
                 hreflang="fr"
-                href="https://raise.systems/fr/projects/"
+                href="/fr/projects/"
                 />
     <xhtml:link
                 rel="alternate"
                 hreflang="en"
-                href="https://raise.systems/en/projects/"
+                href="/en/projects/"
                 />
     <xhtml:link
                 rel="alternate"
                 hreflang="es"
-                href="https://raise.systems/es/projects/"
+                href="/es/projects/"
                 />
   </url>
   
   <url>
-    <loc>https://raise.systems/es/services/</loc>
+    <loc>/es/services/</loc>
     <lastmod>2018-07-07T14:53:13+06:00</lastmod>
     <xhtml:link
                 rel="alternate"
                 hreflang="fr"
-                href="https://raise.systems/fr/services/"
+                href="/fr/services/"
                 />
     <xhtml:link
                 rel="alternate"
                 hreflang="en"
-                href="https://raise.systems/en/services/"
+                href="/en/services/"
                 />
     <xhtml:link
                 rel="alternate"
                 hreflang="es"
-                href="https://raise.systems/es/services/"
+                href="/es/services/"
                 />
   </url>
   
   <url>
-    <loc>https://raise.systems/es/about/</loc>
+    <loc>/es/about/</loc>
     <lastmod>2018-07-07T12:37:52+06:00</lastmod>
     <xhtml:link
                 rel="alternate"
                 hreflang="fr"
-                href="https://raise.systems/fr/about/"
+                href="/fr/about/"
                 />
     <xhtml:link
                 rel="alternate"
                 hreflang="en"
-                href="https://raise.systems/en/about/"
+                href="/en/about/"
                 />
     <xhtml:link
                 rel="alternate"
                 hreflang="es"
-                href="https://raise.systems/es/about/"
+                href="/es/about/"
                 />
   </url>
   
   <url>
-    <loc>https://raise.systems/es/categories/</loc>
+    <loc>/es/categories/</loc>
     <xhtml:link
                 rel="alternate"
                 hreflang="fr"
-                href="https://raise.systems/fr/categories/"
+                href="/fr/categories/"
                 />
     <xhtml:link
                 rel="alternate"
                 hreflang="en"
-                href="https://raise.systems/en/categories/"
+                href="/en/categories/"
                 />
     <xhtml:link
                 rel="alternate"
                 hreflang="es"
-                href="https://raise.systems/es/categories/"
+                href="/es/categories/"
                 />
   </url>
   
   <url>
-    <loc>https://raise.systems/es/tags/</loc>
+    <loc>/es/tags/</loc>
     <xhtml:link
                 rel="alternate"
                 hreflang="fr"
-                href="https://raise.systems/fr/tags/"
+                href="/fr/tags/"
                 />
     <xhtml:link
                 rel="alternate"
                 hreflang="en"
-                href="https://raise.systems/en/tags/"
+                href="/en/tags/"
                 />
     <xhtml:link
                 rel="alternate"
                 hreflang="es"
-                href="https://raise.systems/es/tags/"
+                href="/es/tags/"
                 />
   </url>
   

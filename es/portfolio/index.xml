@@ -8,7 +8,7 @@
     <language>es-es</language>
     <lastBuildDate>Sat, 07 Jul 2018 15:45:06 +0600</lastBuildDate>
     
-	<atom:link href="https://raise.systems/es/portfolio/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="/es/portfolio/index.xml" rel="self" type="application/rss+xml" />
     
     
   </channel>

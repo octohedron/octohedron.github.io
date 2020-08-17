@@ -2,19 +2,21 @@
 <sitemapindex xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 	
 	<sitemap>
-	   	<loc>https://raise.systems/fr/sitemap.xml</loc>
+	   	<loc>/fr/sitemap.xml</loc>
+		
+	   	<lastmod>2018-07-07T18:23:33+06:00</lastmod>
 		
 	</sitemap>
 	
 	<sitemap>
-	   	<loc>https://raise.systems/en/sitemap.xml</loc>
+	   	<loc>/en/sitemap.xml</loc>
 		
 	   	<lastmod>2020-04-07T10:30:28+00:00</lastmod>
 		
 	</sitemap>
 	
 	<sitemap>
-	   	<loc>https://raise.systems/es/sitemap.xml</loc>
+	   	<loc>/es/sitemap.xml</loc>
 		
 	   	<lastmod>2020-04-07T10:30:28+00:00</lastmod>
 		

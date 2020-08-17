@@ -3,159 +3,160 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
-    <loc>https://raise.systems/fr/blog/</loc>
+    <loc>/fr/blog/</loc>
     <lastmod>2018-07-07T18:23:33+06:00</lastmod>
     <xhtml:link
                 rel="alternate"
                 hreflang="en"
-                href="https://raise.systems/en/blog/"
+                href="/en/blog/"
                 />
     <xhtml:link
                 rel="alternate"
                 hreflang="es"
-                href="https://raise.systems/es/blog/"
+                href="/es/blog/"
                 />
     <xhtml:link
                 rel="alternate"
                 hreflang="fr"
-                href="https://raise.systems/fr/blog/"
+                href="/fr/blog/"
                 />
   </url>
   
   <url>
-    <loc>https://raise.systems/fr/contact/</loc>
+    <loc>/fr/</loc>
+    <lastmod>2018-07-07T18:23:33+06:00</lastmod>
+    <xhtml:link
+                rel="alternate"
+                hreflang="es"
+                href="/es/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="en"
+                href="/en/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="fr"
+                href="/fr/"
+                />
+  </url>
+  
+  <url>
+    <loc>/fr/contact/</loc>
     <lastmod>2018-07-07T15:53:27+06:00</lastmod>
     <xhtml:link
                 rel="alternate"
                 hreflang="en"
-                href="https://raise.systems/en/contact/"
+                href="/en/contact/"
                 />
     <xhtml:link
                 rel="alternate"
                 hreflang="es"
-                href="https://raise.systems/es/contact/"
+                href="/es/contact/"
                 />
     <xhtml:link
                 rel="alternate"
                 hreflang="fr"
-                href="https://raise.systems/fr/contact/"
+                href="/fr/contact/"
                 />
   </url>
   
   <url>
-    <loc>https://raise.systems/fr/projects/</loc>
+    <loc>/fr/projects/</loc>
     <lastmod>2018-07-07T15:45:06+06:00</lastmod>
     <xhtml:link
                 rel="alternate"
                 hreflang="en"
-                href="https://raise.systems/en/projects/"
+                href="/en/projects/"
                 />
     <xhtml:link
                 rel="alternate"
                 hreflang="es"
-                href="https://raise.systems/es/projects/"
+                href="/es/projects/"
                 />
     <xhtml:link
                 rel="alternate"
                 hreflang="fr"
-                href="https://raise.systems/fr/projects/"
+                href="/fr/projects/"
                 />
   </url>
   
   <url>
-    <loc>https://raise.systems/fr/services/</loc>
+    <loc>/fr/services/</loc>
     <lastmod>2018-07-07T14:53:13+06:00</lastmod>
     <xhtml:link
                 rel="alternate"
                 hreflang="en"
-                href="https://raise.systems/en/services/"
+                href="/en/services/"
                 />
     <xhtml:link
                 rel="alternate"
                 hreflang="es"
-                href="https://raise.systems/es/services/"
+                href="/es/services/"
                 />
     <xhtml:link
                 rel="alternate"
                 hreflang="fr"
-                href="https://raise.systems/fr/services/"
+                href="/fr/services/"
                 />
   </url>
   
   <url>
-    <loc>https://raise.systems/fr/about/</loc>
+    <loc>/fr/about/</loc>
     <lastmod>2018-07-07T12:37:52+06:00</lastmod>
     <xhtml:link
                 rel="alternate"
                 hreflang="en"
-                href="https://raise.systems/en/about/"
+                href="/en/about/"
                 />
     <xhtml:link
                 rel="alternate"
                 hreflang="es"
-                href="https://raise.systems/es/about/"
+                href="/es/about/"
                 />
     <xhtml:link
                 rel="alternate"
                 hreflang="fr"
-                href="https://raise.systems/fr/about/"
+                href="/fr/about/"
                 />
   </url>
   
   <url>
-    <loc>https://raise.systems/fr/categories/</loc>
+    <loc>/fr/categories/</loc>
     <xhtml:link
                 rel="alternate"
                 hreflang="en"
-                href="https://raise.systems/en/categories/"
+                href="/en/categories/"
                 />
     <xhtml:link
                 rel="alternate"
                 hreflang="es"
-                href="https://raise.systems/es/categories/"
+                href="/es/categories/"
                 />
     <xhtml:link
                 rel="alternate"
                 hreflang="fr"
-                href="https://raise.systems/fr/categories/"
+                href="/fr/categories/"
                 />
   </url>
   
   <url>
-    <loc>https://raise.systems/fr/</loc>
-    <xhtml:link
-                rel="alternate"
-                hreflang="es"
-                href="https://raise.systems/es/"
-                />
+    <loc>/fr/tags/</loc>
     <xhtml:link
                 rel="alternate"
                 hreflang="en"
-                href="https://raise.systems/en/"
-                />
-    <xhtml:link
-                rel="alternate"
-                hreflang="fr"
-                href="https://raise.systems/fr/"
-                />
-  </url>
-  
-  <url>
-    <loc>https://raise.systems/fr/tags/</loc>
-    <xhtml:link
-                rel="alternate"
-                hreflang="en"
-                href="https://raise.systems/en/tags/"
+                href="/en/tags/"
                 />
     <xhtml:link
                 rel="alternate"
                 hreflang="es"
-                href="https://raise.systems/es/tags/"
+                href="/es/tags/"
                 />
     <xhtml:link
                 rel="alternate"
                 hreflang="fr"
-                href="https://raise.systems/fr/tags/"
+                href="/fr/tags/"
                 />
   </url>
   

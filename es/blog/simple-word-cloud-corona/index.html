@@ -22,22 +22,22 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 
 <!-- Favicon -->
-<link rel="shortcut icon" type="image/x-icon" href="https://raise.systems/images/favicon.ico" />
+<link rel="shortcut icon" type="image/x-icon" href="/images/favicon.ico" />
 
 <!-- Stylesheets -->
 <!-- Themefisher Icon font -->
-<link rel="stylesheet" href="https://raise.systems/plugins/themefisher-font/style.css">
+<link rel="stylesheet" href="/plugins/themefisher-font/style.css">
 <!-- bootstrap.min css -->
-<link rel="stylesheet" href="https://raise.systems/plugins/bootstrap/dist/css/bootstrap.min.css">
+<link rel="stylesheet" href="/plugins/bootstrap/dist/css/bootstrap.min.css">
 <!-- Lightbox.min css -->
-<link rel="stylesheet" href="https://raise.systems/plugins/lightbox2/dist/css/lightbox.min.css">
+<link rel="stylesheet" href="/plugins/lightbox2/dist/css/lightbox.min.css">
 <!-- Slick Carousel -->
-<link rel="stylesheet" href="https://raise.systems/plugins/slick-carousel/slick/slick.css">
-<link rel="stylesheet" href="https://raise.systems/plugins/slick-carousel/slick/slick-theme.css">
+<link rel="stylesheet" href="/plugins/slick-carousel/slick/slick.css">
+<link rel="stylesheet" href="/plugins/slick-carousel/slick/slick-theme.css">
 <!-- Main Stylesheet -->
 
 
-<link rel="stylesheet" href="https://raise.systems/css/style.min.css" integrity="" media="screen">
+<link rel="stylesheet" href="/css/style.min.css" integrity="" media="screen">
 
 </head>
 <body id="body">
@@ -67,8 +67,8 @@
         <div class="row">
             <div class="col-md-12">
                 <nav class="navbar navbar-expand-md">
-                    <a class="navbar-brand" href="https://raise.systems/">
-                        <img src="https://raise.systems/images/logo.png" alt="logo">
+                    <a class="navbar-brand" href="/">
+                        <img src="/images/logo.png" alt="logo">
                     </a>
                     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navigation" aria-controls="navigation"
                         aria-expanded="false" aria-label="Toggle navigation">
@@ -85,7 +85,7 @@
 
 
 
-    <a href="https://raise.systems/en"><img src= https://raise.systems/images/logos/lang-en.gif alt="IMAGE" />
+    <a href="/en"><img src= /images/logos/lang-en.gif alt="IMAGE" />
 
 </a>
 
@@ -97,7 +97,7 @@
 
 
 
-    <a href="https://raise.systems/es" class="selected"><img src= https://raise.systems/images/logos/lang-es.gif alt="IMAGE" />es
+    <a href="/es" class="selected"><img src= /images/logos/lang-es.gif alt="IMAGE" />es
     
 </a>
 
@@ -106,27 +106,30 @@
                     <div class="collapse navbar-collapse" id="navigation">
                         <ul class="navbar-nav ml-auto">
                             <li class="nav-item">
-                                <a class="nav-link" href="https://raise.systems/">Inicio</a>
+                                <a class="nav-link" href="/">Inicio</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://raise.systems/startups">Startups</a>
                             </li>
                             
                             <li class="nav-item">
-                                <a class="nav-link" href="https://raise.systems/es/about">Equipo</a>
+                                <a class="nav-link" href="/es/about">Equipo</a>
                             </li>
                             
                             <li class="nav-item">
-                                <a class="nav-link" href="https://raise.systems/es/services">Objetivos</a>
+                                <a class="nav-link" href="/es/services">Objetivos</a>
                             </li>
                             
                             <li class="nav-item">
-                                <a class="nav-link" href="https://raise.systems/es/projects">Proyectos</a>
+                                <a class="nav-link" href="/es/projects">Proyectos</a>
                             </li>
                             
                             <li class="nav-item">
-                                <a class="nav-link" href="https://raise.systems/es/blog">Blog</a>
+                                <a class="nav-link" href="/es/blog">Blog</a>
                             </li>
                             
                             <li class="nav-item">
-                                <a class="nav-link" href="https://raise.systems/es/contact">Contacto</a>
+                                <a class="nav-link" href="/es/contact">Contacto</a>
                             </li>
                             
                         </ul>
@@ -143,7 +146,7 @@
     <div class="row">
       <div class="col-md-8 mx-auto">
         <img
-          src="https://raise.systems/images/blog/coronares.png"
+          src="/images/blog/coronares.png"
           class="w-100 mb-3"
           alt="Post-Image"
         />
@@ -162,9 +165,9 @@
         </div>
         <h3 id="creating-a-word-cloud-with-data-from-mongodb-in-a-jupyter-notebook">Creating a word cloud with data from MongoDB in a Jupyter Notebook</h3>
 <hr>
-<p>Word clouds can be an interesting way to display data, but they look better with a shape, so in this example we're going to show how to make a word cloud with the shape <strong>coming form from a PNG</strong> image</p>
+<p>Word clouds can be an interesting way to display data, but they look better with a shape, so in this example we&rsquo;re going to show how to make a word cloud with the shape <strong>coming form from a PNG</strong> image</p>
 <h3 id="requirements">Requirements</h3>
-<p>Most importantly, you'll need a dataset with the news titles, if you want you can ask me and I'll provide it, <a href="http://localhost:1313/en/contact/">send us an email</a>.</p>
+<p>Most importantly, you&rsquo;ll need a dataset with the news titles, if you want you can ask me and I&rsquo;ll provide it, <a href="http://localhost:1313/en/contact/">send us an email</a>.</p>
 <p>Python packages</p>
 <ol>
 <li>pymongo</li>
@@ -173,11 +176,11 @@
 <li>matplotlib</li>
 <li>wordcloud</li>
 </ol>
-<p>We'll also need a <strong>PNG image in black and white</strong> with the shape we want to display, note that the image mode should be in grey scale to avoid the wrong pixel values in the numpy arrays</p>
+<p>We&rsquo;ll also need a <strong>PNG image in black and white</strong> with the shape we want to display, note that the image mode should be in grey scale to avoid the wrong pixel values in the numpy arrays</p>
 <p>The image should look like this (scaled to 700x700)
 <img src="../../../images/blog/corona1.png" alt="image"></p>
 <h3 id="implementation">Implementation</h3>
-<p>Launch <strong>jupyter notebook</strong> from your project's folder and create a new notebook</p>
+<p>Launch <strong>jupyter notebook</strong> from your project&rsquo;s folder and create a new notebook</p>
 <p>First, add the imports</p>
 <div class="highlight"><pre style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#069;font-weight:bold">import</span> <span style="color:#0cf;font-weight:bold">pymongo</span>
 <span style="color:#069;font-weight:bold">import</span> <span style="color:#0cf;font-weight:bold">numpy</span> <span style="color:#069;font-weight:bold">as</span> <span style="color:#0cf;font-weight:bold">np</span>
@@ -186,64 +189,64 @@
 <span style="color:#069;font-weight:bold">from</span> <span style="color:#0cf;font-weight:bold">PIL</span> <span style="color:#069;font-weight:bold">import</span> Image
 <span style="color:#069;font-weight:bold">import</span> <span style="color:#0cf;font-weight:bold">matplotlib.pyplot</span> <span style="color:#069;font-weight:bold">as</span> <span style="color:#0cf;font-weight:bold">plt</span>
 <span style="color:#069;font-weight:bold">from</span> <span style="color:#0cf;font-weight:bold">wordcloud</span> <span style="color:#069;font-weight:bold">import</span> WordCloud, STOPWORDS
-</code></pre></div><p>That's what we'll need to work with the Word Cloud</p>
-<p>Then, we'll need to load the image and build a mask for for the <strong>word cloud</strong></p>
-<div class="highlight"><pre style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">d <span style="color:#555">=</span> path<span style="color:#555">.</span>dirname(__file__) <span style="color:#069;font-weight:bold">if</span> <span style="color:#c30"></span><span style="color:#c30">&#34;</span><span style="color:#c30">__file__</span><span style="color:#c30">&#34;</span> <span style="color:#000;font-weight:bold">in</span> <span style="color:#366">locals</span>() <span style="color:#069;font-weight:bold">else</span> os<span style="color:#555">.</span>getcwd()
-cmask <span style="color:#555">=</span> np<span style="color:#555">.</span>array(Image<span style="color:#555">.</span>open(path<span style="color:#555">.</span>join(d, <span style="color:#c30"></span><span style="color:#c30">&#34;</span><span style="color:#c30">corona1.png</span><span style="color:#c30">&#34;</span>)))
-</code></pre></div><p>Now we'll set the <strong>STOPWORDS</strong>, words we don't want to show</p>
+</code></pre></div><p>That&rsquo;s what we&rsquo;ll need to work with the Word Cloud</p>
+<p>Then, we&rsquo;ll need to load the image and build a mask for for the <strong>word cloud</strong></p>
+<div class="highlight"><pre style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">d <span style="color:#555">=</span> path<span style="color:#555">.</span>dirname(__file__) <span style="color:#069;font-weight:bold">if</span> <span style="color:#c30">&#34;__file__&#34;</span> <span style="color:#000;font-weight:bold">in</span> <span style="color:#366">locals</span>() <span style="color:#069;font-weight:bold">else</span> os<span style="color:#555">.</span>getcwd()
+cmask <span style="color:#555">=</span> np<span style="color:#555">.</span>array(Image<span style="color:#555">.</span>open(path<span style="color:#555">.</span>join(d, <span style="color:#c30">&#34;corona1.png&#34;</span>)))
+</code></pre></div><p>Now we&rsquo;ll set the <strong>STOPWORDS</strong>, words we don&rsquo;t want to show</p>
 <div class="highlight"><pre style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">stopwords <span style="color:#555">=</span> <span style="color:#366">set</span>(STOPWORDS)
-stopwords<span style="color:#555">.</span>add(<span style="color:#c30"></span><span style="color:#c30">&#34;</span><span style="color:#c30">coronavirus</span><span style="color:#c30">&#34;</span>)
-stopwords<span style="color:#555">.</span>add(<span style="color:#c30"></span><span style="color:#c30">&#34;</span><span style="color:#c30">will</span><span style="color:#c30">&#34;</span>)
-stopwords<span style="color:#555">.</span>add(<span style="color:#c30"></span><span style="color:#c30">&#34;</span><span style="color:#c30">say</span><span style="color:#c30">&#34;</span>)
-stopwords<span style="color:#555">.</span>add(<span style="color:#c30"></span><span style="color:#c30">&#34;</span><span style="color:#c30">says</span><span style="color:#c30">&#34;</span>)
-stopwords<span style="color:#555">.</span>add(<span style="color:#c30"></span><span style="color:#c30">&#34;</span><span style="color:#c30">now</span><span style="color:#c30">&#34;</span>)
-stopwords<span style="color:#555">.</span>add(<span style="color:#c30"></span><span style="color:#c30">&#34;</span><span style="color:#c30">covid</span><span style="color:#c30">&#34;</span>)
-</code></pre></div><p>As you can see, I added some words that I didn't want to display because they're not very relevant</p>
-<p>Now we'll define the class that we'll use for this task</p>
+stopwords<span style="color:#555">.</span>add(<span style="color:#c30">&#34;coronavirus&#34;</span>)
+stopwords<span style="color:#555">.</span>add(<span style="color:#c30">&#34;will&#34;</span>)
+stopwords<span style="color:#555">.</span>add(<span style="color:#c30">&#34;say&#34;</span>)
+stopwords<span style="color:#555">.</span>add(<span style="color:#c30">&#34;says&#34;</span>)
+stopwords<span style="color:#555">.</span>add(<span style="color:#c30">&#34;now&#34;</span>)
+stopwords<span style="color:#555">.</span>add(<span style="color:#c30">&#34;covid&#34;</span>)
+</code></pre></div><p>As you can see, I added some words that I didn&rsquo;t want to display because they&rsquo;re not very relevant</p>
+<p>Now we&rsquo;ll define the class that we&rsquo;ll use for this task</p>
 <div class="highlight"><pre style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#069;font-weight:bold">class</span> <span style="color:#0a8;font-weight:bold">TextUtil</span>:
-    <span style="color:#c30"></span><span style="color:#c30">&#34;&#34;&#34;</span><span style="color:#c30">Class for working with text stored in MongoDB</span><span style="color:#c30">&#34;&#34;&#34;</span>
+    <span style="color:#c30">&#34;&#34;&#34;Class for working with text stored in MongoDB&#34;&#34;&#34;</span>
 
     <span style="color:#069;font-weight:bold">def</span> __init__(self, load_amount):
-        <span style="color:#c30"></span><span style="color:#c30">&#34;&#34;&#34;</span><span style="color:#c30">Initialize the class with the amount of posts we want to load,</span><span style="color:#c30">
-</span><span style="color:#c30"></span><span style="color:#c30">           the amount of text and the MongoDB connection</span><span style="color:#c30">&#34;&#34;&#34;</span>
+        <span style="color:#c30">&#34;&#34;&#34;Initialize the class with the amount of posts we want to load,
+</span><span style="color:#c30">           the amount of text and the MongoDB connection&#34;&#34;&#34;</span>
         self<span style="color:#555">.</span>load_amount <span style="color:#555">=</span> load_amount
-        self<span style="color:#555">.</span>text <span style="color:#555">=</span> <span style="color:#c30"></span><span style="color:#c30">&#34;</span><span style="color:#c30">&#34;</span>
+        self<span style="color:#555">.</span>text <span style="color:#555">=</span> <span style="color:#c30">&#34;&#34;</span>
         self<span style="color:#555">.</span>client <span style="color:#555">=</span> pymongo<span style="color:#555">.</span>MongoClient(
-            <span style="color:#c30"></span><span style="color:#c30">&#34;</span><span style="color:#c30">mongodb://ADDRESS:27017/admin</span><span style="color:#c30">&#34;</span>,
-            username<span style="color:#555">=</span><span style="color:#c30"></span><span style="color:#c30">&#39;</span><span style="color:#c30">USER</span><span style="color:#c30">&#39;</span>,
-            password<span style="color:#555">=</span><span style="color:#c30"></span><span style="color:#c30">&#39;</span><span style="color:#c30">PASSWORD</span><span style="color:#c30">&#39;</span>
+            <span style="color:#c30">&#34;mongodb://ADDRESS:27017/admin&#34;</span>,
+            username<span style="color:#555">=</span><span style="color:#c30">&#39;USER&#39;</span>,
+            password<span style="color:#555">=</span><span style="color:#c30">&#39;PASSWORD&#39;</span>
         )
 </code></pre></div><p>Note: You need to edit the connection parameters to be able to connect to the MongoDB database</p>
-<p>The constructor has one parameter which is the <code>load_amount</code>, we'll use that for setting the amount of posts we want to load from the database.</p>
+<p>The constructor has one parameter which is the <code>load_amount</code>, we&rsquo;ll use that for setting the amount of posts we want to load from the database.</p>
 <p>We also set a new field for this class which is the text, for storing the loaded text from the database, and the <code>pymongo</code> client connection</p>
 <p>Now we need to add some class methods to work with the data, starting with <code>get_posts</code></p>
 <div class="highlight"><pre style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#069;font-weight:bold">def</span> <span style="color:#c0f">get_posts</span>(self):
-    <span style="color:#c30"></span><span style="color:#c30">&#34;&#34;&#34;</span><span style="color:#c30">Set the posts from the database</span><span style="color:#c30">&#34;&#34;&#34;</span>
-    db <span style="color:#555">=</span> self<span style="color:#555">.</span>client[<span style="color:#c30"></span><span style="color:#c30">&#34;</span><span style="color:#c30">chat</span><span style="color:#c30">&#34;</span>]
-    posts <span style="color:#555">=</span> db[<span style="color:#c30"></span><span style="color:#c30">&#34;</span><span style="color:#c30">posts</span><span style="color:#c30">&#34;</span>]<span style="color:#555">.</span>find({}, {<span style="color:#c30"></span><span style="color:#c30">&#34;</span><span style="color:#c30">title</span><span style="color:#c30">&#34;</span>: <span style="color:#f60">1</span>})<span style="color:#555">.</span>sort(
-        <span style="color:#c30"></span><span style="color:#c30">&#34;</span><span style="color:#c30">timestamp</span><span style="color:#c30">&#34;</span>, pymongo<span style="color:#555">.</span>ASCENDING)<span style="color:#555">.</span>limit(self<span style="color:#555">.</span>load_amount)
+    <span style="color:#c30">&#34;&#34;&#34;Set the posts from the database&#34;&#34;&#34;</span>
+    db <span style="color:#555">=</span> self<span style="color:#555">.</span>client[<span style="color:#c30">&#34;chat&#34;</span>]
+    posts <span style="color:#555">=</span> db[<span style="color:#c30">&#34;posts&#34;</span>]<span style="color:#555">.</span>find({}, {<span style="color:#c30">&#34;title&#34;</span>: <span style="color:#f60">1</span>})<span style="color:#555">.</span>sort(
+        <span style="color:#c30">&#34;timestamp&#34;</span>, pymongo<span style="color:#555">.</span>ASCENDING)<span style="color:#555">.</span>limit(self<span style="color:#555">.</span>load_amount)
     <span style="color:#069;font-weight:bold">for</span> p <span style="color:#000;font-weight:bold">in</span> posts:
-        self<span style="color:#555">.</span>text <span style="color:#555">+</span><span style="color:#555">=</span> <span style="color:#c30"></span><span style="color:#c30">&#34;</span><span style="color:#c30"> </span><span style="color:#c30">&#34;</span><span style="color:#555">.</span>join(p[<span style="color:#c30"></span><span style="color:#c30">&#34;</span><span style="color:#c30">title</span><span style="color:#c30">&#34;</span>]<span style="color:#555">.</span>split(<span style="color:#c30"></span><span style="color:#c30">&#34;</span><span style="color:#c30"> </span><span style="color:#c30">&#34;</span>))<span style="color:#555">.</span>lower()
-    <span style="color:#069;font-weight:bold">print</span>(<span style="color:#c30"></span><span style="color:#c30">&#34;</span><span style="color:#c30">Loaded posts</span><span style="color:#c30">&#34;</span>) <span style="color:#09f;font-style:italic"># To show the progress</span>
+        self<span style="color:#555">.</span>text <span style="color:#555">+=</span> <span style="color:#c30">&#34; &#34;</span><span style="color:#555">.</span>join(p[<span style="color:#c30">&#34;title&#34;</span>]<span style="color:#555">.</span>split(<span style="color:#c30">&#34; &#34;</span>))<span style="color:#555">.</span>lower()
+    <span style="color:#069;font-weight:bold">print</span>(<span style="color:#c30">&#34;Loaded posts&#34;</span>) <span style="color:#09f;font-style:italic"># To show the progress</span>
 </code></pre></div><p>That method will get the posts from the MongoDB database and set them on the text class field for processing by the word cloud</p>
-<p>We're going to need a final method to process the data and draw the image</p>
+<p>We&rsquo;re going to need a final method to process the data and draw the image</p>
 <div class="highlight"><pre style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#069;font-weight:bold">def</span> <span style="color:#c0f">draw_image</span>(self, filename):
-    <span style="color:#c30"></span><span style="color:#c30">&#34;&#34;&#34;</span><span style="color:#c30">Draws an image with the text</span><span style="color:#c30">&#34;&#34;&#34;</span>
-    <span style="color:#069;font-weight:bold">print</span>(<span style="color:#c30"></span><span style="color:#c30">&#34;</span><span style="color:#c30">Drawing image</span><span style="color:#c30">&#34;</span>)
+    <span style="color:#c30">&#34;&#34;&#34;Draws an image with the text&#34;&#34;&#34;</span>
+    <span style="color:#069;font-weight:bold">print</span>(<span style="color:#c30">&#34;Drawing image&#34;</span>)
     wc <span style="color:#555">=</span> WordCloud(
         stopwords<span style="color:#555">=</span>stopwords,
-        background_color<span style="color:#555">=</span><span style="color:#c30"></span><span style="color:#c30">&#34;</span><span style="color:#c30">white</span><span style="color:#c30">&#34;</span>,
+        background_color<span style="color:#555">=</span><span style="color:#c30">&#34;white&#34;</span>,
         max_words<span style="color:#555">=</span><span style="color:#f60">1000</span>,
         mask<span style="color:#555">=</span>cmask,
         contour_width<span style="color:#555">=</span><span style="color:#f60">3</span>,
-        contour_color<span style="color:#555">=</span><span style="color:#c30"></span><span style="color:#c30">&#39;</span><span style="color:#c30">steelblue</span><span style="color:#c30">&#39;</span>)
+        contour_color<span style="color:#555">=</span><span style="color:#c30">&#39;steelblue&#39;</span>)
     wc<span style="color:#555">.</span>generate(self<span style="color:#555">.</span>text)
     wc<span style="color:#555">.</span>to_file(filename)
-    plt<span style="color:#555">.</span>imshow(wc, interpolation<span style="color:#555">=</span><span style="color:#c30"></span><span style="color:#c30">&#39;</span><span style="color:#c30">bilinear</span><span style="color:#c30">&#39;</span>)
-    plt<span style="color:#555">.</span>axis(<span style="color:#c30"></span><span style="color:#c30">&#34;</span><span style="color:#c30">off</span><span style="color:#c30">&#34;</span>)
+    plt<span style="color:#555">.</span>imshow(wc, interpolation<span style="color:#555">=</span><span style="color:#c30">&#39;bilinear&#39;</span>)
+    plt<span style="color:#555">.</span>axis(<span style="color:#c30">&#34;off&#34;</span>)
     plt<span style="color:#555">.</span>figure()
-    plt<span style="color:#555">.</span>imshow(cmask, cmap<span style="color:#555">=</span>plt<span style="color:#555">.</span>cm<span style="color:#555">.</span>gray, interpolation<span style="color:#555">=</span><span style="color:#c30"></span><span style="color:#c30">&#39;</span><span style="color:#c30">bilinear</span><span style="color:#c30">&#39;</span>)
-    plt<span style="color:#555">.</span>axis(<span style="color:#c30"></span><span style="color:#c30">&#34;</span><span style="color:#c30">off</span><span style="color:#c30">&#34;</span>)
+    plt<span style="color:#555">.</span>imshow(cmask, cmap<span style="color:#555">=</span>plt<span style="color:#555">.</span>cm<span style="color:#555">.</span>gray, interpolation<span style="color:#555">=</span><span style="color:#c30">&#39;bilinear&#39;</span>)
+    plt<span style="color:#555">.</span>axis(<span style="color:#c30">&#34;off&#34;</span>)
     plt<span style="color:#555">.</span>show()
 </code></pre></div><p>Finally we can create a new instance of our class with the desired amount of posts we want from the database</p>
 <div class="highlight"><pre style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">t_handler <span style="color:#555">=</span> TextUtil(<span style="color:#f60">10000</span>)  <span style="color:#09f;font-style:italic"># Amount of posts</span>
@@ -295,15 +298,15 @@ t_handler.draw_image(&quot;coronares.png&quot;)
                     <ul>
                         
                         <li>
-                            <a href="https://raise.systems/es/services">Reconocimiento de imágenes</a>
+                            <a href="/es/services">Reconocimiento de imágenes</a>
                         </li>
                         
                         <li>
-                            <a href="https://raise.systems/es/services">Keras</a>
+                            <a href="/es/services">Keras</a>
                         </li>
                         
                         <li>
-                            <a href="https://raise.systems/es/services">Tensorflow</a>
+                            <a href="/es/services">Tensorflow</a>
                         </li>
                         
                     </ul>
@@ -313,15 +316,15 @@ t_handler.draw_image(&quot;coronares.png&quot;)
                     <ul>
                         
                         <li>
-                            <a href="https://raise.systems/es/about">Partners</a>
+                            <a href="/es/about">Partners</a>
                         </li>
                         
                         <li>
-                            <a href="https://raise.systems/es/about">Equipo</a>
+                            <a href="/es/about">Equipo</a>
                         </li>
                         
                         <li>
-                            <a href="https://raise.systems/es/about">Preguntas frecuentes</a>
+                            <a href="/es/about">Preguntas frecuentes</a>
                         </li>
                         
                     </ul>
@@ -348,23 +351,23 @@ t_handler.draw_image(&quot;coronares.png&quot;)
 <!-- Essential Scripts -->
 
 <!-- jQuery -->
-<script src="https://raise.systems/plugins/jquery/dist/jquery.min.js"></script>
+<script src="/plugins/jquery/dist/jquery.min.js"></script>
 <!-- Bootstrap -->
-<script src="https://raise.systems/plugins/bootstrap/dist/js/popper.min.js"></script>
-<script src="https://raise.systems/plugins/bootstrap/dist/js/bootstrap.min.js"></script>
+<script src="/plugins/bootstrap/dist/js/popper.min.js"></script>
+<script src="/plugins/bootstrap/dist/js/bootstrap.min.js"></script>
 <!-- Parallax -->
-<script src="https://raise.systems/plugins/parallax/jquery.parallax-1.1.3.js"></script>
+<script src="/plugins/parallax/jquery.parallax-1.1.3.js"></script>
 <!-- lightbox -->
-<script src="https://raise.systems/plugins/lightbox2/dist/js/lightbox.min.js"></script>
+<script src="/plugins/lightbox2/dist/js/lightbox.min.js"></script>
 <!-- Slick Carousel -->
-<script src="https://raise.systems/plugins/slick-carousel/slick/slick.min.js"></script>
+<script src="/plugins/slick-carousel/slick/slick.min.js"></script>
 <!-- Portfolio Filtering -->
-<script src="https://raise.systems/plugins/filterzr/jquery.filterizr.min.js"></script>
+<script src="/plugins/filterzr/jquery.filterizr.min.js"></script>
 <!-- Smooth Scroll js -->
-<script src="https://raise.systems/plugins/smooth-scroll/dist/js/smooth-scroll.min.js"></script>
+<script src="/plugins/smooth-scroll/dist/js/smooth-scroll.min.js"></script>
 <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA5vKrNIizbS7TpGjQOeA-RWVft-LEidoA"></script>
 <!-- Main Script -->
 
-<script src="https://raise.systems/js/script.min.js"></script>
+<script src="/js/script.min.js"></script>
 </body>
 </html>
