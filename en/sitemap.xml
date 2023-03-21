@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
-  
   <url>
     <loc>/en/blog/simple-word-cloud-corona/</loc>
     <lastmod>2020-04-07T10:30:28+00:00</lastmod>
@@ -15,9 +14,7 @@
                 hreflang="en"
                 href="/en/blog/simple-word-cloud-corona/"
                 />
-  </url>
-  
-  <url>
+  </url><url>
     <loc>/en/</loc>
     <lastmod>2020-04-07T10:30:28+00:00</lastmod>
     <xhtml:link
@@ -35,9 +32,7 @@
                 hreflang="en"
                 href="/en/"
                 />
-  </url>
-  
-  <url>
+  </url><url>
     <loc>/en/blog/aws-fargate-deployment-cli/</loc>
     <lastmod>2020-04-06T10:00:28+00:00</lastmod>
     <xhtml:link
@@ -50,29 +45,19 @@
                 hreflang="en"
                 href="/en/blog/aws-fargate-deployment-cli/"
                 />
-  </url>
-  
-  <url>
+  </url><url>
     <loc>/en/blog/aws-fargate-github-actions-complete-example/</loc>
     <lastmod>2020-02-02T13:30:28+00:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>/en/blog/big-data-charts/</loc>
     <lastmod>2019-04-28T17:30:40+06:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>/en/blog/deep-neural-network-api-minimal-example/</loc>
     <lastmod>2019-04-18T17:30:40+06:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>/en/blog/personality-integration-example/</loc>
     <lastmod>2019-04-14T17:30:40+06:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>/en/blog/</loc>
     <lastmod>2018-07-07T18:23:33+06:00</lastmod>
     <xhtml:link
@@ -90,9 +75,7 @@
                 hreflang="en"
                 href="/en/blog/"
                 />
-  </url>
-  
-  <url>
+  </url><url>
     <loc>/en/contact/</loc>
     <lastmod>2018-07-07T15:53:27+06:00</lastmod>
     <xhtml:link
@@ -110,9 +93,7 @@
                 hreflang="en"
                 href="/en/contact/"
                 />
-  </url>
-  
-  <url>
+  </url><url>
     <loc>/en/projects/</loc>
     <lastmod>2018-07-07T15:45:06+06:00</lastmod>
     <xhtml:link
@@ -130,9 +111,7 @@
                 hreflang="en"
                 href="/en/projects/"
                 />
-  </url>
-  
-  <url>
+  </url><url>
     <loc>/en/services/</loc>
     <lastmod>2018-07-07T14:53:13+06:00</lastmod>
     <xhtml:link
@@ -150,9 +129,7 @@
                 hreflang="en"
                 href="/en/services/"
                 />
-  </url>
-  
-  <url>
+  </url><url>
     <loc>/en/about/</loc>
     <lastmod>2018-07-07T12:37:52+06:00</lastmod>
     <xhtml:link
@@ -170,9 +147,7 @@
                 hreflang="en"
                 href="/en/about/"
                 />
-  </url>
-  
-  <url>
+  </url><url>
     <loc>/en/categories/</loc>
     <xhtml:link
                 rel="alternate"
@@ -189,9 +164,7 @@
                 hreflang="en"
                 href="/en/categories/"
                 />
-  </url>
-  
-  <url>
+  </url><url>
     <loc>/en/tags/</loc>
     <xhtml:link
                 rel="alternate"
@@ -209,5 +182,4 @@
                 href="/en/tags/"
                 />
   </url>
-  
 </urlset>

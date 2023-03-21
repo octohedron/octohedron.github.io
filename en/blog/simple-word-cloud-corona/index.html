@@ -182,77 +182,77 @@
 <h3 id="implementation">Implementation</h3>
 <p>Launch <strong>jupyter notebook</strong> from your project&rsquo;s folder and create a new notebook</p>
 <p>First, add the imports</p>
-<div class="highlight"><pre style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#069;font-weight:bold">import</span> <span style="color:#0cf;font-weight:bold">pymongo</span>
-<span style="color:#069;font-weight:bold">import</span> <span style="color:#0cf;font-weight:bold">numpy</span> <span style="color:#069;font-weight:bold">as</span> <span style="color:#0cf;font-weight:bold">np</span>
-<span style="color:#069;font-weight:bold">from</span> <span style="color:#0cf;font-weight:bold">os</span> <span style="color:#069;font-weight:bold">import</span> path
-<span style="color:#069;font-weight:bold">import</span> <span style="color:#0cf;font-weight:bold">os</span>
-<span style="color:#069;font-weight:bold">from</span> <span style="color:#0cf;font-weight:bold">PIL</span> <span style="color:#069;font-weight:bold">import</span> Image
-<span style="color:#069;font-weight:bold">import</span> <span style="color:#0cf;font-weight:bold">matplotlib.pyplot</span> <span style="color:#069;font-weight:bold">as</span> <span style="color:#0cf;font-weight:bold">plt</span>
-<span style="color:#069;font-weight:bold">from</span> <span style="color:#0cf;font-weight:bold">wordcloud</span> <span style="color:#069;font-weight:bold">import</span> WordCloud, STOPWORDS
-</code></pre></div><p>That&rsquo;s what we&rsquo;ll need to work with the Word Cloud</p>
+<div class="highlight"><pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#069;font-weight:bold">import</span> <span style="color:#0cf;font-weight:bold">pymongo</span>
+</span></span><span style="display:flex;"><span><span style="color:#069;font-weight:bold">import</span> <span style="color:#0cf;font-weight:bold">numpy</span> <span style="color:#069;font-weight:bold">as</span> <span style="color:#0cf;font-weight:bold">np</span>
+</span></span><span style="display:flex;"><span><span style="color:#069;font-weight:bold">from</span> <span style="color:#0cf;font-weight:bold">os</span> <span style="color:#069;font-weight:bold">import</span> path
+</span></span><span style="display:flex;"><span><span style="color:#069;font-weight:bold">import</span> <span style="color:#0cf;font-weight:bold">os</span>
+</span></span><span style="display:flex;"><span><span style="color:#069;font-weight:bold">from</span> <span style="color:#0cf;font-weight:bold">PIL</span> <span style="color:#069;font-weight:bold">import</span> Image
+</span></span><span style="display:flex;"><span><span style="color:#069;font-weight:bold">import</span> <span style="color:#0cf;font-weight:bold">matplotlib.pyplot</span> <span style="color:#069;font-weight:bold">as</span> <span style="color:#0cf;font-weight:bold">plt</span>
+</span></span><span style="display:flex;"><span><span style="color:#069;font-weight:bold">from</span> <span style="color:#0cf;font-weight:bold">wordcloud</span> <span style="color:#069;font-weight:bold">import</span> WordCloud, STOPWORDS
+</span></span></code></pre></div><p>That&rsquo;s what we&rsquo;ll need to work with the Word Cloud</p>
 <p>Then, we&rsquo;ll need to load the image and build a mask for for the <strong>word cloud</strong></p>
-<div class="highlight"><pre style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">d <span style="color:#555">=</span> path<span style="color:#555">.</span>dirname(__file__) <span style="color:#069;font-weight:bold">if</span> <span style="color:#c30">&#34;__file__&#34;</span> <span style="color:#000;font-weight:bold">in</span> <span style="color:#366">locals</span>() <span style="color:#069;font-weight:bold">else</span> os<span style="color:#555">.</span>getcwd()
-cmask <span style="color:#555">=</span> np<span style="color:#555">.</span>array(Image<span style="color:#555">.</span>open(path<span style="color:#555">.</span>join(d, <span style="color:#c30">&#34;corona1.png&#34;</span>)))
-</code></pre></div><p>Now we&rsquo;ll set the <strong>STOPWORDS</strong>, words we don&rsquo;t want to show</p>
-<div class="highlight"><pre style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">stopwords <span style="color:#555">=</span> <span style="color:#366">set</span>(STOPWORDS)
-stopwords<span style="color:#555">.</span>add(<span style="color:#c30">&#34;coronavirus&#34;</span>)
-stopwords<span style="color:#555">.</span>add(<span style="color:#c30">&#34;will&#34;</span>)
-stopwords<span style="color:#555">.</span>add(<span style="color:#c30">&#34;say&#34;</span>)
-stopwords<span style="color:#555">.</span>add(<span style="color:#c30">&#34;says&#34;</span>)
-stopwords<span style="color:#555">.</span>add(<span style="color:#c30">&#34;now&#34;</span>)
-stopwords<span style="color:#555">.</span>add(<span style="color:#c30">&#34;covid&#34;</span>)
-</code></pre></div><p>As you can see, I added some words that I didn&rsquo;t want to display because they&rsquo;re not very relevant</p>
+<div class="highlight"><pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span>d <span style="color:#555">=</span> path<span style="color:#555">.</span>dirname(__file__) <span style="color:#069;font-weight:bold">if</span> <span style="color:#c30">&#34;__file__&#34;</span> <span style="color:#000;font-weight:bold">in</span> <span style="color:#366">locals</span>() <span style="color:#069;font-weight:bold">else</span> os<span style="color:#555">.</span>getcwd()
+</span></span><span style="display:flex;"><span>cmask <span style="color:#555">=</span> np<span style="color:#555">.</span>array(Image<span style="color:#555">.</span>open(path<span style="color:#555">.</span>join(d, <span style="color:#c30">&#34;corona1.png&#34;</span>)))
+</span></span></code></pre></div><p>Now we&rsquo;ll set the <strong>STOPWORDS</strong>, words we don&rsquo;t want to show</p>
+<div class="highlight"><pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span>stopwords <span style="color:#555">=</span> <span style="color:#366">set</span>(STOPWORDS)
+</span></span><span style="display:flex;"><span>stopwords<span style="color:#555">.</span>add(<span style="color:#c30">&#34;coronavirus&#34;</span>)
+</span></span><span style="display:flex;"><span>stopwords<span style="color:#555">.</span>add(<span style="color:#c30">&#34;will&#34;</span>)
+</span></span><span style="display:flex;"><span>stopwords<span style="color:#555">.</span>add(<span style="color:#c30">&#34;say&#34;</span>)
+</span></span><span style="display:flex;"><span>stopwords<span style="color:#555">.</span>add(<span style="color:#c30">&#34;says&#34;</span>)
+</span></span><span style="display:flex;"><span>stopwords<span style="color:#555">.</span>add(<span style="color:#c30">&#34;now&#34;</span>)
+</span></span><span style="display:flex;"><span>stopwords<span style="color:#555">.</span>add(<span style="color:#c30">&#34;covid&#34;</span>)
+</span></span></code></pre></div><p>As you can see, I added some words that I didn&rsquo;t want to display because they&rsquo;re not very relevant</p>
 <p>Now we&rsquo;ll define the class that we&rsquo;ll use for this task</p>
-<div class="highlight"><pre style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#069;font-weight:bold">class</span> <span style="color:#0a8;font-weight:bold">TextUtil</span>:
-    <span style="color:#c30">&#34;&#34;&#34;Class for working with text stored in MongoDB&#34;&#34;&#34;</span>
-
-    <span style="color:#069;font-weight:bold">def</span> __init__(self, load_amount):
-        <span style="color:#c30">&#34;&#34;&#34;Initialize the class with the amount of posts we want to load,
-</span><span style="color:#c30">           the amount of text and the MongoDB connection&#34;&#34;&#34;</span>
-        self<span style="color:#555">.</span>load_amount <span style="color:#555">=</span> load_amount
-        self<span style="color:#555">.</span>text <span style="color:#555">=</span> <span style="color:#c30">&#34;&#34;</span>
-        self<span style="color:#555">.</span>client <span style="color:#555">=</span> pymongo<span style="color:#555">.</span>MongoClient(
-            <span style="color:#c30">&#34;mongodb://ADDRESS:27017/admin&#34;</span>,
-            username<span style="color:#555">=</span><span style="color:#c30">&#39;USER&#39;</span>,
-            password<span style="color:#555">=</span><span style="color:#c30">&#39;PASSWORD&#39;</span>
-        )
-</code></pre></div><p>Note: You need to edit the connection parameters to be able to connect to the MongoDB database</p>
+<div class="highlight"><pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#069;font-weight:bold">class</span> <span style="color:#0a8;font-weight:bold">TextUtil</span>:
+</span></span><span style="display:flex;"><span>    <span style="color:#c30">&#34;&#34;&#34;Class for working with text stored in MongoDB&#34;&#34;&#34;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#069;font-weight:bold">def</span> __init__(self, load_amount):
+</span></span><span style="display:flex;"><span>        <span style="color:#c30">&#34;&#34;&#34;Initialize the class with the amount of posts we want to load,
+</span></span></span><span style="display:flex;"><span><span style="color:#c30">           the amount of text and the MongoDB connection&#34;&#34;&#34;</span>
+</span></span><span style="display:flex;"><span>        self<span style="color:#555">.</span>load_amount <span style="color:#555">=</span> load_amount
+</span></span><span style="display:flex;"><span>        self<span style="color:#555">.</span>text <span style="color:#555">=</span> <span style="color:#c30">&#34;&#34;</span>
+</span></span><span style="display:flex;"><span>        self<span style="color:#555">.</span>client <span style="color:#555">=</span> pymongo<span style="color:#555">.</span>MongoClient(
+</span></span><span style="display:flex;"><span>            <span style="color:#c30">&#34;mongodb://ADDRESS:27017/admin&#34;</span>,
+</span></span><span style="display:flex;"><span>            username<span style="color:#555">=</span><span style="color:#c30">&#39;USER&#39;</span>,
+</span></span><span style="display:flex;"><span>            password<span style="color:#555">=</span><span style="color:#c30">&#39;PASSWORD&#39;</span>
+</span></span><span style="display:flex;"><span>        )
+</span></span></code></pre></div><p>Note: You need to edit the connection parameters to be able to connect to the MongoDB database</p>
 <p>The constructor has one parameter which is the <code>load_amount</code>, we&rsquo;ll use that for setting the amount of posts we want to load from the database.</p>
 <p>We also set a new field for this class which is the text, for storing the loaded text from the database, and the <code>pymongo</code> client connection</p>
 <p>Now we need to add some class methods to work with the data, starting with <code>get_posts</code></p>
-<div class="highlight"><pre style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#069;font-weight:bold">def</span> <span style="color:#c0f">get_posts</span>(self):
-    <span style="color:#c30">&#34;&#34;&#34;Set the posts from the database&#34;&#34;&#34;</span>
-    db <span style="color:#555">=</span> self<span style="color:#555">.</span>client[<span style="color:#c30">&#34;chat&#34;</span>]
-    posts <span style="color:#555">=</span> db[<span style="color:#c30">&#34;posts&#34;</span>]<span style="color:#555">.</span>find({}, {<span style="color:#c30">&#34;title&#34;</span>: <span style="color:#f60">1</span>})<span style="color:#555">.</span>sort(
-        <span style="color:#c30">&#34;timestamp&#34;</span>, pymongo<span style="color:#555">.</span>ASCENDING)<span style="color:#555">.</span>limit(self<span style="color:#555">.</span>load_amount)
-    <span style="color:#069;font-weight:bold">for</span> p <span style="color:#000;font-weight:bold">in</span> posts:
-        self<span style="color:#555">.</span>text <span style="color:#555">+=</span> <span style="color:#c30">&#34; &#34;</span><span style="color:#555">.</span>join(p[<span style="color:#c30">&#34;title&#34;</span>]<span style="color:#555">.</span>split(<span style="color:#c30">&#34; &#34;</span>))<span style="color:#555">.</span>lower()
-    <span style="color:#069;font-weight:bold">print</span>(<span style="color:#c30">&#34;Loaded posts&#34;</span>) <span style="color:#09f;font-style:italic"># To show the progress</span>
-</code></pre></div><p>That method will get the posts from the MongoDB database and set them on the text class field for processing by the word cloud</p>
+<div class="highlight"><pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#069;font-weight:bold">def</span> <span style="color:#c0f">get_posts</span>(self):
+</span></span><span style="display:flex;"><span>    <span style="color:#c30">&#34;&#34;&#34;Set the posts from the database&#34;&#34;&#34;</span>
+</span></span><span style="display:flex;"><span>    db <span style="color:#555">=</span> self<span style="color:#555">.</span>client[<span style="color:#c30">&#34;chat&#34;</span>]
+</span></span><span style="display:flex;"><span>    posts <span style="color:#555">=</span> db[<span style="color:#c30">&#34;posts&#34;</span>]<span style="color:#555">.</span>find({}, {<span style="color:#c30">&#34;title&#34;</span>: <span style="color:#f60">1</span>})<span style="color:#555">.</span>sort(
+</span></span><span style="display:flex;"><span>        <span style="color:#c30">&#34;timestamp&#34;</span>, pymongo<span style="color:#555">.</span>ASCENDING)<span style="color:#555">.</span>limit(self<span style="color:#555">.</span>load_amount)
+</span></span><span style="display:flex;"><span>    <span style="color:#069;font-weight:bold">for</span> p <span style="color:#000;font-weight:bold">in</span> posts:
+</span></span><span style="display:flex;"><span>        self<span style="color:#555">.</span>text <span style="color:#555">+=</span> <span style="color:#c30">&#34; &#34;</span><span style="color:#555">.</span>join(p[<span style="color:#c30">&#34;title&#34;</span>]<span style="color:#555">.</span>split(<span style="color:#c30">&#34; &#34;</span>))<span style="color:#555">.</span>lower()
+</span></span><span style="display:flex;"><span>    <span style="color:#366">print</span>(<span style="color:#c30">&#34;Loaded posts&#34;</span>) <span style="color:#09f;font-style:italic"># To show the progress</span>
+</span></span></code></pre></div><p>That method will get the posts from the MongoDB database and set them on the text class field for processing by the word cloud</p>
 <p>We&rsquo;re going to need a final method to process the data and draw the image</p>
-<div class="highlight"><pre style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#069;font-weight:bold">def</span> <span style="color:#c0f">draw_image</span>(self, filename):
-    <span style="color:#c30">&#34;&#34;&#34;Draws an image with the text&#34;&#34;&#34;</span>
-    <span style="color:#069;font-weight:bold">print</span>(<span style="color:#c30">&#34;Drawing image&#34;</span>)
-    wc <span style="color:#555">=</span> WordCloud(
-        stopwords<span style="color:#555">=</span>stopwords,
-        background_color<span style="color:#555">=</span><span style="color:#c30">&#34;white&#34;</span>,
-        max_words<span style="color:#555">=</span><span style="color:#f60">1000</span>,
-        mask<span style="color:#555">=</span>cmask,
-        contour_width<span style="color:#555">=</span><span style="color:#f60">3</span>,
-        contour_color<span style="color:#555">=</span><span style="color:#c30">&#39;steelblue&#39;</span>)
-    wc<span style="color:#555">.</span>generate(self<span style="color:#555">.</span>text)
-    wc<span style="color:#555">.</span>to_file(filename)
-    plt<span style="color:#555">.</span>imshow(wc, interpolation<span style="color:#555">=</span><span style="color:#c30">&#39;bilinear&#39;</span>)
-    plt<span style="color:#555">.</span>axis(<span style="color:#c30">&#34;off&#34;</span>)
-    plt<span style="color:#555">.</span>figure()
-    plt<span style="color:#555">.</span>imshow(cmask, cmap<span style="color:#555">=</span>plt<span style="color:#555">.</span>cm<span style="color:#555">.</span>gray, interpolation<span style="color:#555">=</span><span style="color:#c30">&#39;bilinear&#39;</span>)
-    plt<span style="color:#555">.</span>axis(<span style="color:#c30">&#34;off&#34;</span>)
-    plt<span style="color:#555">.</span>show()
-</code></pre></div><p>Finally we can create a new instance of our class with the desired amount of posts we want from the database</p>
-<div class="highlight"><pre style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">t_handler <span style="color:#555">=</span> TextUtil(<span style="color:#f60">10000</span>)  <span style="color:#09f;font-style:italic"># Amount of posts</span>
-</code></pre></div><p>And use it for getting the posts and drawing the image</p>
-<pre><code>t_handler.get_posts()
-t_handler.draw_image(&quot;coronares.png&quot;)
+<div class="highlight"><pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#069;font-weight:bold">def</span> <span style="color:#c0f">draw_image</span>(self, filename):
+</span></span><span style="display:flex;"><span>    <span style="color:#c30">&#34;&#34;&#34;Draws an image with the text&#34;&#34;&#34;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#366">print</span>(<span style="color:#c30">&#34;Drawing image&#34;</span>)
+</span></span><span style="display:flex;"><span>    wc <span style="color:#555">=</span> WordCloud(
+</span></span><span style="display:flex;"><span>        stopwords<span style="color:#555">=</span>stopwords,
+</span></span><span style="display:flex;"><span>        background_color<span style="color:#555">=</span><span style="color:#c30">&#34;white&#34;</span>,
+</span></span><span style="display:flex;"><span>        max_words<span style="color:#555">=</span><span style="color:#f60">1000</span>,
+</span></span><span style="display:flex;"><span>        mask<span style="color:#555">=</span>cmask,
+</span></span><span style="display:flex;"><span>        contour_width<span style="color:#555">=</span><span style="color:#f60">3</span>,
+</span></span><span style="display:flex;"><span>        contour_color<span style="color:#555">=</span><span style="color:#c30">&#39;steelblue&#39;</span>)
+</span></span><span style="display:flex;"><span>    wc<span style="color:#555">.</span>generate(self<span style="color:#555">.</span>text)
+</span></span><span style="display:flex;"><span>    wc<span style="color:#555">.</span>to_file(filename)
+</span></span><span style="display:flex;"><span>    plt<span style="color:#555">.</span>imshow(wc, interpolation<span style="color:#555">=</span><span style="color:#c30">&#39;bilinear&#39;</span>)
+</span></span><span style="display:flex;"><span>    plt<span style="color:#555">.</span>axis(<span style="color:#c30">&#34;off&#34;</span>)
+</span></span><span style="display:flex;"><span>    plt<span style="color:#555">.</span>figure()
+</span></span><span style="display:flex;"><span>    plt<span style="color:#555">.</span>imshow(cmask, cmap<span style="color:#555">=</span>plt<span style="color:#555">.</span>cm<span style="color:#555">.</span>gray, interpolation<span style="color:#555">=</span><span style="color:#c30">&#39;bilinear&#39;</span>)
+</span></span><span style="display:flex;"><span>    plt<span style="color:#555">.</span>axis(<span style="color:#c30">&#34;off&#34;</span>)
+</span></span><span style="display:flex;"><span>    plt<span style="color:#555">.</span>show()
+</span></span></code></pre></div><p>Finally we can create a new instance of our class with the desired amount of posts we want from the database</p>
+<div class="highlight"><pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span>t_handler <span style="color:#555">=</span> TextUtil(<span style="color:#f60">10000</span>)  <span style="color:#09f;font-style:italic"># Amount of posts</span>
+</span></span></code></pre></div><p>And use it for getting the posts and drawing the image</p>
+<pre tabindex="0"><code>t_handler.get_posts()
+t_handler.draw_image(&#34;coronares.png&#34;)
 </code></pre><p>Now, in the same directory, we should have a new file <code>coronares.png</code> which should be our desired image</p>
 <p>You can find the <a href="https://gist.github.com/octohedron/f9e72bc7b93d209d93e29d7958e1dffd">code of the whole notebook here</a></p>
 
@@ -260,7 +260,7 @@ t_handler.draw_image(&quot;coronares.png&quot;)
         <h3>Comments</h3>
         <div id="disqus_thread"></div>
 <script type="application/javascript">
-    var disqus_config = function () {
+    window.disqus_config = function () {
     
     
     

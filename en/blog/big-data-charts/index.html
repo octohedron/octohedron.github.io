@@ -183,150 +183,148 @@
 <p>Now that we know what we want and what our data looks like, we can begin by setting up a program to go through the data and <strong>extract the information</strong> we want.</p>
 <p>First, we need to go through all the profiles and extract all the hashtags they used, this way we can tackle our first goal of knowing how many times a profile used a hashtag.</p>
 <p>For that, we set up a single regular expression to extract from text all the hashtags.</p>
-<div class="highlight"><pre style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go"><span style="color:#069;font-weight:bold">import</span> (
-	<span style="color:#c30">&#34;regexp&#34;</span>
-)
-
-<span style="color:#09f;font-style:italic">// Our hashtags regex
-</span><span style="color:#09f;font-style:italic"></span><span style="color:#069;font-weight:bold">var</span> hashtagsRegex <span style="color:#555">*</span>regexp.Regexp
-
-<span style="color:#069;font-weight:bold">func</span> <span style="color:#c0f">init</span>() {
-  <span style="color:#09f;font-style:italic">// Compile the regex
-</span><span style="color:#09f;font-style:italic"></span>  hashtagsRegex, _ = regexp.<span style="color:#c0f">Compile</span>(<span style="color:#c30">&#34;(?:#)([\\p{L}\\d_](?:(?:[\\p{L}\\d_]|(?:\\.(\\?!\\.))){0,28}(?:[\\p{L}\\d_]))?)&#34;</span>)
-}
-</code></pre></div><p>That regex looks fairly complicated, but all we need to know is that it will match Instagram&rsquo;s hashtag format, without giving us false positives, for example <code>#...hello...</code> is not a valid hashtag, but <code>#hello</code> is.</p>
+<div class="highlight"><pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-go" data-lang="go"><span style="display:flex;"><span><span style="color:#069;font-weight:bold">import</span> (
+</span></span><span style="display:flex;"><span>	<span style="color:#c30">&#34;regexp&#34;</span>
+</span></span><span style="display:flex;"><span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#09f;font-style:italic">// Our hashtags regex
+</span></span></span><span style="display:flex;"><span><span style="color:#09f;font-style:italic"></span><span style="color:#069;font-weight:bold">var</span> hashtagsRegex <span style="color:#555">*</span>regexp.Regexp
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#069;font-weight:bold">func</span> <span style="color:#c0f">init</span>() {
+</span></span><span style="display:flex;"><span>  <span style="color:#09f;font-style:italic">// Compile the regex
+</span></span></span><span style="display:flex;"><span><span style="color:#09f;font-style:italic"></span>  hashtagsRegex, _ = regexp.<span style="color:#c0f">Compile</span>(<span style="color:#c30">&#34;(?:#)([\\p{L}\\d_](?:(?:[\\p{L}\\d_]|(?:\\.(\\?!\\.))){0,28}(?:[\\p{L}\\d_]))?)&#34;</span>)
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>That regex looks fairly complicated, but all we need to know is that it will match Instagram&rsquo;s hashtag format, without giving us false positives, for example <code>#...hello...</code> is not a valid hashtag, but <code>#hello</code> is.</p>
 <p>Now that we have the hashtags regex, we need to run it through all the user&rsquo;s posts and find all the hashtags, then assign them only once per profile.</p>
 <p>This is quite simple, we set up a function to extract the hashtags for convenience</p>
-<div class="highlight"><pre style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go"><span style="color:#09f;font-style:italic">// GetHashtags returns a slice with all the hashtags
-</span><span style="color:#09f;font-style:italic"></span><span style="color:#069;font-weight:bold">func</span> <span style="color:#c0f">GetHashtags</span>(t <span style="color:#078;font-weight:bold">string</span>) []<span style="color:#078;font-weight:bold">string</span> {
-  <span style="color:#069;font-weight:bold">return</span> hashtagsRegex.<span style="color:#c0f">FindAllString</span>(t, <span style="color:#555">-</span><span style="color:#f60">1</span>)
-}
-</code></pre></div><p>Now that we have the hashtags, we can proceed to do the same thing with mentions, which is fairly similar, just changing the <code>#</code> symbol with an <code>@</code>  in the regex is a good starting point.</p>
+<div class="highlight"><pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-go" data-lang="go"><span style="display:flex;"><span><span style="color:#09f;font-style:italic">// GetHashtags returns a slice with all the hashtags
+</span></span></span><span style="display:flex;"><span><span style="color:#09f;font-style:italic"></span><span style="color:#069;font-weight:bold">func</span> <span style="color:#c0f">GetHashtags</span>(t <span style="color:#078;font-weight:bold">string</span>) []<span style="color:#078;font-weight:bold">string</span> {
+</span></span><span style="display:flex;"><span>  <span style="color:#069;font-weight:bold">return</span> hashtagsRegex.<span style="color:#c0f">FindAllString</span>(t, <span style="color:#555">-</span><span style="color:#f60">1</span>)
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>Now that we have the hashtags, we can proceed to do the same thing with mentions, which is fairly similar, just changing the <code>#</code> symbol with an <code>@</code>  in the regex is a good starting point.</p>
 <p>Finally, we need to iterate through all the profiles and count the amount of times each hashtag was mentioned. Then save the data to a file.</p>
-<div class="highlight"><pre style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go"><span style="color:#069;font-weight:bold">func</span> <span style="color:#c0f">saveMostUsedHashtags</span>() {
-  <span style="color:#09f;font-style:italic">// Initialize a slice for storing the hashtags with the amount for each
-</span><span style="color:#09f;font-style:italic"></span>  hashtagAmounts <span style="color:#555">:=</span> <span style="color:#366">make</span>(<span style="color:#069;font-weight:bold">map</span>[<span style="color:#078;font-weight:bold">string</span>]<span style="color:#078;font-weight:bold">int</span>)
-  <span style="color:#09f;font-style:italic">// profiles are all the profiles with their hashtags
-</span><span style="color:#09f;font-style:italic"></span>  <span style="color:#09f;font-style:italic">// for each profile in the profiles
-</span><span style="color:#09f;font-style:italic"></span>  <span style="color:#069;font-weight:bold">for</span> _, p <span style="color:#555">:=</span> <span style="color:#069;font-weight:bold">range</span> profiles {
-    <span style="color:#09f;font-style:italic">// For each hashtag in the profile
-</span><span style="color:#09f;font-style:italic"></span>    <span style="color:#069;font-weight:bold">for</span> _, h <span style="color:#555">:=</span> <span style="color:#069;font-weight:bold">range</span> p.Hashtags {
-      <span style="color:#09f;font-style:italic">// Increase the amount of times the hashtag was found
-</span><span style="color:#09f;font-style:italic"></span>      hashtagAmounts[h]<span style="color:#555">++</span>
-    }
-  }
-  <span style="color:#09f;font-style:italic">// Create a file for storing our hashtags
-</span><span style="color:#09f;font-style:italic"></span>  f, err <span style="color:#555">:=</span> os.<span style="color:#c0f">Create</span>(<span style="color:#c30">&#34;hashtags_export.csv&#34;</span>)
-  <span style="color:#09f;font-style:italic">// Stop the program if we can&#39;t create the file
-</span><span style="color:#09f;font-style:italic"></span>  <span style="color:#c0f">LogPanic</span>(err, <span style="color:#c30">&#34;ERR CREATING FILE&#34;</span>)
-  <span style="color:#09f;font-style:italic">// Get a list of hashtags ranked by incidence
-</span><span style="color:#09f;font-style:italic"></span>  matches <span style="color:#555">:=</span> <span style="color:#c0f">RankByAmount</span>(hashtagAmounts)
-  <span style="color:#09f;font-style:italic">// Save up to 2k in a csv-like format
-</span><span style="color:#09f;font-style:italic"></span>  <span style="color:#069;font-weight:bold">for</span> _, v <span style="color:#555">:=</span> <span style="color:#069;font-weight:bold">range</span> matches.<span style="color:#c0f">MostCommon</span>(<span style="color:#f60">2000</span>) {
-    _, err = fmt.<span style="color:#c0f">Fprintf</span>(f, <span style="color:#c30">&#34;%s,%d \n&#34;</span>, v.Key, v.Value)
-  }
-  <span style="color:#09f;font-style:italic">// Close the file
-</span><span style="color:#09f;font-style:italic"></span>  err = f.<span style="color:#c0f">Close</span>()
-  <span style="color:#09f;font-style:italic">// Stop the program if we can&#39;t close it
-</span><span style="color:#09f;font-style:italic"></span>  <span style="color:#c0f">LogPanic</span>(err, <span style="color:#c30">&#34;ERROR CLOSING FILE&#34;</span>)
-}
-</code></pre></div><p>We repeat the same process with the mentions and create a second file called <code>mentions_export.csv</code></p>
+<div class="highlight"><pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-go" data-lang="go"><span style="display:flex;"><span><span style="color:#069;font-weight:bold">func</span> <span style="color:#c0f">saveMostUsedHashtags</span>() {
+</span></span><span style="display:flex;"><span>  <span style="color:#09f;font-style:italic">// Initialize a slice for storing the hashtags with the amount for each
+</span></span></span><span style="display:flex;"><span><span style="color:#09f;font-style:italic"></span>  hashtagAmounts <span style="color:#555">:=</span> <span style="color:#366">make</span>(<span style="color:#069;font-weight:bold">map</span>[<span style="color:#078;font-weight:bold">string</span>]<span style="color:#078;font-weight:bold">int</span>)
+</span></span><span style="display:flex;"><span>  <span style="color:#09f;font-style:italic">// profiles are all the profiles with their hashtags
+</span></span></span><span style="display:flex;"><span><span style="color:#09f;font-style:italic"></span>  <span style="color:#09f;font-style:italic">// for each profile in the profiles
+</span></span></span><span style="display:flex;"><span><span style="color:#09f;font-style:italic"></span>  <span style="color:#069;font-weight:bold">for</span> _, p <span style="color:#555">:=</span> <span style="color:#069;font-weight:bold">range</span> profiles {
+</span></span><span style="display:flex;"><span>    <span style="color:#09f;font-style:italic">// For each hashtag in the profile
+</span></span></span><span style="display:flex;"><span><span style="color:#09f;font-style:italic"></span>    <span style="color:#069;font-weight:bold">for</span> _, h <span style="color:#555">:=</span> <span style="color:#069;font-weight:bold">range</span> p.Hashtags {
+</span></span><span style="display:flex;"><span>      <span style="color:#09f;font-style:italic">// Increase the amount of times the hashtag was found
+</span></span></span><span style="display:flex;"><span><span style="color:#09f;font-style:italic"></span>      hashtagAmounts[h]<span style="color:#555">++</span>
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>  }
+</span></span><span style="display:flex;"><span>  <span style="color:#09f;font-style:italic">// Create a file for storing our hashtags
+</span></span></span><span style="display:flex;"><span><span style="color:#09f;font-style:italic"></span>  f, err <span style="color:#555">:=</span> os.<span style="color:#c0f">Create</span>(<span style="color:#c30">&#34;hashtags_export.csv&#34;</span>)
+</span></span><span style="display:flex;"><span>  <span style="color:#09f;font-style:italic">// Stop the program if we can&#39;t create the file
+</span></span></span><span style="display:flex;"><span><span style="color:#09f;font-style:italic"></span>  <span style="color:#c0f">LogPanic</span>(err, <span style="color:#c30">&#34;ERR CREATING FILE&#34;</span>)
+</span></span><span style="display:flex;"><span>  <span style="color:#09f;font-style:italic">// Get a list of hashtags ranked by incidence
+</span></span></span><span style="display:flex;"><span><span style="color:#09f;font-style:italic"></span>  matches <span style="color:#555">:=</span> <span style="color:#c0f">RankByAmount</span>(hashtagAmounts)
+</span></span><span style="display:flex;"><span>  <span style="color:#09f;font-style:italic">// Save up to 2k in a csv-like format
+</span></span></span><span style="display:flex;"><span><span style="color:#09f;font-style:italic"></span>  <span style="color:#069;font-weight:bold">for</span> _, v <span style="color:#555">:=</span> <span style="color:#069;font-weight:bold">range</span> matches.<span style="color:#c0f">MostCommon</span>(<span style="color:#f60">2000</span>) {
+</span></span><span style="display:flex;"><span>    _, err = fmt.<span style="color:#c0f">Fprintf</span>(f, <span style="color:#c30">&#34;%s,%d \n&#34;</span>, v.Key, v.Value)
+</span></span><span style="display:flex;"><span>  }
+</span></span><span style="display:flex;"><span>  <span style="color:#09f;font-style:italic">// Close the file
+</span></span></span><span style="display:flex;"><span><span style="color:#09f;font-style:italic"></span>  err = f.<span style="color:#c0f">Close</span>()
+</span></span><span style="display:flex;"><span>  <span style="color:#09f;font-style:italic">// Stop the program if we can&#39;t close it
+</span></span></span><span style="display:flex;"><span><span style="color:#09f;font-style:italic"></span>  <span style="color:#c0f">LogPanic</span>(err, <span style="color:#c30">&#34;ERROR CLOSING FILE&#34;</span>)
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>We repeat the same process with the mentions and create a second file called <code>mentions_export.csv</code></p>
 <p>After complete these operations, we will get a file with all the hashtags, another one with all the mentions and the amount of times each of them was used.</p>
 <hr>
 <h4 id="step-3---loading-the-data">Step 3 - Loading the data</h4>
 <p>The analysis and displaying of the data should be fairly simple now.</p>
 <p>With start with a new <code>jupyter notebook</code> and we add the exported files to our directory, to load them for displaying.</p>
-<div class="highlight"><pre style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">
-<span style="color:#09f;font-style:italic"># Our import statemnts, everything we need</span>
-<span style="color:#069;font-weight:bold">import</span> <span style="color:#0cf;font-weight:bold">matplotlib.patches</span> <span style="color:#069;font-weight:bold">as</span> <span style="color:#0cf;font-weight:bold">mp</span>
-<span style="color:#069;font-weight:bold">import</span> <span style="color:#0cf;font-weight:bold">pandas</span> <span style="color:#069;font-weight:bold">as</span> <span style="color:#0cf;font-weight:bold">pd</span>
-<span style="color:#069;font-weight:bold">import</span> <span style="color:#0cf;font-weight:bold">matplotlib.pyplot</span> <span style="color:#069;font-weight:bold">as</span> <span style="color:#0cf;font-weight:bold">plt</span>
-
-<span style="color:#09f;font-style:italic"># The amount of hashtags we want to read from the files</span>
-READ_AMNT <span style="color:#555">=</span> <span style="color:#f60">200</span>
-
-<span style="color:#09f;font-style:italic"># Loading our data</span>
-df <span style="color:#555">=</span> pd<span style="color:#555">.</span>read_csv(
-    <span style="color:#c30">&#34;./used_hashtags.csv&#34;</span>,
-    names<span style="color:#555">=</span>[<span style="color:#c30">&#34;hashtag&#34;</span>, <span style="color:#c30">&#34;used&#34;</span>],
-    usecols<span style="color:#555">=</span>[<span style="color:#c30">&#34;hashtag&#34;</span>,<span style="color:#c30">&#34;used&#34;</span>],
-    index_col<span style="color:#555">=</span>False,
-    skiprows<span style="color:#555">=</span><span style="color:#f60">1</span>,
-    nrows<span style="color:#555">=</span>READ_AMNT)
-
-df1 <span style="color:#555">=</span> pd<span style="color:#555">.</span>read_csv(
-    <span style="color:#c30">&#34;./liked_hashtags.csv&#34;</span>,
-    names<span style="color:#555">=</span>[<span style="color:#c30">&#34;hashtag&#34;</span>,<span style="color:#c30">&#34;liked&#34;</span>],
-    skiprows<span style="color:#555">=</span><span style="color:#f60">0</span>,
-    index_col<span style="color:#555">=</span>False,
-    nrows<span style="color:#555">=</span>READ_AMNT)
-df2 <span style="color:#555">=</span> pd<span style="color:#555">.</span>read_csv(
-    <span style="color:#c30">&#34;./followed_hashtags.csv&#34;</span>,
-    names<span style="color:#555">=</span>[<span style="color:#c30">&#34;hashtag&#34;</span>,<span style="color:#c30">&#34;followed&#34;</span>],
-    skiprows<span style="color:#555">=</span><span style="color:#f60">0</span>,
-    index_col<span style="color:#555">=</span>False,
-    nrows<span style="color:#555">=</span>READ_AMNT)
-
-<span style="color:#09f;font-style:italic"># Merging the data into a single Data Frame for displaying.</span>
-
-<span style="color:#09f;font-style:italic"># Note that we are merging the first and second data frames</span>
-<span style="color:#09f;font-style:italic"># and then merging them into the third one. This way we get</span>
-<span style="color:#09f;font-style:italic"># the biggest number, which in this case is the &#39;followed&#39;</span>
-<span style="color:#09f;font-style:italic"># amount to be our column for sorting as descending</span>
-
-df <span style="color:#555">=</span> pd<span style="color:#555">.</span>merge(df1, df, on<span style="color:#555">=</span><span style="color:#c30">&#34;hashtag&#34;</span>)
-df <span style="color:#555">=</span> pd<span style="color:#555">.</span>merge(df2, df, on<span style="color:#555">=</span><span style="color:#c30">&#34;hashtag&#34;</span>)
-df <span style="color:#555">=</span> df<span style="color:#555">.</span>nlargest(<span style="color:#f60">20</span>, <span style="color:#c30">&#34;followed&#34;</span>)
-
-</code></pre></div><p>We add all that code into the first cell of our notebook and we run it. Now we have loaded our data in a <strong>pandas Data Frame</strong> called <code>df</code>, which is the convention.</p>
+<div class="highlight"><pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#09f;font-style:italic"># Our import statemnts, everything we need</span>
+</span></span><span style="display:flex;"><span><span style="color:#069;font-weight:bold">import</span> <span style="color:#0cf;font-weight:bold">matplotlib.patches</span> <span style="color:#069;font-weight:bold">as</span> <span style="color:#0cf;font-weight:bold">mp</span>
+</span></span><span style="display:flex;"><span><span style="color:#069;font-weight:bold">import</span> <span style="color:#0cf;font-weight:bold">pandas</span> <span style="color:#069;font-weight:bold">as</span> <span style="color:#0cf;font-weight:bold">pd</span>
+</span></span><span style="display:flex;"><span><span style="color:#069;font-weight:bold">import</span> <span style="color:#0cf;font-weight:bold">matplotlib.pyplot</span> <span style="color:#069;font-weight:bold">as</span> <span style="color:#0cf;font-weight:bold">plt</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#09f;font-style:italic"># The amount of hashtags we want to read from the files</span>
+</span></span><span style="display:flex;"><span>READ_AMNT <span style="color:#555">=</span> <span style="color:#f60">200</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#09f;font-style:italic"># Loading our data</span>
+</span></span><span style="display:flex;"><span>df <span style="color:#555">=</span> pd<span style="color:#555">.</span>read_csv(
+</span></span><span style="display:flex;"><span>    <span style="color:#c30">&#34;./used_hashtags.csv&#34;</span>,
+</span></span><span style="display:flex;"><span>    names<span style="color:#555">=</span>[<span style="color:#c30">&#34;hashtag&#34;</span>, <span style="color:#c30">&#34;used&#34;</span>],
+</span></span><span style="display:flex;"><span>    usecols<span style="color:#555">=</span>[<span style="color:#c30">&#34;hashtag&#34;</span>,<span style="color:#c30">&#34;used&#34;</span>],
+</span></span><span style="display:flex;"><span>    index_col<span style="color:#555">=</span><span style="color:#069;font-weight:bold">False</span>,
+</span></span><span style="display:flex;"><span>    skiprows<span style="color:#555">=</span><span style="color:#f60">1</span>,
+</span></span><span style="display:flex;"><span>    nrows<span style="color:#555">=</span>READ_AMNT)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>df1 <span style="color:#555">=</span> pd<span style="color:#555">.</span>read_csv(
+</span></span><span style="display:flex;"><span>    <span style="color:#c30">&#34;./liked_hashtags.csv&#34;</span>,
+</span></span><span style="display:flex;"><span>    names<span style="color:#555">=</span>[<span style="color:#c30">&#34;hashtag&#34;</span>,<span style="color:#c30">&#34;liked&#34;</span>],
+</span></span><span style="display:flex;"><span>    skiprows<span style="color:#555">=</span><span style="color:#f60">0</span>,
+</span></span><span style="display:flex;"><span>    index_col<span style="color:#555">=</span><span style="color:#069;font-weight:bold">False</span>,
+</span></span><span style="display:flex;"><span>    nrows<span style="color:#555">=</span>READ_AMNT)
+</span></span><span style="display:flex;"><span>df2 <span style="color:#555">=</span> pd<span style="color:#555">.</span>read_csv(
+</span></span><span style="display:flex;"><span>    <span style="color:#c30">&#34;./followed_hashtags.csv&#34;</span>,
+</span></span><span style="display:flex;"><span>    names<span style="color:#555">=</span>[<span style="color:#c30">&#34;hashtag&#34;</span>,<span style="color:#c30">&#34;followed&#34;</span>],
+</span></span><span style="display:flex;"><span>    skiprows<span style="color:#555">=</span><span style="color:#f60">0</span>,
+</span></span><span style="display:flex;"><span>    index_col<span style="color:#555">=</span><span style="color:#069;font-weight:bold">False</span>,
+</span></span><span style="display:flex;"><span>    nrows<span style="color:#555">=</span>READ_AMNT)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#09f;font-style:italic"># Merging the data into a single Data Frame for displaying.</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#09f;font-style:italic"># Note that we are merging the first and second data frames</span>
+</span></span><span style="display:flex;"><span><span style="color:#09f;font-style:italic"># and then merging them into the third one. This way we get</span>
+</span></span><span style="display:flex;"><span><span style="color:#09f;font-style:italic"># the biggest number, which in this case is the &#39;followed&#39;</span>
+</span></span><span style="display:flex;"><span><span style="color:#09f;font-style:italic"># amount to be our column for sorting as descending</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>df <span style="color:#555">=</span> pd<span style="color:#555">.</span>merge(df1, df, on<span style="color:#555">=</span><span style="color:#c30">&#34;hashtag&#34;</span>)
+</span></span><span style="display:flex;"><span>df <span style="color:#555">=</span> pd<span style="color:#555">.</span>merge(df2, df, on<span style="color:#555">=</span><span style="color:#c30">&#34;hashtag&#34;</span>)
+</span></span><span style="display:flex;"><span>df <span style="color:#555">=</span> df<span style="color:#555">.</span>nlargest(<span style="color:#f60">20</span>, <span style="color:#c30">&#34;followed&#34;</span>)
+</span></span></code></pre></div><p>We add all that code into the first cell of our notebook and we run it. Now we have loaded our data in a <strong>pandas Data Frame</strong> called <code>df</code>, which is the convention.</p>
 <h4 id="step-4---displaying-the-analysis-results">Step 4 - Displaying the analysis results</h4>
-<div class="highlight"><pre style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#09f;font-style:italic"># Set up a figure of the size we want, the canvas size of our chart.</span>
-fig <span style="color:#555">=</span> plt<span style="color:#555">.</span>figure(figsize<span style="color:#555">=</span>(<span style="color:#f60">15</span>, <span style="color:#f60">8</span>))
-
-<span style="color:#09f;font-style:italic"># Set the background color</span>
-fig<span style="color:#555">.</span>patch<span style="color:#555">.</span>set_facecolor(<span style="color:#c30">&#39;white&#39;</span>)
-
-<span style="color:#09f;font-style:italic"># Display the hashtags vertically instead of horizontally</span>
-plt<span style="color:#555">.</span>xticks(rotation<span style="color:#555">=</span><span style="color:#c30">&#39;vertical&#39;</span>)
-
-<span style="color:#09f;font-style:italic"># Set the size of the font</span>
-plt<span style="color:#555">.</span>tick_params(labelsize<span style="color:#555">=</span><span style="color:#f60">18</span>)
-
-<span style="color:#09f;font-style:italic"># Set the background color of the axis, otherwise it would be transparent</span>
-plt<span style="color:#555">.</span>rcParams[<span style="color:#c30">&#39;axes.facecolor&#39;</span>] <span style="color:#555">=</span> <span style="color:#c30">&#39;white&#39;</span>
-
-<span style="color:#09f;font-style:italic"># Set our colors</span>
-YELLOW_C <span style="color:#555">=</span> <span style="color:#c30">&#34;#F5B12E&#34;</span>
-RED_C <span style="color:#555">=</span> <span style="color:#c30">&#34;#ED4F33&#34;</span>
-BLUE_C <span style="color:#555">=</span> <span style="color:#c30">&#34;#2E2963&#34;</span>
-
-<span style="color:#09f;font-style:italic"># Plot the amount of times the hashtag was used in a dark blue color</span>
-plt<span style="color:#555">.</span>plot(df[<span style="color:#c30">&#34;hashtag&#34;</span>], df[<span style="color:#c30">&#34;used&#34;</span>],  color<span style="color:#555">=</span>BLUE_C)
-
-<span style="color:#09f;font-style:italic"># Plot the amount of times a hashtag is followed in a red bar</span>
-<span style="color:#09f;font-style:italic"># this will be the tallest bar</span>
-plt<span style="color:#555">.</span>bar(df[<span style="color:#c30">&#34;hashtag&#34;</span>], df[<span style="color:#c30">&#34;followed&#34;</span>], color<span style="color:#555">=</span>RED_C)
-
-<span style="color:#09f;font-style:italic"># Plot the amount of times a hashtag is liked, with bars on top</span>
-<span style="color:#09f;font-style:italic"># of the red bars, we can do this because the numbers are smaller</span>
-plt<span style="color:#555">.</span>bar(df[<span style="color:#c30">&#34;hashtag&#34;</span>], df[<span style="color:#c30">&#34;liked&#34;</span>],  color<span style="color:#555">=</span>YELLOW_C)
-
-<span style="color:#09f;font-style:italic"># We set a logarithmic scale to be able to make a useful interpretation</span>
-<span style="color:#09f;font-style:italic"># of the data, because the numbers are so far apart from each other</span>
-plt<span style="color:#555">.</span>yscale(<span style="color:#c30">&#39;log&#39;</span>)
-
-<span style="color:#09f;font-style:italic"># We set the labels</span>
-red <span style="color:#555">=</span> mp<span style="color:#555">.</span>Patch(color<span style="color:#555">=</span>RED_C, label<span style="color:#555">=</span><span style="color:#c30">&#39;Followed&#39;</span>)
-orange <span style="color:#555">=</span> mp<span style="color:#555">.</span>Patch(color<span style="color:#555">=</span>YELLOW_C, label<span style="color:#555">=</span><span style="color:#c30">&#39;Liked&#39;</span>)
-blue <span style="color:#555">=</span> mp<span style="color:#555">.</span>Patch(color<span style="color:#555">=</span>BLUE_C, label<span style="color:#555">=</span><span style="color:#c30">&#34;Used&#34;</span>)
-
-<span style="color:#09f;font-style:italic"># We add the title</span>
-plt<span style="color:#555">.</span>title(<span style="color:#c30">&#34;Logarithmic scale&#34;</span>)
-
-<span style="color:#09f;font-style:italic"># We add the legend</span>
-plt<span style="color:#555">.</span>legend(handles<span style="color:#555">=</span>[red, orange, blue])
-
-</code></pre></div><p>After we run the code above, we get this graph</p>
+<div class="highlight"><pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#09f;font-style:italic"># Set up a figure of the size we want, the canvas size of our chart.</span>
+</span></span><span style="display:flex;"><span>fig <span style="color:#555">=</span> plt<span style="color:#555">.</span>figure(figsize<span style="color:#555">=</span>(<span style="color:#f60">15</span>, <span style="color:#f60">8</span>))
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#09f;font-style:italic"># Set the background color</span>
+</span></span><span style="display:flex;"><span>fig<span style="color:#555">.</span>patch<span style="color:#555">.</span>set_facecolor(<span style="color:#c30">&#39;white&#39;</span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#09f;font-style:italic"># Display the hashtags vertically instead of horizontally</span>
+</span></span><span style="display:flex;"><span>plt<span style="color:#555">.</span>xticks(rotation<span style="color:#555">=</span><span style="color:#c30">&#39;vertical&#39;</span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#09f;font-style:italic"># Set the size of the font</span>
+</span></span><span style="display:flex;"><span>plt<span style="color:#555">.</span>tick_params(labelsize<span style="color:#555">=</span><span style="color:#f60">18</span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#09f;font-style:italic"># Set the background color of the axis, otherwise it would be transparent</span>
+</span></span><span style="display:flex;"><span>plt<span style="color:#555">.</span>rcParams[<span style="color:#c30">&#39;axes.facecolor&#39;</span>] <span style="color:#555">=</span> <span style="color:#c30">&#39;white&#39;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#09f;font-style:italic"># Set our colors</span>
+</span></span><span style="display:flex;"><span>YELLOW_C <span style="color:#555">=</span> <span style="color:#c30">&#34;#F5B12E&#34;</span>
+</span></span><span style="display:flex;"><span>RED_C <span style="color:#555">=</span> <span style="color:#c30">&#34;#ED4F33&#34;</span>
+</span></span><span style="display:flex;"><span>BLUE_C <span style="color:#555">=</span> <span style="color:#c30">&#34;#2E2963&#34;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#09f;font-style:italic"># Plot the amount of times the hashtag was used in a dark blue color</span>
+</span></span><span style="display:flex;"><span>plt<span style="color:#555">.</span>plot(df[<span style="color:#c30">&#34;hashtag&#34;</span>], df[<span style="color:#c30">&#34;used&#34;</span>],  color<span style="color:#555">=</span>BLUE_C)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#09f;font-style:italic"># Plot the amount of times a hashtag is followed in a red bar</span>
+</span></span><span style="display:flex;"><span><span style="color:#09f;font-style:italic"># this will be the tallest bar</span>
+</span></span><span style="display:flex;"><span>plt<span style="color:#555">.</span>bar(df[<span style="color:#c30">&#34;hashtag&#34;</span>], df[<span style="color:#c30">&#34;followed&#34;</span>], color<span style="color:#555">=</span>RED_C)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#09f;font-style:italic"># Plot the amount of times a hashtag is liked, with bars on top</span>
+</span></span><span style="display:flex;"><span><span style="color:#09f;font-style:italic"># of the red bars, we can do this because the numbers are smaller</span>
+</span></span><span style="display:flex;"><span>plt<span style="color:#555">.</span>bar(df[<span style="color:#c30">&#34;hashtag&#34;</span>], df[<span style="color:#c30">&#34;liked&#34;</span>],  color<span style="color:#555">=</span>YELLOW_C)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#09f;font-style:italic"># We set a logarithmic scale to be able to make a useful interpretation</span>
+</span></span><span style="display:flex;"><span><span style="color:#09f;font-style:italic"># of the data, because the numbers are so far apart from each other</span>
+</span></span><span style="display:flex;"><span>plt<span style="color:#555">.</span>yscale(<span style="color:#c30">&#39;log&#39;</span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#09f;font-style:italic"># We set the labels</span>
+</span></span><span style="display:flex;"><span>red <span style="color:#555">=</span> mp<span style="color:#555">.</span>Patch(color<span style="color:#555">=</span>RED_C, label<span style="color:#555">=</span><span style="color:#c30">&#39;Followed&#39;</span>)
+</span></span><span style="display:flex;"><span>orange <span style="color:#555">=</span> mp<span style="color:#555">.</span>Patch(color<span style="color:#555">=</span>YELLOW_C, label<span style="color:#555">=</span><span style="color:#c30">&#39;Liked&#39;</span>)
+</span></span><span style="display:flex;"><span>blue <span style="color:#555">=</span> mp<span style="color:#555">.</span>Patch(color<span style="color:#555">=</span>BLUE_C, label<span style="color:#555">=</span><span style="color:#c30">&#34;Used&#34;</span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#09f;font-style:italic"># We add the title</span>
+</span></span><span style="display:flex;"><span>plt<span style="color:#555">.</span>title(<span style="color:#c30">&#34;Logarithmic scale&#34;</span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#09f;font-style:italic"># We add the legend</span>
+</span></span><span style="display:flex;"><span>plt<span style="color:#555">.</span>legend(handles<span style="color:#555">=</span>[red, orange, blue])
+</span></span></code></pre></div><p>After we run the code above, we get this graph</p>
 <p><img src="/images/blog/big-data-charts.png" alt="Most used, liked and followed instagram hashtags in the world"></p>
 <p>Which shows the 20 <strong>most used, liked and followed instagram hashtags in the world</strong></p>
 <p>DISCLAIMER: <em>Our client does not store any data from Instagram.</em></p>
@@ -335,7 +333,7 @@ plt<span style="color:#555">.</span>legend(handles<span style="color:#555">=</sp
         <h3>Comments</h3>
         <div id="disqus_thread"></div>
 <script type="application/javascript">
-    var disqus_config = function () {
+    window.disqus_config = function () {
     
     
     

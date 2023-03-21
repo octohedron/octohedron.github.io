@@ -179,120 +179,120 @@
 <li>Add <strong>inline policy</strong>, select <code>JSON</code></li>
 <li>Paste the following <code>JSON</code> on it, replace <code>${YOUR IAM}</code> with your IAM and <code>${YOUR_REGION}</code> with your region</li>
 </ol>
-<div class="highlight"><pre style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-json" data-lang="json">{
-  <span style="color:#309;font-weight:bold">&#34;Version&#34;</span>: <span style="color:#c30">&#34;2012-10-17&#34;</span>,
-  <span style="color:#309;font-weight:bold">&#34;Statement&#34;</span>: [
-    {
-      <span style="color:#309;font-weight:bold">&#34;Effect&#34;</span>: <span style="color:#c30">&#34;Allow&#34;</span>,
-      <span style="color:#309;font-weight:bold">&#34;Action&#34;</span>: [<span style="color:#c30">&#34;kms:Decrypt&#34;</span>, <span style="color:#c30">&#34;secretsmanager:GetSecretValue&#34;</span>],
-      <span style="color:#309;font-weight:bold">&#34;Resource&#34;</span>: [
-        <span style="color:#c30">&#34;arn:aws:secretsmanager:${YOUR_REGION}:${YOUR IAM}:secret:secret_name&#34;</span>,
-        <span style="color:#c30">&#34;arn:aws:kms:${YOUR_REGION}:${YOUR IAM}:key/key_id&#34;</span>
-      ]
-    }
-  ]
-}
-</code></pre></div><ol start="6">
+<div class="highlight"><pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-json" data-lang="json"><span style="display:flex;"><span>{
+</span></span><span style="display:flex;"><span>  <span style="color:#309;font-weight:bold">&#34;Version&#34;</span>: <span style="color:#c30">&#34;2012-10-17&#34;</span>,
+</span></span><span style="display:flex;"><span>  <span style="color:#309;font-weight:bold">&#34;Statement&#34;</span>: [
+</span></span><span style="display:flex;"><span>    {
+</span></span><span style="display:flex;"><span>      <span style="color:#309;font-weight:bold">&#34;Effect&#34;</span>: <span style="color:#c30">&#34;Allow&#34;</span>,
+</span></span><span style="display:flex;"><span>      <span style="color:#309;font-weight:bold">&#34;Action&#34;</span>: [<span style="color:#c30">&#34;kms:Decrypt&#34;</span>, <span style="color:#c30">&#34;secretsmanager:GetSecretValue&#34;</span>],
+</span></span><span style="display:flex;"><span>      <span style="color:#309;font-weight:bold">&#34;Resource&#34;</span>: [
+</span></span><span style="display:flex;"><span>        <span style="color:#c30">&#34;arn:aws:secretsmanager:${YOUR_REGION}:${YOUR IAM}:secret:secret_name&#34;</span>,
+</span></span><span style="display:flex;"><span>        <span style="color:#c30">&#34;arn:aws:kms:${YOUR_REGION}:${YOUR IAM}:key/key_id&#34;</span>
+</span></span><span style="display:flex;"><span>      ]
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>  ]
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><ol start="6">
 <li>Name the policy and create it</li>
 <li>Make sure your <strong>IAM</strong> has access to <strong>ECS and ECR</strong></li>
 </ol>
 <h5 id="3-a-github-repository-and-project-with-a-docker-image">3. A GitHub repository and project with a Docker image</h5>
 <p>Let&rsquo;s say you have a GitHub NodeJS repository with the following files</p>
-<div class="highlight"><pre style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ ls -la
--rw-r--r-- <span style="color:#f60">1</span> user <span style="color:#f60">12653</span> feb <span style="color:#f60">01</span> 15:02 index.js
--rw-r--r-- <span style="color:#f60">1</span> user <span style="color:#f60">12653</span> feb <span style="color:#f60">01</span> 15:02 package.json
--rw-r--r-- <span style="color:#f60">1</span> user <span style="color:#f60">12653</span> feb <span style="color:#f60">01</span> 15:02 Dockerfile
-</code></pre></div><p>And the contents of the index file</p>
+<div class="highlight"><pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>$ ls -la
+</span></span><span style="display:flex;"><span>-rw-r--r-- <span style="color:#f60">1</span> user <span style="color:#f60">12653</span> feb <span style="color:#f60">01</span> 15:02 index.js
+</span></span><span style="display:flex;"><span>-rw-r--r-- <span style="color:#f60">1</span> user <span style="color:#f60">12653</span> feb <span style="color:#f60">01</span> 15:02 package.json
+</span></span><span style="display:flex;"><span>-rw-r--r-- <span style="color:#f60">1</span> user <span style="color:#f60">12653</span> feb <span style="color:#f60">01</span> 15:02 Dockerfile
+</span></span></code></pre></div><p>And the contents of the index file</p>
 <p><code>$ cat index.js</code></p>
-<div class="highlight"><pre style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-JavaScript" data-lang="JavaScript"><span style="color:#069;font-weight:bold">const</span> express <span style="color:#555">=</span> require(<span style="color:#c30">&#39;express&#39;</span>)
-<span style="color:#069;font-weight:bold">const</span> app <span style="color:#555">=</span> express()
-<span style="color:#069;font-weight:bold">const</span> port <span style="color:#555">=</span> <span style="color:#f60">3000</span>
-
-app.get(<span style="color:#c30">&#39;/&#39;</span>, (req, res) =&gt; res.send(<span style="color:#c30">&#39;Hello World!&#39;</span>))
-
-app.listen(port, () =&gt; console.log(<span style="color:#c30">`Example app listening on port </span><span style="color:#a00">${</span>port<span style="color:#a00">}</span><span style="color:#c30">!`</span>))
-</code></pre></div><p>For the <strong>Dockerfile</strong>, we&rsquo;re going to have the simplest example as well</p>
-<div class="highlight"><pre style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-Dockerfile" data-lang="Dockerfile"><span style="color:#09f;font-style:italic"># Docker image</span><span style="color:#a00;background-color:#faa">
-</span><span style="color:#a00;background-color:#faa"></span><span style="color:#069;font-weight:bold">FROM</span><span style="color:#c30"> node:13.6.0</span><span style="color:#a00;background-color:#faa">
-</span><span style="color:#a00;background-color:#faa">
-</span><span style="color:#a00;background-color:#faa"></span><span style="color:#09f;font-style:italic"># Working directory</span><span style="color:#a00;background-color:#faa">
-</span><span style="color:#a00;background-color:#faa"></span><span style="color:#069;font-weight:bold">WORKDIR</span><span style="color:#c30"> /usr/src/app</span><span style="color:#a00;background-color:#faa">
-</span><span style="color:#a00;background-color:#faa">
-</span><span style="color:#a00;background-color:#faa"></span><span style="color:#09f;font-style:italic"># Copy everything</span><span style="color:#a00;background-color:#faa">
-</span><span style="color:#a00;background-color:#faa"></span><span style="color:#069;font-weight:bold">COPY</span> package*.json ./<span style="color:#a00;background-color:#faa">
-</span><span style="color:#a00;background-color:#faa">
-</span><span style="color:#a00;background-color:#faa"></span><span style="color:#09f;font-style:italic"># Install app dependencies</span><span style="color:#a00;background-color:#faa">
-</span><span style="color:#a00;background-color:#faa"></span><span style="color:#069;font-weight:bold">RUN</span> npm install<span style="color:#a00;background-color:#faa">
-</span><span style="color:#a00;background-color:#faa">
-</span><span style="color:#a00;background-color:#faa"></span><span style="color:#09f;font-style:italic"># Copy source</span><span style="color:#a00;background-color:#faa">
-</span><span style="color:#a00;background-color:#faa"></span><span style="color:#069;font-weight:bold">COPY</span> . .<span style="color:#a00;background-color:#faa">
-</span><span style="color:#a00;background-color:#faa">
-</span><span style="color:#a00;background-color:#faa"></span><span style="color:#09f;font-style:italic"># Port</span><span style="color:#a00;background-color:#faa">
-</span><span style="color:#a00;background-color:#faa"></span><span style="color:#069;font-weight:bold">EXPOSE</span><span style="color:#c30"> 3000</span><span style="color:#a00;background-color:#faa">
-</span><span style="color:#a00;background-color:#faa">
-</span><span style="color:#a00;background-color:#faa"></span><span style="color:#09f;font-style:italic"># Run</span><span style="color:#a00;background-color:#faa">
-</span><span style="color:#a00;background-color:#faa"></span><span style="color:#069;font-weight:bold">CMD</span> [<span style="color:#c30">&#34;node&#34;</span>, <span style="color:#c30">&#34;index.js&#34;</span>]<span style="color:#a00;background-color:#faa">
-</span></code></pre></div><h4 id="the-workflow">The workflow</h4>
+<div class="highlight"><pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-JavaScript" data-lang="JavaScript"><span style="display:flex;"><span><span style="color:#069;font-weight:bold">const</span> express <span style="color:#555">=</span> require(<span style="color:#c30">&#39;express&#39;</span>)
+</span></span><span style="display:flex;"><span><span style="color:#069;font-weight:bold">const</span> app <span style="color:#555">=</span> express()
+</span></span><span style="display:flex;"><span><span style="color:#069;font-weight:bold">const</span> port <span style="color:#555">=</span> <span style="color:#f60">3000</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>app.get(<span style="color:#c30">&#39;/&#39;</span>, (req, res) =&gt; res.send(<span style="color:#c30">&#39;Hello World!&#39;</span>))
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>app.listen(port, () =&gt; console.log(<span style="color:#c30">`Example app listening on port </span><span style="color:#a00">${</span>port<span style="color:#a00">}</span><span style="color:#c30">!`</span>))
+</span></span></code></pre></div><p>For the <strong>Dockerfile</strong>, we&rsquo;re going to have the simplest example as well</p>
+<div class="highlight"><pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-Dockerfile" data-lang="Dockerfile"><span style="display:flex;"><span><span style="color:#09f;font-style:italic"># Docker image</span><span style="color:#a00;background-color:#faa">
+</span></span></span><span style="display:flex;"><span><span style="color:#a00;background-color:#faa"></span><span style="color:#069;font-weight:bold">FROM</span><span style="color:#c30"> node:13.6.0</span><span style="color:#a00;background-color:#faa">
+</span></span></span><span style="display:flex;"><span><span style="color:#a00;background-color:#faa">
+</span></span></span><span style="display:flex;"><span><span style="color:#a00;background-color:#faa"></span><span style="color:#09f;font-style:italic"># Working directory</span><span style="color:#a00;background-color:#faa">
+</span></span></span><span style="display:flex;"><span><span style="color:#a00;background-color:#faa"></span><span style="color:#069;font-weight:bold">WORKDIR</span><span style="color:#c30"> /usr/src/app</span><span style="color:#a00;background-color:#faa">
+</span></span></span><span style="display:flex;"><span><span style="color:#a00;background-color:#faa">
+</span></span></span><span style="display:flex;"><span><span style="color:#a00;background-color:#faa"></span><span style="color:#09f;font-style:italic"># Copy everything</span><span style="color:#a00;background-color:#faa">
+</span></span></span><span style="display:flex;"><span><span style="color:#a00;background-color:#faa"></span><span style="color:#069;font-weight:bold">COPY</span> package*.json ./<span style="color:#a00;background-color:#faa">
+</span></span></span><span style="display:flex;"><span><span style="color:#a00;background-color:#faa">
+</span></span></span><span style="display:flex;"><span><span style="color:#a00;background-color:#faa"></span><span style="color:#09f;font-style:italic"># Install app dependencies</span><span style="color:#a00;background-color:#faa">
+</span></span></span><span style="display:flex;"><span><span style="color:#a00;background-color:#faa"></span><span style="color:#069;font-weight:bold">RUN</span> npm install<span style="color:#a00;background-color:#faa">
+</span></span></span><span style="display:flex;"><span><span style="color:#a00;background-color:#faa">
+</span></span></span><span style="display:flex;"><span><span style="color:#a00;background-color:#faa"></span><span style="color:#09f;font-style:italic"># Copy source</span><span style="color:#a00;background-color:#faa">
+</span></span></span><span style="display:flex;"><span><span style="color:#a00;background-color:#faa"></span><span style="color:#069;font-weight:bold">COPY</span> . .<span style="color:#a00;background-color:#faa">
+</span></span></span><span style="display:flex;"><span><span style="color:#a00;background-color:#faa">
+</span></span></span><span style="display:flex;"><span><span style="color:#a00;background-color:#faa"></span><span style="color:#09f;font-style:italic"># Port</span><span style="color:#a00;background-color:#faa">
+</span></span></span><span style="display:flex;"><span><span style="color:#a00;background-color:#faa"></span><span style="color:#069;font-weight:bold">EXPOSE</span><span style="color:#c30"> 3000</span><span style="color:#a00;background-color:#faa">
+</span></span></span><span style="display:flex;"><span><span style="color:#a00;background-color:#faa">
+</span></span></span><span style="display:flex;"><span><span style="color:#a00;background-color:#faa"></span><span style="color:#09f;font-style:italic"># Run</span><span style="color:#a00;background-color:#faa">
+</span></span></span><span style="display:flex;"><span><span style="color:#a00;background-color:#faa"></span><span style="color:#069;font-weight:bold">CMD</span> [<span style="color:#c30">&#34;node&#34;</span>, <span style="color:#c30">&#34;index.js&#34;</span>]<span style="color:#a00;background-color:#faa">
+</span></span></span></code></pre></div><h4 id="the-workflow">The workflow</h4>
 <p>Now let&rsquo;s add the <strong>GitHub actions starter workflow</strong> template that tells us what we need to do and that we can find in the <a href="https://github.com/actions/starter-workflows/blob/master/ci/aws.yml">AWS GitHub actions repository</a> and follow the instructions</p>
 <p>The following <strong>workflow</strong> will build and push a new <strong>container image</strong> to <strong>Amazon ECR</strong>, and then will deploy a new <strong>Task Definition</strong> to <strong>Amazon ECS</strong>, on every push to the master branch, the task will pull the docker image from the amazon registry, called ECR, and deploy it.</p>
 <p>Create a new folder called <code>.github/workflows</code> in your project root and add this file on it as <code>aws.yml</code></p>
-<div class="highlight"><pre style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml"><span style="color:#069;font-weight:bold">on</span>:<span style="color:#bbb">
-</span><span style="color:#bbb">  </span><span style="color:#069;font-weight:bold">push</span>:<span style="color:#bbb">
-</span><span style="color:#bbb">    </span><span style="color:#069;font-weight:bold">branches</span>:<span style="color:#bbb">
-</span><span style="color:#bbb">      </span>- master<span style="color:#bbb">
-</span><span style="color:#bbb">
-</span><span style="color:#bbb"></span><span style="color:#069;font-weight:bold">name</span>:<span style="color:#bbb"> </span>Deploy<span style="color:#bbb"> </span>to<span style="color:#bbb"> </span>Amazon<span style="color:#bbb"> </span>ECS<span style="color:#bbb">
-</span><span style="color:#bbb">
-</span><span style="color:#bbb"></span><span style="color:#069;font-weight:bold">jobs</span>:<span style="color:#bbb">
-</span><span style="color:#bbb">  </span><span style="color:#069;font-weight:bold">deploy</span>:<span style="color:#bbb">
-</span><span style="color:#bbb">    </span><span style="color:#069;font-weight:bold">name</span>:<span style="color:#bbb"> </span>Deploy<span style="color:#bbb">
-</span><span style="color:#bbb">    </span><span style="color:#069;font-weight:bold">runs-on</span>:<span style="color:#bbb"> </span>ubuntu-latest<span style="color:#bbb">
-</span><span style="color:#bbb">
-</span><span style="color:#bbb">    </span><span style="color:#069;font-weight:bold">steps</span>:<span style="color:#bbb">
-</span><span style="color:#bbb">      </span>- <span style="color:#069;font-weight:bold">name</span>:<span style="color:#bbb"> </span>Checkout<span style="color:#bbb">
-</span><span style="color:#bbb">        </span><span style="color:#069;font-weight:bold">uses</span>:<span style="color:#bbb"> </span>actions/checkout@v2<span style="color:#bbb">
-</span><span style="color:#bbb">
-</span><span style="color:#bbb">      </span>- <span style="color:#069;font-weight:bold">name</span>:<span style="color:#bbb"> </span>Configure<span style="color:#bbb"> </span>AWS<span style="color:#bbb"> </span>credentials<span style="color:#bbb">
-</span><span style="color:#bbb">        </span><span style="color:#069;font-weight:bold">uses</span>:<span style="color:#bbb"> </span>aws-actions/configure-aws-credentials@v1<span style="color:#bbb">
-</span><span style="color:#bbb">        </span><span style="color:#069;font-weight:bold">with</span>:<span style="color:#bbb">
-</span><span style="color:#bbb">          </span><span style="color:#069;font-weight:bold">aws-access-key-id</span>:<span style="color:#bbb"> </span>${{<span style="color:#bbb"> </span>secrets.AWS_ACCESS_KEY_ID<span style="color:#bbb"> </span>}}<span style="color:#bbb">
-</span><span style="color:#bbb">          </span><span style="color:#069;font-weight:bold">aws-secret-access-key</span>:<span style="color:#bbb"> </span>${{<span style="color:#bbb"> </span>secrets.AWS_SECRET_ACCESS_KEY<span style="color:#bbb"> </span>}}<span style="color:#bbb">
-</span><span style="color:#bbb">          </span><span style="color:#069;font-weight:bold">aws-region</span>:<span style="color:#bbb"> </span>us-east<span style="color:#f60">-2</span><span style="color:#bbb">
-</span><span style="color:#bbb">
-</span><span style="color:#bbb">      </span>- <span style="color:#069;font-weight:bold">name</span>:<span style="color:#bbb"> </span>Login<span style="color:#bbb"> </span>to<span style="color:#bbb"> </span>Amazon<span style="color:#bbb"> </span>ECR<span style="color:#bbb">
-</span><span style="color:#bbb">        </span><span style="color:#069;font-weight:bold">id</span>:<span style="color:#bbb"> </span>login-ecr<span style="color:#bbb">
-</span><span style="color:#bbb">        </span><span style="color:#069;font-weight:bold">uses</span>:<span style="color:#bbb"> </span>aws-actions/amazon-ecr-login@v1<span style="color:#bbb">
-</span><span style="color:#bbb">
-</span><span style="color:#bbb">      </span>- <span style="color:#069;font-weight:bold">name</span>:<span style="color:#bbb"> </span>Build,<span style="color:#bbb"> </span>tag,<span style="color:#bbb"> </span>and<span style="color:#bbb"> </span>push<span style="color:#bbb"> </span>image<span style="color:#bbb"> </span>to<span style="color:#bbb"> </span>Amazon<span style="color:#bbb"> </span>ECR<span style="color:#bbb">
-</span><span style="color:#bbb">        </span><span style="color:#069;font-weight:bold">id</span>:<span style="color:#bbb"> </span>build-image<span style="color:#bbb">
-</span><span style="color:#bbb">        </span><span style="color:#069;font-weight:bold">env</span>:<span style="color:#bbb">
-</span><span style="color:#bbb">          </span><span style="color:#069;font-weight:bold">ECR_REGISTRY</span>:<span style="color:#bbb"> </span>${{<span style="color:#bbb"> </span>steps.login-ecr.outputs.registry<span style="color:#bbb"> </span>}}<span style="color:#bbb">
-</span><span style="color:#bbb">          </span><span style="color:#069;font-weight:bold">ECR_REPOSITORY</span>:<span style="color:#bbb"> </span>test-repo<span style="color:#bbb">
-</span><span style="color:#bbb">          </span><span style="color:#069;font-weight:bold">IMAGE_TAG</span>:<span style="color:#bbb"> </span>${{<span style="color:#bbb"> </span>github.sha<span style="color:#bbb"> </span>}}<span style="color:#bbb">
-</span><span style="color:#bbb">        </span><span style="color:#069;font-weight:bold">run</span>:<span style="color:#bbb"> </span><span style="color:#c30;font-style:italic">|
-</span><span style="color:#c30;font-style:italic">          # Build a docker container and</span><span style="color:#bbb">
-</span><span style="color:#bbb">          </span><span style="color:#09f;font-style:italic"># push it to ECR so that it can</span><span style="color:#bbb">
-</span><span style="color:#bbb">          </span><span style="color:#09f;font-style:italic"># be deployed to ECS.</span><span style="color:#bbb">
-</span><span style="color:#bbb">          </span>docker<span style="color:#bbb"> </span>build<span style="color:#bbb"> </span>-t<span style="color:#bbb"> </span>$ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG<span style="color:#bbb"> </span>.<span style="color:#bbb">
-</span><span style="color:#bbb">          </span>docker<span style="color:#bbb"> </span>push<span style="color:#bbb"> </span>$ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG<span style="color:#bbb">
-</span><span style="color:#bbb">          </span>echo<span style="color:#bbb"> </span><span style="color:#c30">&#34;::set-output name=image::$ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG&#34;</span><span style="color:#bbb">
-</span><span style="color:#bbb">
-</span><span style="color:#bbb">      </span>- <span style="color:#069;font-weight:bold">name</span>:<span style="color:#bbb"> </span>Fill<span style="color:#bbb"> </span>in<span style="color:#bbb"> </span>the<span style="color:#bbb"> </span>new<span style="color:#bbb"> </span>image<span style="color:#bbb"> </span>ID<span style="color:#bbb"> </span>in<span style="color:#bbb"> </span>the<span style="color:#bbb"> </span>Amazon<span style="color:#bbb"> </span>ECS<span style="color:#bbb"> </span>task<span style="color:#bbb"> </span>definition<span style="color:#bbb">
-</span><span style="color:#bbb">        </span><span style="color:#069;font-weight:bold">id</span>:<span style="color:#bbb"> </span>task-def<span style="color:#bbb">
-</span><span style="color:#bbb">        </span><span style="color:#069;font-weight:bold">uses</span>:<span style="color:#bbb"> </span>aws-actions/amazon-ecs-render-task-definition@v1<span style="color:#bbb">
-</span><span style="color:#bbb">        </span><span style="color:#069;font-weight:bold">with</span>:<span style="color:#bbb">
-</span><span style="color:#bbb">          </span><span style="color:#069;font-weight:bold">task-definition</span>:<span style="color:#bbb"> </span>test-task.json<span style="color:#bbb">
-</span><span style="color:#bbb">          </span><span style="color:#069;font-weight:bold">container-name</span>:<span style="color:#bbb"> </span>test-task<span style="color:#bbb">
-</span><span style="color:#bbb">          </span><span style="color:#069;font-weight:bold">image</span>:<span style="color:#bbb"> </span>${{<span style="color:#bbb"> </span>steps.build-image.outputs.image<span style="color:#bbb"> </span>}}<span style="color:#bbb">
-</span><span style="color:#bbb">
-</span><span style="color:#bbb">      </span>- <span style="color:#069;font-weight:bold">name</span>:<span style="color:#bbb"> </span>Deploy<span style="color:#bbb"> </span>Amazon<span style="color:#bbb"> </span>ECS<span style="color:#bbb"> </span>task<span style="color:#bbb"> </span>definition<span style="color:#bbb">
-</span><span style="color:#bbb">        </span><span style="color:#069;font-weight:bold">uses</span>:<span style="color:#bbb"> </span>aws-actions/amazon-ecs-deploy-task-definition@v1<span style="color:#bbb">
-</span><span style="color:#bbb">        </span><span style="color:#069;font-weight:bold">with</span>:<span style="color:#bbb">
-</span><span style="color:#bbb">          </span><span style="color:#069;font-weight:bold">task-definition</span>:<span style="color:#bbb"> </span>${{<span style="color:#bbb"> </span>steps.task-def.outputs.task-definition<span style="color:#bbb"> </span>}}<span style="color:#bbb">
-</span><span style="color:#bbb">          </span><span style="color:#069;font-weight:bold">service</span>:<span style="color:#bbb"> </span>test-service<span style="color:#bbb">
-</span><span style="color:#bbb">          </span><span style="color:#069;font-weight:bold">cluster</span>:<span style="color:#bbb"> </span>test-cluster<span style="color:#bbb">
-</span><span style="color:#bbb">          </span><span style="color:#069;font-weight:bold">wait-for-service-stability</span>:<span style="color:#bbb"> </span><span style="color:#069;font-weight:bold">true</span><span style="color:#bbb">
-</span></code></pre></div><p>Note: <em>The <strong>task-definition</strong> field in the task-def section of the workflow above has to match the name of the task-definition file from the next step.</em></p>
+<div class="highlight"><pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-yaml" data-lang="yaml"><span style="display:flex;"><span><span style="color:#309;font-weight:bold">on</span>:<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb">  </span><span style="color:#309;font-weight:bold">push</span>:<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb">    </span><span style="color:#309;font-weight:bold">branches</span>:<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb">      </span>- master<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb"></span><span style="color:#309;font-weight:bold">name</span>:<span style="color:#bbb"> </span>Deploy to Amazon ECS<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb"></span><span style="color:#309;font-weight:bold">jobs</span>:<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb">  </span><span style="color:#309;font-weight:bold">deploy</span>:<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb">    </span><span style="color:#309;font-weight:bold">name</span>:<span style="color:#bbb"> </span>Deploy<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb">    </span><span style="color:#309;font-weight:bold">runs-on</span>:<span style="color:#bbb"> </span>ubuntu-latest<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb">    </span><span style="color:#309;font-weight:bold">steps</span>:<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb">      </span>- <span style="color:#309;font-weight:bold">name</span>:<span style="color:#bbb"> </span>Checkout<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb">        </span><span style="color:#309;font-weight:bold">uses</span>:<span style="color:#bbb"> </span>actions/checkout@v2<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb">      </span>- <span style="color:#309;font-weight:bold">name</span>:<span style="color:#bbb"> </span>Configure AWS credentials<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb">        </span><span style="color:#309;font-weight:bold">uses</span>:<span style="color:#bbb"> </span>aws-actions/configure-aws-credentials@v1<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb">        </span><span style="color:#309;font-weight:bold">with</span>:<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb">          </span><span style="color:#309;font-weight:bold">aws-access-key-id</span>:<span style="color:#bbb"> </span>${{ secrets.AWS_ACCESS_KEY_ID }}<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb">          </span><span style="color:#309;font-weight:bold">aws-secret-access-key</span>:<span style="color:#bbb"> </span>${{ secrets.AWS_SECRET_ACCESS_KEY }}<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb">          </span><span style="color:#309;font-weight:bold">aws-region</span>:<span style="color:#bbb"> </span>us-east-2<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb">      </span>- <span style="color:#309;font-weight:bold">name</span>:<span style="color:#bbb"> </span>Login to Amazon ECR<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb">        </span><span style="color:#309;font-weight:bold">id</span>:<span style="color:#bbb"> </span>login-ecr<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb">        </span><span style="color:#309;font-weight:bold">uses</span>:<span style="color:#bbb"> </span>aws-actions/amazon-ecr-login@v1<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb">      </span>- <span style="color:#309;font-weight:bold">name</span>:<span style="color:#bbb"> </span>Build, tag, and push image to Amazon ECR<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb">        </span><span style="color:#309;font-weight:bold">id</span>:<span style="color:#bbb"> </span>build-image<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb">        </span><span style="color:#309;font-weight:bold">env</span>:<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb">          </span><span style="color:#309;font-weight:bold">ECR_REGISTRY</span>:<span style="color:#bbb"> </span>${{ steps.login-ecr.outputs.registry }}<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb">          </span><span style="color:#309;font-weight:bold">ECR_REPOSITORY</span>:<span style="color:#bbb"> </span>test-repo<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb">          </span><span style="color:#309;font-weight:bold">IMAGE_TAG</span>:<span style="color:#bbb"> </span>${{ github.sha }}<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb">        </span><span style="color:#309;font-weight:bold">run</span>:<span style="color:#bbb"> </span>|<span style="color:#c30;font-style:italic">
+</span></span></span><span style="display:flex;"><span><span style="color:#c30;font-style:italic">          # Build a docker container and
+</span></span></span><span style="display:flex;"><span><span style="color:#c30;font-style:italic">          # push it to ECR so that it can
+</span></span></span><span style="display:flex;"><span><span style="color:#c30;font-style:italic">          # be deployed to ECS.
+</span></span></span><span style="display:flex;"><span><span style="color:#c30;font-style:italic">          docker build -t $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG .
+</span></span></span><span style="display:flex;"><span><span style="color:#c30;font-style:italic">          docker push $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG
+</span></span></span><span style="display:flex;"><span><span style="color:#c30;font-style:italic">          echo &#34;::set-output name=image::$ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG&#34;</span><span style="color:#bbb">          
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb">      </span>- <span style="color:#309;font-weight:bold">name</span>:<span style="color:#bbb"> </span>Fill in the new image ID in the Amazon ECS task definition<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb">        </span><span style="color:#309;font-weight:bold">id</span>:<span style="color:#bbb"> </span>task-def<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb">        </span><span style="color:#309;font-weight:bold">uses</span>:<span style="color:#bbb"> </span>aws-actions/amazon-ecs-render-task-definition@v1<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb">        </span><span style="color:#309;font-weight:bold">with</span>:<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb">          </span><span style="color:#309;font-weight:bold">task-definition</span>:<span style="color:#bbb"> </span>test-task.json<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb">          </span><span style="color:#309;font-weight:bold">container-name</span>:<span style="color:#bbb"> </span>test-task<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb">          </span><span style="color:#309;font-weight:bold">image</span>:<span style="color:#bbb"> </span>${{ steps.build-image.outputs.image }}<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb">      </span>- <span style="color:#309;font-weight:bold">name</span>:<span style="color:#bbb"> </span>Deploy Amazon ECS task definition<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb">        </span><span style="color:#309;font-weight:bold">uses</span>:<span style="color:#bbb"> </span>aws-actions/amazon-ecs-deploy-task-definition@v1<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb">        </span><span style="color:#309;font-weight:bold">with</span>:<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb">          </span><span style="color:#309;font-weight:bold">task-definition</span>:<span style="color:#bbb"> </span>${{ steps.task-def.outputs.task-definition }}<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb">          </span><span style="color:#309;font-weight:bold">service</span>:<span style="color:#bbb"> </span>test-service<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb">          </span><span style="color:#309;font-weight:bold">cluster</span>:<span style="color:#bbb"> </span>test-cluster<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb">          </span><span style="color:#309;font-weight:bold">wait-for-service-stability</span>:<span style="color:#bbb"> </span><span style="color:#069;font-weight:bold">true</span><span style="color:#bbb">
+</span></span></span></code></pre></div><p>Note: <em>The <strong>task-definition</strong> field in the task-def section of the workflow above has to match the name of the task-definition file from the next step.</em></p>
 <p>To use this workflow, you will need to complete the following set-up steps:</p>
 <h5 id="1-create-an-ecr-repository-to-store-your-images">1. Create an ECR repository to store your images.</h5>
 <p>For example: <code>aws ecr create-repository --repository-name test-repo --region us-east-2</code>. Replace the value of <code>ECR_REPOSITORY</code> in the workflow above with your repository&rsquo;s name.</p>
@@ -300,34 +300,34 @@ app.listen(port, () =&gt; console.log(<span style="color:#c30">`Example app list
 <p>An ECR repository is a place to store your container images on AWS.</p>
 <h5 id="2-create-an-ecr-task-definition">2. Create an ECR Task Definition</h5>
 <p>The <strong>Task Definition</strong> is, amongst other things, the way AWS runs your container. There&rsquo;re dozens of configuration options you can set, but the minimal configuration example we&rsquo;re going to use looks like this</p>
-<div class="highlight"><pre style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-json" data-lang="json">{
-  <span style="color:#309;font-weight:bold">&#34;requiresCompatibilities&#34;</span>: [<span style="color:#c30">&#34;FARGATE&#34;</span>],
-  <span style="color:#309;font-weight:bold">&#34;executionRoleArn&#34;</span>: <span style="color:#c30">&#34;arn:aws:iam::${YOUR_IAM}:role/ecsTaskExecutionRole&#34;</span>,
-  <span style="color:#309;font-weight:bold">&#34;containerDefinitions&#34;</span>: [
-    {
-      <span style="color:#309;font-weight:bold">&#34;name&#34;</span>: <span style="color:#c30">&#34;test-task&#34;</span>,
-      <span style="color:#309;font-weight:bold">&#34;image&#34;</span>: <span style="color:#c30">&#34;{$YOUR_IAM}.dkr.ecr.${YOUR_REGION}.amazonaws.com/test-repo:latest&#34;</span>,
-      <span style="color:#309;font-weight:bold">&#34;cpu&#34;</span>: <span style="color:#f60">128</span>,
-      <span style="color:#309;font-weight:bold">&#34;memory&#34;</span>: <span style="color:#f60">128</span>,
-      <span style="color:#309;font-weight:bold">&#34;portMappings&#34;</span>: [
-        {
-          <span style="color:#309;font-weight:bold">&#34;containerPort&#34;</span>: <span style="color:#f60">3000</span>,
-          <span style="color:#309;font-weight:bold">&#34;hostPort&#34;</span>: <span style="color:#f60">3000</span>,
-          <span style="color:#309;font-weight:bold">&#34;protocol&#34;</span>: <span style="color:#c30">&#34;tcp&#34;</span>
-        }
-      ],
-      <span style="color:#309;font-weight:bold">&#34;essential&#34;</span>: <span style="color:#069;font-weight:bold">true</span>,
-      <span style="color:#309;font-weight:bold">&#34;interactive&#34;</span>: <span style="color:#069;font-weight:bold">true</span>,
-      <span style="color:#309;font-weight:bold">&#34;pseudoTerminal&#34;</span>: <span style="color:#069;font-weight:bold">true</span>
-    }
-  ],
-  <span style="color:#309;font-weight:bold">&#34;family&#34;</span>: <span style="color:#c30">&#34;test-task&#34;</span>,
-  <span style="color:#309;font-weight:bold">&#34;networkMode&#34;</span>: <span style="color:#c30">&#34;awsvpc&#34;</span>,
-  <span style="color:#309;font-weight:bold">&#34;cpu&#34;</span>: <span style="color:#c30">&#34;256&#34;</span>,
-  <span style="color:#309;font-weight:bold">&#34;memory&#34;</span>: <span style="color:#c30">&#34;512&#34;</span>,
-  <span style="color:#309;font-weight:bold">&#34;volumes&#34;</span>: []
-}
-</code></pre></div><p>Replace <code>{$YOUR_IAM}</code> with your <strong>IAM</strong>, which is generally a number identifying your account and <code>${YOUR_REGION}</code> with your region, then store it in a file called <code>test-task.json</code> in the root for your repository</p>
+<div class="highlight"><pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-json" data-lang="json"><span style="display:flex;"><span>{
+</span></span><span style="display:flex;"><span>  <span style="color:#309;font-weight:bold">&#34;requiresCompatibilities&#34;</span>: [<span style="color:#c30">&#34;FARGATE&#34;</span>],
+</span></span><span style="display:flex;"><span>  <span style="color:#309;font-weight:bold">&#34;executionRoleArn&#34;</span>: <span style="color:#c30">&#34;arn:aws:iam::${YOUR_IAM}:role/ecsTaskExecutionRole&#34;</span>,
+</span></span><span style="display:flex;"><span>  <span style="color:#309;font-weight:bold">&#34;containerDefinitions&#34;</span>: [
+</span></span><span style="display:flex;"><span>    {
+</span></span><span style="display:flex;"><span>      <span style="color:#309;font-weight:bold">&#34;name&#34;</span>: <span style="color:#c30">&#34;test-task&#34;</span>,
+</span></span><span style="display:flex;"><span>      <span style="color:#309;font-weight:bold">&#34;image&#34;</span>: <span style="color:#c30">&#34;{$YOUR_IAM}.dkr.ecr.${YOUR_REGION}.amazonaws.com/test-repo:latest&#34;</span>,
+</span></span><span style="display:flex;"><span>      <span style="color:#309;font-weight:bold">&#34;cpu&#34;</span>: <span style="color:#f60">128</span>,
+</span></span><span style="display:flex;"><span>      <span style="color:#309;font-weight:bold">&#34;memory&#34;</span>: <span style="color:#f60">128</span>,
+</span></span><span style="display:flex;"><span>      <span style="color:#309;font-weight:bold">&#34;portMappings&#34;</span>: [
+</span></span><span style="display:flex;"><span>        {
+</span></span><span style="display:flex;"><span>          <span style="color:#309;font-weight:bold">&#34;containerPort&#34;</span>: <span style="color:#f60">3000</span>,
+</span></span><span style="display:flex;"><span>          <span style="color:#309;font-weight:bold">&#34;hostPort&#34;</span>: <span style="color:#f60">3000</span>,
+</span></span><span style="display:flex;"><span>          <span style="color:#309;font-weight:bold">&#34;protocol&#34;</span>: <span style="color:#c30">&#34;tcp&#34;</span>
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>      ],
+</span></span><span style="display:flex;"><span>      <span style="color:#309;font-weight:bold">&#34;essential&#34;</span>: <span style="color:#069;font-weight:bold">true</span>,
+</span></span><span style="display:flex;"><span>      <span style="color:#309;font-weight:bold">&#34;interactive&#34;</span>: <span style="color:#069;font-weight:bold">true</span>,
+</span></span><span style="display:flex;"><span>      <span style="color:#309;font-weight:bold">&#34;pseudoTerminal&#34;</span>: <span style="color:#069;font-weight:bold">true</span>
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>  ],
+</span></span><span style="display:flex;"><span>  <span style="color:#309;font-weight:bold">&#34;family&#34;</span>: <span style="color:#c30">&#34;test-task&#34;</span>,
+</span></span><span style="display:flex;"><span>  <span style="color:#309;font-weight:bold">&#34;networkMode&#34;</span>: <span style="color:#c30">&#34;awsvpc&#34;</span>,
+</span></span><span style="display:flex;"><span>  <span style="color:#309;font-weight:bold">&#34;cpu&#34;</span>: <span style="color:#c30">&#34;256&#34;</span>,
+</span></span><span style="display:flex;"><span>  <span style="color:#309;font-weight:bold">&#34;memory&#34;</span>: <span style="color:#c30">&#34;512&#34;</span>,
+</span></span><span style="display:flex;"><span>  <span style="color:#309;font-weight:bold">&#34;volumes&#34;</span>: []
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>Replace <code>{$YOUR_IAM}</code> with your <strong>IAM</strong>, which is generally a number identifying your account and <code>${YOUR_REGION}</code> with your region, then store it in a file called <code>test-task.json</code> in the root for your repository</p>
 <h5 id="3-create-and-configure-the-ecs-cluster">3. Create and configure the ECS cluster</h5>
 <ol>
 <li>Head to the <a href="https://us-east-2.console.aws.amazon.com/ecs/home?region=us-east-2#/clusters">clusters view in the AWS console</a> and <strong>create a new cluster</strong></li>
@@ -386,7 +386,7 @@ app.listen(port, () =&gt; console.log(<span style="color:#c30">`Example app list
         <h3>Comments</h3>
         <div id="disqus_thread"></div>
 <script type="application/javascript">
-    var disqus_config = function () {
+    window.disqus_config = function () {
     
     
     

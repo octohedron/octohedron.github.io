@@ -177,47 +177,47 @@
 <li>A project with a <strong>docker image</strong> and a <strong>Task Definition</strong> to deploy</li>
 </ol>
 <h4 id="create-a-load-balancer-target-group-to-route-requests">Create a load balancer <code>target group</code> to route requests</h4>
-<div class="highlight"><pre style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ aws create-target-group --name <span style="color:#a00">${</span><span style="color:#033">service</span>-name<span style="color:#a00">}</span> <span style="color:#c30;font-weight:bold">\ </span><span style="color:#09f;font-style:italic"># i.e. newservice</span>
-                          --protocol HTTP <span style="color:#c30;font-weight:bold">\
-</span><span style="color:#c30;font-weight:bold"></span>                          --port <span style="color:#a00">${</span><span style="color:#033">PORT</span><span style="color:#a00">}</span> <span style="color:#c30;font-weight:bold">\ </span><span style="color:#09f;font-style:italic"># i.e. the port of the container</span>
-                          --vpc-id <span style="color:#a00">${</span><span style="color:#033">vpc</span>-id<span style="color:#a00">}</span> <span style="color:#09f;font-style:italic"># The VPC you&#39;re using, i.e. vpc-821cc9ww</span>
-                          --health-check-protocol HTTP <span style="color:#09f;font-style:italic"># This should be OK in most cases</span>
-                          --health-check-port <span style="color:#a00">${</span><span style="color:#033">PORT</span><span style="color:#a00">}</span> <span style="color:#09f;font-style:italic"># same as the container in most cases</span>
-                          --health-check-enabled <span style="color:#09f;font-style:italic"># Enable health checks</span>
-                          --target-type ip <span style="color:#09f;font-style:italic"># For FARGATE</span>
-</code></pre></div><p>Note the resulting target group ARN returned from the CLI for passing when creating the service and the load balancer routing rule</p>
+<div class="highlight"><pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>$ aws create-target-group --name <span style="color:#a00">${</span><span style="color:#033">service</span>-name<span style="color:#a00">}</span> <span style="color:#c30;font-weight:bold">\ </span><span style="color:#09f;font-style:italic"># i.e. newservice</span>
+</span></span><span style="display:flex;"><span>                          --protocol HTTP <span style="color:#c30;font-weight:bold">\
+</span></span></span><span style="display:flex;"><span><span style="color:#c30;font-weight:bold"></span>                          --port <span style="color:#a00">${</span><span style="color:#033">PORT</span><span style="color:#a00">}</span> <span style="color:#c30;font-weight:bold">\ </span><span style="color:#09f;font-style:italic"># i.e. the port of the container</span>
+</span></span><span style="display:flex;"><span>                          --vpc-id <span style="color:#a00">${</span><span style="color:#033">vpc</span>-id<span style="color:#a00">}</span> <span style="color:#09f;font-style:italic"># The VPC you&#39;re using, i.e. vpc-821cc9ww</span>
+</span></span><span style="display:flex;"><span>                          --health-check-protocol HTTP <span style="color:#09f;font-style:italic"># This should be OK in most cases</span>
+</span></span><span style="display:flex;"><span>                          --health-check-port <span style="color:#a00">${</span><span style="color:#033">PORT</span><span style="color:#a00">}</span> <span style="color:#09f;font-style:italic"># same as the container in most cases</span>
+</span></span><span style="display:flex;"><span>                          --health-check-enabled <span style="color:#09f;font-style:italic"># Enable health checks</span>
+</span></span><span style="display:flex;"><span>                          --target-type ip <span style="color:#09f;font-style:italic"># For FARGATE</span>
+</span></span></code></pre></div><p>Note the resulting target group ARN returned from the CLI for passing when creating the service and the load balancer routing rule</p>
 <h4 id="register-the-target-group-in-the-load-balancer-with-a-new-rule">Register the target group in the load balancer with a new rule</h4>
-<div class="highlight"><pre style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ aws create-rule --listener-arn <span style="color:#a00">${</span><span style="color:#033">listener</span>-arn<span style="color:#a00">}</span> <span style="color:#09f;font-style:italic"># the load balancer ARN</span>
-                  --conditions conditions.json <span style="color:#09f;font-style:italic"># see the file contents</span>
-                  --priority <span style="color:#f60">12</span> <span style="color:#09f;font-style:italic"># Can&#39;t have more than 1 service with the same value</span>
-                  --actions <span style="color:#033">Type</span><span style="color:#555">=</span>forward,TargetGroupArn<span style="color:#555">=</span><span style="color:#a00">${</span><span style="color:#033">targetGroupARN</span><span style="color:#a00">}</span> <span style="color:#09f;font-style:italic"># Forward to your target group created above</span>
-</code></pre></div><p>File <code>conditions.json</code></p>
-<div class="highlight"><pre style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-json" data-lang="json">[
-  {
-    <span style="color:#309;font-weight:bold">&#34;Field&#34;</span>: <span style="color:#c30">&#34;host-header&#34;</span>,
-    <span style="color:#309;font-weight:bold">&#34;HostHeaderConfig&#34;</span>: {
-      <span style="color:#309;font-weight:bold">&#34;Values&#34;</span>: [<span style="color:#c30">&#34;newservice.example.com&#34;</span>]
-    }
-  }
-]
-</code></pre></div><h4 id="register-the-task-definition">Register the Task Definition</h4>
-<div class="highlight"><pre style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ aws ecs register-task-definition --cli-input-json file://task-definition.json
-</code></pre></div><p>Note the Task Definition ARN for passing when creating the service</p>
+<div class="highlight"><pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>$ aws create-rule --listener-arn <span style="color:#a00">${</span><span style="color:#033">listener</span>-arn<span style="color:#a00">}</span> <span style="color:#09f;font-style:italic"># the load balancer ARN</span>
+</span></span><span style="display:flex;"><span>                  --conditions conditions.json <span style="color:#09f;font-style:italic"># see the file contents</span>
+</span></span><span style="display:flex;"><span>                  --priority <span style="color:#f60">12</span> <span style="color:#09f;font-style:italic"># Can&#39;t have more than 1 service with the same value</span>
+</span></span><span style="display:flex;"><span>                  --actions <span style="color:#033">Type</span><span style="color:#555">=</span>forward,TargetGroupArn<span style="color:#555">=</span><span style="color:#a00">${</span><span style="color:#033">targetGroupARN</span><span style="color:#a00">}</span> <span style="color:#09f;font-style:italic"># Forward to your target group created above</span>
+</span></span></code></pre></div><p>File <code>conditions.json</code></p>
+<div class="highlight"><pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-json" data-lang="json"><span style="display:flex;"><span>[
+</span></span><span style="display:flex;"><span>  {
+</span></span><span style="display:flex;"><span>    <span style="color:#309;font-weight:bold">&#34;Field&#34;</span>: <span style="color:#c30">&#34;host-header&#34;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#309;font-weight:bold">&#34;HostHeaderConfig&#34;</span>: {
+</span></span><span style="display:flex;"><span>      <span style="color:#309;font-weight:bold">&#34;Values&#34;</span>: [<span style="color:#c30">&#34;newservice.example.com&#34;</span>]
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>  }
+</span></span><span style="display:flex;"><span>]
+</span></span></code></pre></div><h4 id="register-the-task-definition">Register the Task Definition</h4>
+<div class="highlight"><pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>$ aws ecs register-task-definition --cli-input-json file://task-definition.json
+</span></span></code></pre></div><p>Note the Task Definition ARN for passing when creating the service</p>
 <h4 id="create-the-service">Create the service</h4>
-<div class="highlight"><pre style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ aws create-service --cluster <span style="color:#a00">${</span><span style="color:#033">cluster</span>-name<span style="color:#a00">}</span> <span style="color:#c30;font-weight:bold">\
-</span><span style="color:#c30;font-weight:bold"></span>                     --service <span style="color:#a00">${</span><span style="color:#033">service</span>-name<span style="color:#a00">}</span> <span style="color:#c30;font-weight:bold">\
-</span><span style="color:#c30;font-weight:bold"></span>                     --task-definition <span style="color:#a00">${</span><span style="color:#033">task</span>-definition<span style="color:#a00">}</span> <span style="color:#c30;font-weight:bold">\ </span><span style="color:#09f;font-style:italic"># This is the family:revision, i.e. service-name:LATEST</span>
-                     --load-balancers <span style="color:#a00">${</span><span style="color:#033">targetGroupArn</span>=string,loadBalancerName=string,containerName=string,containerPort integer<span style="color:#a00">}</span> <span style="color:#c30;font-weight:bold">\
-</span><span style="color:#c30;font-weight:bold"></span>                     --desired-count <span style="color:#a00">${</span><span style="color:#033">desired</span>-count<span style="color:#a00">}</span> <span style="color:#c30;font-weight:bold">\ </span><span style="color:#09f;font-style:italic"># I.e. 1 for 1 instance</span>
-                     --launch-type FARGATE
-                     --network-configuration <span style="color:#c30">&#34;awsvpcConfiguration={subnets=[subnet-12344321],securityGroups=[sg-12344321],assignPublicIp=ENABLED}&#34;</span>
-</code></pre></div><p>Now, you can head to the <strong>Route 53</strong> in the AWS console and register the service in the load balancer, then check the requests.</p>
+<div class="highlight"><pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>$ aws create-service --cluster <span style="color:#a00">${</span><span style="color:#033">cluster</span>-name<span style="color:#a00">}</span> <span style="color:#c30;font-weight:bold">\
+</span></span></span><span style="display:flex;"><span><span style="color:#c30;font-weight:bold"></span>                     --service <span style="color:#a00">${</span><span style="color:#033">service</span>-name<span style="color:#a00">}</span> <span style="color:#c30;font-weight:bold">\
+</span></span></span><span style="display:flex;"><span><span style="color:#c30;font-weight:bold"></span>                     --task-definition <span style="color:#a00">${</span><span style="color:#033">task</span>-definition<span style="color:#a00">}</span> <span style="color:#c30;font-weight:bold">\ </span><span style="color:#09f;font-style:italic"># This is the family:revision, i.e. service-name:LATEST</span>
+</span></span><span style="display:flex;"><span>                     --load-balancers <span style="color:#a00">${</span><span style="color:#033">targetGroupArn</span>=string,loadBalancerName=string,containerName=string,containerPort integer<span style="color:#a00">}</span> <span style="color:#c30;font-weight:bold">\
+</span></span></span><span style="display:flex;"><span><span style="color:#c30;font-weight:bold"></span>                     --desired-count <span style="color:#a00">${</span><span style="color:#033">desired</span>-count<span style="color:#a00">}</span> <span style="color:#c30;font-weight:bold">\ </span><span style="color:#09f;font-style:italic"># I.e. 1 for 1 instance</span>
+</span></span><span style="display:flex;"><span>                     --launch-type FARGATE
+</span></span><span style="display:flex;"><span>                     --network-configuration <span style="color:#c30">&#34;awsvpcConfiguration={subnets=[subnet-12344321],securityGroups=[sg-12344321],assignPublicIp=ENABLED}&#34;</span>
+</span></span></code></pre></div><p>Now, you can head to the <strong>Route 53</strong> in the AWS console and register the service in the load balancer, then check the requests.</p>
 
         <div class="col-md-8 mx-auto"></div>
         <h3>Comments</h3>
         <div id="disqus_thread"></div>
 <script type="application/javascript">
-    var disqus_config = function () {
+    window.disqus_config = function () {
     
     
     

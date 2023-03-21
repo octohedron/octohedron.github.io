@@ -6,10 +6,6 @@
     <description>Recent content in About Us ... on RAISE Systems</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Sat, 07 Jul 2018 12:37:52 +0600</lastBuildDate>
-    
-	<atom:link href="/en/about/index.xml" rel="self" type="application/rss+xml" />
-    
-    
+    <lastBuildDate>Sat, 07 Jul 2018 12:37:52 +0600</lastBuildDate><atom:link href="/en/about/index.xml" rel="self" type="application/rss+xml" />
   </channel>
 </rss>

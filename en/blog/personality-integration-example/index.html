@@ -203,100 +203,100 @@
 <h4 id="step-3---state-handling-and-orchestration-implementation">Step 3 - State handling and orchestration implementation</h4>
 <p>We implement a simple state handling and orchestration API in Go.</p>
 <p>The concept is simple, as simple as possible. When an analysis request is made to the API, the status of the job is checked in the global state. If it&rsquo;s found to be completed, it means that the data was already requested, processed, analyzed and the final result saved in the database, in which case we just need to fetch it and return it. Otherwise it will schedule it.</p>
-<div class="highlight"><pre style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go"><span style="color:#09f;font-style:italic">// Analyze a user making a POST request to /analyze with raw payload &#34;username&#34;
-</span><span style="color:#09f;font-style:italic"></span><span style="color:#069;font-weight:bold">func</span> <span style="color:#c0f">analyze</span>(w http.ResponseWriter, r <span style="color:#555">*</span>http.Request) {
-  <span style="color:#09f;font-style:italic">// Only allow POST requests in this endpoint
-</span><span style="color:#09f;font-style:italic"></span>  <span style="color:#069;font-weight:bold">if</span> r.Method <span style="color:#555">!=</span> <span style="color:#c30">&#34;POST&#34;</span> {
-    http.<span style="color:#c0f">Error</span>(w, fmt.<span style="color:#c0f">Sprintf</span>(<span style="color:#c30">&#34;{ \&#34;error\&#34;: \&#34;%s\&#34; }&#34;</span>, <span style="color:#c30">&#34;Method not allowed&#34;</span>), <span style="color:#f60">405</span>)
-    <span style="color:#069;font-weight:bold">return</span>
-  }
-  <span style="color:#09f;font-style:italic">// Allocate a user string
-</span><span style="color:#09f;font-style:italic"></span>  <span style="color:#069;font-weight:bold">var</span> user <span style="color:#078;font-weight:bold">string</span>
-  <span style="color:#09f;font-style:italic">// Read the request
-</span><span style="color:#09f;font-style:italic"></span>  body, err <span style="color:#555">:=</span> ioutil.<span style="color:#c0f">ReadAll</span>(r.Body)
-  <span style="color:#09f;font-style:italic">// Check there&#39;s no errors reading the request
-</span><span style="color:#09f;font-style:italic"></span>  <span style="color:#069;font-weight:bold">if</span> err <span style="color:#555">!=</span> <span style="color:#069;font-weight:bold">nil</span> {
-    http.<span style="color:#c0f">Error</span>(w, fmt.<span style="color:#c0f">Sprintf</span>(<span style="color:#c30">&#34;{ \&#34;error\&#34;: \&#34;%s\&#34; }&#34;</span>, <span style="color:#c30">&#34;Malformed request&#34;</span>), <span style="color:#f60">403</span>)
-    <span style="color:#069;font-weight:bold">return</span>
-  }
-  <span style="color:#09f;font-style:italic">// Unmarshall the username into the user string
-</span><span style="color:#09f;font-style:italic"></span>  err = json.<span style="color:#c0f">Unmarshal</span>(body, <span style="color:#555">&amp;</span>user)
-  <span style="color:#09f;font-style:italic">// Get handle to redis connection pool
-</span><span style="color:#09f;font-style:italic"></span>  conn <span style="color:#555">:=</span> POOL.<span style="color:#c0f">Get</span>()
-  <span style="color:#09f;font-style:italic">// Check the current status
-</span><span style="color:#09f;font-style:italic"></span>  status, err <span style="color:#555">:=</span> redis.<span style="color:#c0f">String</span>(conn.<span style="color:#c0f">Do</span>(<span style="color:#c30">&#34;hget&#34;</span>, <span style="color:#c30">&#34;analysis:&#34;</span><span style="color:#555">+</span>user, <span style="color:#c30">&#34;status&#34;</span>))
-  <span style="color:#09f;font-style:italic">// If there&#39;s an error here, it could mean that there was a problem with redis
-</span><span style="color:#09f;font-style:italic"></span>  <span style="color:#09f;font-style:italic">// or that it&#39;s a new analysis request job, we will assume that for simplicity
-</span><span style="color:#09f;font-style:italic"></span>  <span style="color:#069;font-weight:bold">if</span> err <span style="color:#555">!=</span> <span style="color:#069;font-weight:bold">nil</span> {
-    status = <span style="color:#c30">&#34;not_requested&#34;</span>
-  }
-  <span style="color:#09f;font-style:italic">// We handle each state with a simple switch statement
-</span><span style="color:#09f;font-style:italic"></span>  <span style="color:#069;font-weight:bold">switch</span> status {
-  <span style="color:#069;font-weight:bold">case</span> <span style="color:#c30">&#34;not_requested&#34;</span>:
-    <span style="color:#09f;font-style:italic">// Request the data and analysis
-</span><span style="color:#09f;font-style:italic"></span>    <span style="color:#069;font-weight:bold">go</span> <span style="color:#c0f">fetchData</span>(user, <span style="color:#c30">&#34;analysis&#34;</span>, <span style="color:#c30">&#34;username&#34;</span>)
-    <span style="color:#09f;font-style:italic">// Set the status as scheduled
-</span><span style="color:#09f;font-style:italic"></span>    _, err = redis.<span style="color:#c0f">Int</span>(conn.<span style="color:#c0f">Do</span>(<span style="color:#c30">&#34;HSET&#34;</span>, <span style="color:#c30">&#34;analysis:&#34;</span><span style="color:#555">+</span>user, <span style="color:#c30">&#34;status&#34;</span>, <span style="color:#c30">&#34;scheduled&#34;</span>))
-    <span style="color:#09f;font-style:italic">// Check if there was a problem when setting the redis status
-</span><span style="color:#09f;font-style:italic"></span>    <span style="color:#c0f">LogPanic</span>(err, <span style="color:#c30">&#34;Error performing HSET in redis&#34;</span>)
-    <span style="color:#09f;font-style:italic">// respond with scheduled
-</span><span style="color:#09f;font-style:italic"></span>    w.<span style="color:#c0f">Write</span>([]<span style="color:#366">byte</span>(<span style="color:#c30">&#34;scheduled&#34;</span>))
-  <span style="color:#069;font-weight:bold">case</span> <span style="color:#c30">&#34;completed&#34;</span>:
-    <span style="color:#09f;font-style:italic">// fetch the analysis data from the database and return it
-</span><span style="color:#09f;font-style:italic"></span>    w.<span style="color:#c0f">Write</span>([]<span style="color:#366">byte</span>(<span style="color:#c30">&#34;...&#34;</span>))
-</code></pre></div><p>We&rsquo;re leaving out the part of fetching the data from the database because that&rsquo;s quite simple, we just want to illustrate the concept of a simple integration.</p>
+<div class="highlight"><pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-go" data-lang="go"><span style="display:flex;"><span><span style="color:#09f;font-style:italic">// Analyze a user making a POST request to /analyze with raw payload &#34;username&#34;
+</span></span></span><span style="display:flex;"><span><span style="color:#09f;font-style:italic"></span><span style="color:#069;font-weight:bold">func</span> <span style="color:#c0f">analyze</span>(w http.ResponseWriter, r <span style="color:#555">*</span>http.Request) {
+</span></span><span style="display:flex;"><span>  <span style="color:#09f;font-style:italic">// Only allow POST requests in this endpoint
+</span></span></span><span style="display:flex;"><span><span style="color:#09f;font-style:italic"></span>  <span style="color:#069;font-weight:bold">if</span> r.Method <span style="color:#555">!=</span> <span style="color:#c30">&#34;POST&#34;</span> {
+</span></span><span style="display:flex;"><span>    http.<span style="color:#c0f">Error</span>(w, fmt.<span style="color:#c0f">Sprintf</span>(<span style="color:#c30">&#34;{ \&#34;error\&#34;: \&#34;%s\&#34; }&#34;</span>, <span style="color:#c30">&#34;Method not allowed&#34;</span>), <span style="color:#f60">405</span>)
+</span></span><span style="display:flex;"><span>    <span style="color:#069;font-weight:bold">return</span>
+</span></span><span style="display:flex;"><span>  }
+</span></span><span style="display:flex;"><span>  <span style="color:#09f;font-style:italic">// Allocate a user string
+</span></span></span><span style="display:flex;"><span><span style="color:#09f;font-style:italic"></span>  <span style="color:#069;font-weight:bold">var</span> user <span style="color:#078;font-weight:bold">string</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#09f;font-style:italic">// Read the request
+</span></span></span><span style="display:flex;"><span><span style="color:#09f;font-style:italic"></span>  body, err <span style="color:#555">:=</span> ioutil.<span style="color:#c0f">ReadAll</span>(r.Body)
+</span></span><span style="display:flex;"><span>  <span style="color:#09f;font-style:italic">// Check there&#39;s no errors reading the request
+</span></span></span><span style="display:flex;"><span><span style="color:#09f;font-style:italic"></span>  <span style="color:#069;font-weight:bold">if</span> err <span style="color:#555">!=</span> <span style="color:#069;font-weight:bold">nil</span> {
+</span></span><span style="display:flex;"><span>    http.<span style="color:#c0f">Error</span>(w, fmt.<span style="color:#c0f">Sprintf</span>(<span style="color:#c30">&#34;{ \&#34;error\&#34;: \&#34;%s\&#34; }&#34;</span>, <span style="color:#c30">&#34;Malformed request&#34;</span>), <span style="color:#f60">403</span>)
+</span></span><span style="display:flex;"><span>    <span style="color:#069;font-weight:bold">return</span>
+</span></span><span style="display:flex;"><span>  }
+</span></span><span style="display:flex;"><span>  <span style="color:#09f;font-style:italic">// Unmarshall the username into the user string
+</span></span></span><span style="display:flex;"><span><span style="color:#09f;font-style:italic"></span>  err = json.<span style="color:#c0f">Unmarshal</span>(body, <span style="color:#555">&amp;</span>user)
+</span></span><span style="display:flex;"><span>  <span style="color:#09f;font-style:italic">// Get handle to redis connection pool
+</span></span></span><span style="display:flex;"><span><span style="color:#09f;font-style:italic"></span>  conn <span style="color:#555">:=</span> POOL.<span style="color:#c0f">Get</span>()
+</span></span><span style="display:flex;"><span>  <span style="color:#09f;font-style:italic">// Check the current status
+</span></span></span><span style="display:flex;"><span><span style="color:#09f;font-style:italic"></span>  status, err <span style="color:#555">:=</span> redis.<span style="color:#c0f">String</span>(conn.<span style="color:#c0f">Do</span>(<span style="color:#c30">&#34;hget&#34;</span>, <span style="color:#c30">&#34;analysis:&#34;</span><span style="color:#555">+</span>user, <span style="color:#c30">&#34;status&#34;</span>))
+</span></span><span style="display:flex;"><span>  <span style="color:#09f;font-style:italic">// If there&#39;s an error here, it could mean that there was a problem with redis
+</span></span></span><span style="display:flex;"><span><span style="color:#09f;font-style:italic"></span>  <span style="color:#09f;font-style:italic">// or that it&#39;s a new analysis request job, we will assume that for simplicity
+</span></span></span><span style="display:flex;"><span><span style="color:#09f;font-style:italic"></span>  <span style="color:#069;font-weight:bold">if</span> err <span style="color:#555">!=</span> <span style="color:#069;font-weight:bold">nil</span> {
+</span></span><span style="display:flex;"><span>    status = <span style="color:#c30">&#34;not_requested&#34;</span>
+</span></span><span style="display:flex;"><span>  }
+</span></span><span style="display:flex;"><span>  <span style="color:#09f;font-style:italic">// We handle each state with a simple switch statement
+</span></span></span><span style="display:flex;"><span><span style="color:#09f;font-style:italic"></span>  <span style="color:#069;font-weight:bold">switch</span> status {
+</span></span><span style="display:flex;"><span>  <span style="color:#069;font-weight:bold">case</span> <span style="color:#c30">&#34;not_requested&#34;</span>:
+</span></span><span style="display:flex;"><span>    <span style="color:#09f;font-style:italic">// Request the data and analysis
+</span></span></span><span style="display:flex;"><span><span style="color:#09f;font-style:italic"></span>    <span style="color:#069;font-weight:bold">go</span> <span style="color:#c0f">fetchData</span>(user, <span style="color:#c30">&#34;analysis&#34;</span>, <span style="color:#c30">&#34;username&#34;</span>)
+</span></span><span style="display:flex;"><span>    <span style="color:#09f;font-style:italic">// Set the status as scheduled
+</span></span></span><span style="display:flex;"><span><span style="color:#09f;font-style:italic"></span>    _, err = redis.<span style="color:#c0f">Int</span>(conn.<span style="color:#c0f">Do</span>(<span style="color:#c30">&#34;HSET&#34;</span>, <span style="color:#c30">&#34;analysis:&#34;</span><span style="color:#555">+</span>user, <span style="color:#c30">&#34;status&#34;</span>, <span style="color:#c30">&#34;scheduled&#34;</span>))
+</span></span><span style="display:flex;"><span>    <span style="color:#09f;font-style:italic">// Check if there was a problem when setting the redis status
+</span></span></span><span style="display:flex;"><span><span style="color:#09f;font-style:italic"></span>    <span style="color:#c0f">LogPanic</span>(err, <span style="color:#c30">&#34;Error performing HSET in redis&#34;</span>)
+</span></span><span style="display:flex;"><span>    <span style="color:#09f;font-style:italic">// respond with scheduled
+</span></span></span><span style="display:flex;"><span><span style="color:#09f;font-style:italic"></span>    w.<span style="color:#c0f">Write</span>([]<span style="color:#366">byte</span>(<span style="color:#c30">&#34;scheduled&#34;</span>))
+</span></span><span style="display:flex;"><span>  <span style="color:#069;font-weight:bold">case</span> <span style="color:#c30">&#34;completed&#34;</span>:
+</span></span><span style="display:flex;"><span>    <span style="color:#09f;font-style:italic">// fetch the analysis data from the database and return it
+</span></span></span><span style="display:flex;"><span><span style="color:#09f;font-style:italic"></span>    w.<span style="color:#c0f">Write</span>([]<span style="color:#366">byte</span>(<span style="color:#c30">&#34;...&#34;</span>))
+</span></span></code></pre></div><p>We&rsquo;re leaving out the part of fetching the data from the database because that&rsquo;s quite simple, we just want to illustrate the concept of a simple integration.</p>
 <h4 id="step-4---a-data-requesting-processing-and-analyzing-service">Step 4 - A data requesting, processing and analyzing service</h4>
 <p>For these steps of the pipeline, we use a of really powerful python tool that it&rsquo;s extremely simple and fast to set up and configure, <strong>scrapy</strong>.</p>
 <p>Scrapy can be easily orchestrated with <strong>scrapyd</strong>. It&rsquo;s as simple as making a request to the scrapyd service and it will schedule a job.</p>
 <p>After we request the data, the pipeline is very simple</p>
-<div class="highlight"><pre style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">
-<span style="color:#069;font-weight:bold">class</span> <span style="color:#0a8;font-weight:bold">AllUserDataPipeline</span>(<span style="color:#366">object</span>):
-    <span style="color:#c30">&#34;&#34;&#34;This pipeline will perform a Watson analysis&#34;&#34;&#34;</span>
-    collection_name <span style="color:#555">=</span> <span style="color:#c30">&#39;user_analysis&#39;</span>
-
-    <span style="color:#069;font-weight:bold">def</span> __init__(self, mongo_uri, mongo_db, redis_host, redis_port):
-      <span style="color:#c30">&#34;&#34;&#34;Set up the database connections parameters&#34;&#34;&#34;</span>
-        self<span style="color:#555">.</span>mongo_uri <span style="color:#555">=</span> mongo_uri
-        self<span style="color:#555">.</span>mongo_db <span style="color:#555">=</span> mongo_db
-        self<span style="color:#555">.</span>redis_host <span style="color:#555">=</span> redis_host
-        self<span style="color:#555">.</span>redis_port <span style="color:#555">=</span> redis_port
-
-    <span style="color:#069;font-weight:bold">def</span> <span style="color:#c0f">open_spider</span>(self, spider):
-        <span style="color:#c30">&#34;&#34;&#34;Initialize the database connections when the spider is opened&#34;&#34;&#34;</span>
-        <span style="color:#09f;font-style:italic"># Initialize the database connections...</span>
-        <span style="color:#09f;font-style:italic"># Set job to running when we start the crawl</span>
-        self<span style="color:#555">.</span>redis_conn<span style="color:#555">.</span>hset(
-            <span style="color:#c30">&#34;analysis:&#34;</span> <span style="color:#555">+</span> spider<span style="color:#555">.</span>username,
-            <span style="color:#c30">&#34;status&#34;</span>, <span style="color:#c30">&#34;running&#34;</span>)
-
-    <span style="color:#069;font-weight:bold">def</span> <span style="color:#c0f">close_spider</span>(self, spider):
-        <span style="color:#c30">&#34;&#34;&#34;Perform Watson analysis and update status accordingly&#34;&#34;&#34;</span>
-        <span style="color:#09f;font-style:italic"># Get data from the spider (no data is saved)</span>
-        text <span style="color:#555">=</span> spider<span style="color:#555">.</span>data
-        <span style="color:#09f;font-style:italic"># Remove hashtags and mentions symbols</span>
-        text <span style="color:#555">=</span> text<span style="color:#555">.</span>replace(<span style="color:#c30">&#34;#&#34;</span>, <span style="color:#c30">&#34; &#34;</span>)
-        text <span style="color:#555">=</span> text<span style="color:#555">.</span>replace(<span style="color:#c30">&#34;@&#34;</span>, <span style="color:#c30">&#34; &#34;</span>)
-        <span style="color:#09f;font-style:italic"># If we have enough text for a decent analysis</span>
-        <span style="color:#069;font-weight:bold">if</span> <span style="color:#366">len</span>(text) <span style="color:#555">&gt;</span> <span style="color:#f60">200</span>:
-            <span style="color:#09f;font-style:italic"># Initialize request with Watson URL</span>
-            res <span style="color:#555">=</span> requests<span style="color:#555">.</span>post(
-                <span style="color:#c30">&#34;https://gateway-fra.watsonplatform.net/personality-insights&#34;</span> <span style="color:#555">+</span>
-                <span style="color:#c30">&#34;/api/v3/profile?version=2017-10-13&amp;raw_scores=true&#34;</span>,
-                auth<span style="color:#555">=</span>(
-                    <span style="color:#c30">&#34;api_key&#34;</span>, <span style="color:#c30">&#34;your_key&#34;</span>),
-                headers<span style="color:#555">=</span>{
-                    <span style="color:#c30">&#34;content-type&#34;</span>: <span style="color:#c30">&#34;text/plain&#34;</span>, <span style="color:#c30">&#34;Accept&#34;</span>: <span style="color:#c30">&#34;application/json&#34;</span>},
-                data<span style="color:#555">=</span>text<span style="color:#555">.</span>encode(<span style="color:#c30">&#34;utf-8&#34;</span>)
-            )
-            <span style="color:#09f;font-style:italic"># Save result</span>
-            self<span style="color:#555">.</span>db[self<span style="color:#555">.</span>collection_name] \
-                <span style="color:#555">.</span>update({<span style="color:#c30">&#39;username&#39;</span>: spider<span style="color:#555">.</span>username},
-                        {<span style="color:#c30">&#34;$set&#34;</span>: {<span style="color:#c30">&#34;watson_result&#34;</span>: json<span style="color:#555">.</span>loads(res<span style="color:#555">.</span>text)}}, True)
-        <span style="color:#09f;font-style:italic"># Set status</span>
-        self<span style="color:#555">.</span>redis_conn<span style="color:#555">.</span>hset(<span style="color:#c30">&#34;analysis:&#34;</span> <span style="color:#555">+</span> spider<span style="color:#555">.</span>username, <span style="color:#c30">&#34;status&#34;</span>, <span style="color:#c30">&#34;completed&#34;</span>)
-        <span style="color:#09f;font-style:italic"># Close database connection</span>
-        self<span style="color:#555">.</span>client<span style="color:#555">.</span>close()
-</code></pre></div><p>As you can see, with just a few lines of python we can process the data, request an analysis and save the results.</p>
+<div class="highlight"><pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#069;font-weight:bold">class</span> <span style="color:#0a8;font-weight:bold">AllUserDataPipeline</span>(<span style="color:#366">object</span>):
+</span></span><span style="display:flex;"><span>    <span style="color:#c30">&#34;&#34;&#34;This pipeline will perform a Watson analysis&#34;&#34;&#34;</span>
+</span></span><span style="display:flex;"><span>    collection_name <span style="color:#555">=</span> <span style="color:#c30">&#39;user_analysis&#39;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#069;font-weight:bold">def</span> __init__(self, mongo_uri, mongo_db, redis_host, redis_port):
+</span></span><span style="display:flex;"><span>      <span style="color:#c30">&#34;&#34;&#34;Set up the database connections parameters&#34;&#34;&#34;</span>
+</span></span><span style="display:flex;"><span>        self<span style="color:#555">.</span>mongo_uri <span style="color:#555">=</span> mongo_uri
+</span></span><span style="display:flex;"><span>        self<span style="color:#555">.</span>mongo_db <span style="color:#555">=</span> mongo_db
+</span></span><span style="display:flex;"><span>        self<span style="color:#555">.</span>redis_host <span style="color:#555">=</span> redis_host
+</span></span><span style="display:flex;"><span>        self<span style="color:#555">.</span>redis_port <span style="color:#555">=</span> redis_port
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#069;font-weight:bold">def</span> <span style="color:#c0f">open_spider</span>(self, spider):
+</span></span><span style="display:flex;"><span>        <span style="color:#c30">&#34;&#34;&#34;Initialize the database connections when the spider is opened&#34;&#34;&#34;</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#09f;font-style:italic"># Initialize the database connections...</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#09f;font-style:italic"># Set job to running when we start the crawl</span>
+</span></span><span style="display:flex;"><span>        self<span style="color:#555">.</span>redis_conn<span style="color:#555">.</span>hset(
+</span></span><span style="display:flex;"><span>            <span style="color:#c30">&#34;analysis:&#34;</span> <span style="color:#555">+</span> spider<span style="color:#555">.</span>username,
+</span></span><span style="display:flex;"><span>            <span style="color:#c30">&#34;status&#34;</span>, <span style="color:#c30">&#34;running&#34;</span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#069;font-weight:bold">def</span> <span style="color:#c0f">close_spider</span>(self, spider):
+</span></span><span style="display:flex;"><span>        <span style="color:#c30">&#34;&#34;&#34;Perform Watson analysis and update status accordingly&#34;&#34;&#34;</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#09f;font-style:italic"># Get data from the spider (no data is saved)</span>
+</span></span><span style="display:flex;"><span>        text <span style="color:#555">=</span> spider<span style="color:#555">.</span>data
+</span></span><span style="display:flex;"><span>        <span style="color:#09f;font-style:italic"># Remove hashtags and mentions symbols</span>
+</span></span><span style="display:flex;"><span>        text <span style="color:#555">=</span> text<span style="color:#555">.</span>replace(<span style="color:#c30">&#34;#&#34;</span>, <span style="color:#c30">&#34; &#34;</span>)
+</span></span><span style="display:flex;"><span>        text <span style="color:#555">=</span> text<span style="color:#555">.</span>replace(<span style="color:#c30">&#34;@&#34;</span>, <span style="color:#c30">&#34; &#34;</span>)
+</span></span><span style="display:flex;"><span>        <span style="color:#09f;font-style:italic"># If we have enough text for a decent analysis</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#069;font-weight:bold">if</span> <span style="color:#366">len</span>(text) <span style="color:#555">&gt;</span> <span style="color:#f60">200</span>:
+</span></span><span style="display:flex;"><span>            <span style="color:#09f;font-style:italic"># Initialize request with Watson URL</span>
+</span></span><span style="display:flex;"><span>            res <span style="color:#555">=</span> requests<span style="color:#555">.</span>post(
+</span></span><span style="display:flex;"><span>                <span style="color:#c30">&#34;https://gateway-fra.watsonplatform.net/personality-insights&#34;</span> <span style="color:#555">+</span>
+</span></span><span style="display:flex;"><span>                <span style="color:#c30">&#34;/api/v3/profile?version=2017-10-13&amp;raw_scores=true&#34;</span>,
+</span></span><span style="display:flex;"><span>                auth<span style="color:#555">=</span>(
+</span></span><span style="display:flex;"><span>                    <span style="color:#c30">&#34;api_key&#34;</span>, <span style="color:#c30">&#34;your_key&#34;</span>),
+</span></span><span style="display:flex;"><span>                headers<span style="color:#555">=</span>{
+</span></span><span style="display:flex;"><span>                    <span style="color:#c30">&#34;content-type&#34;</span>: <span style="color:#c30">&#34;text/plain&#34;</span>, <span style="color:#c30">&#34;Accept&#34;</span>: <span style="color:#c30">&#34;application/json&#34;</span>},
+</span></span><span style="display:flex;"><span>                data<span style="color:#555">=</span>text<span style="color:#555">.</span>encode(<span style="color:#c30">&#34;utf-8&#34;</span>)
+</span></span><span style="display:flex;"><span>            )
+</span></span><span style="display:flex;"><span>            <span style="color:#09f;font-style:italic"># Save result</span>
+</span></span><span style="display:flex;"><span>            self<span style="color:#555">.</span>db[self<span style="color:#555">.</span>collection_name] \
+</span></span><span style="display:flex;"><span>                <span style="color:#555">.</span>update({<span style="color:#c30">&#39;username&#39;</span>: spider<span style="color:#555">.</span>username},
+</span></span><span style="display:flex;"><span>                        {<span style="color:#c30">&#34;$set&#34;</span>: {<span style="color:#c30">&#34;watson_result&#34;</span>: json<span style="color:#555">.</span>loads(res<span style="color:#555">.</span>text)}}, <span style="color:#069;font-weight:bold">True</span>)
+</span></span><span style="display:flex;"><span>        <span style="color:#09f;font-style:italic"># Set status</span>
+</span></span><span style="display:flex;"><span>        self<span style="color:#555">.</span>redis_conn<span style="color:#555">.</span>hset(<span style="color:#c30">&#34;analysis:&#34;</span> <span style="color:#555">+</span> spider<span style="color:#555">.</span>username, <span style="color:#c30">&#34;status&#34;</span>, <span style="color:#c30">&#34;completed&#34;</span>)
+</span></span><span style="display:flex;"><span>        <span style="color:#09f;font-style:italic"># Close database connection</span>
+</span></span><span style="display:flex;"><span>        self<span style="color:#555">.</span>client<span style="color:#555">.</span>close()
+</span></span></code></pre></div><p>As you can see, with just a few lines of python we can process the data, request an analysis and save the results.</p>
 <p>Now, what we have is a <strong>scheduled system</strong> that can process a virtually unlimited amount of requests as long as we have enough hardware to run it. It will automatically allocate as much schedule jobs as we can for our hardware set up.</p>
 <p>For example, if we requested 10 million analysis at once, and we can only do 20 at a time because we don&rsquo;t have enough hardware resources, it will only have at most 20 jobs running at once, but will eventually complete all of them.</p>
 <p><em>DISCLAIMER: No data is stored in our client&rsquo;s server, each analysis is performed on the fly.</em></p>
@@ -305,7 +305,7 @@
         <h3>Comments</h3>
         <div id="disqus_thread"></div>
 <script type="application/javascript">
-    var disqus_config = function () {
+    window.disqus_config = function () {
     
     
     

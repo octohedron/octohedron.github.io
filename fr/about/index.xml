@@ -6,10 +6,6 @@
     <description>Recent content in A propos de nous ... on FRANCAIS Example site multi-language</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>fr-fr</language>
-    <lastBuildDate>Sat, 07 Jul 2018 12:37:52 +0600</lastBuildDate>
-    
-	<atom:link href="/fr/about/index.xml" rel="self" type="application/rss+xml" />
-    
-    
+    <lastBuildDate>Sat, 07 Jul 2018 12:37:52 +0600</lastBuildDate><atom:link href="/fr/about/index.xml" rel="self" type="application/rss+xml" />
   </channel>
 </rss>

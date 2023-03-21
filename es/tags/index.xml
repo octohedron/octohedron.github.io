@@ -5,10 +5,6 @@
     <link>/es/tags/</link>
     <description>Recent content in Tags on Integración rápida de tecnologías de Inteligencia Artificial</description>
     <generator>Hugo -- gohugo.io</generator>
-    <language>es-es</language>
-    
-	<atom:link href="/es/tags/index.xml" rel="self" type="application/rss+xml" />
-    
-    
+    <language>es-es</language><atom:link href="/es/tags/index.xml" rel="self" type="application/rss+xml" />
   </channel>
 </rss>

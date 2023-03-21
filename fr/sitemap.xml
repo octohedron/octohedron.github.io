@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
-  
   <url>
     <loc>/fr/blog/</loc>
     <lastmod>2018-07-07T18:23:33+06:00</lastmod>
@@ -20,9 +19,7 @@
                 hreflang="fr"
                 href="/fr/blog/"
                 />
-  </url>
-  
-  <url>
+  </url><url>
     <loc>/fr/</loc>
     <lastmod>2018-07-07T18:23:33+06:00</lastmod>
     <xhtml:link
@@ -40,9 +37,7 @@
                 hreflang="fr"
                 href="/fr/"
                 />
-  </url>
-  
-  <url>
+  </url><url>
     <loc>/fr/contact/</loc>
     <lastmod>2018-07-07T15:53:27+06:00</lastmod>
     <xhtml:link
@@ -60,9 +55,7 @@
                 hreflang="fr"
                 href="/fr/contact/"
                 />
-  </url>
-  
-  <url>
+  </url><url>
     <loc>/fr/projects/</loc>
     <lastmod>2018-07-07T15:45:06+06:00</lastmod>
     <xhtml:link
@@ -80,9 +73,7 @@
                 hreflang="fr"
                 href="/fr/projects/"
                 />
-  </url>
-  
-  <url>
+  </url><url>
     <loc>/fr/services/</loc>
     <lastmod>2018-07-07T14:53:13+06:00</lastmod>
     <xhtml:link
@@ -100,9 +91,7 @@
                 hreflang="fr"
                 href="/fr/services/"
                 />
-  </url>
-  
-  <url>
+  </url><url>
     <loc>/fr/about/</loc>
     <lastmod>2018-07-07T12:37:52+06:00</lastmod>
     <xhtml:link
@@ -120,9 +109,7 @@
                 hreflang="fr"
                 href="/fr/about/"
                 />
-  </url>
-  
-  <url>
+  </url><url>
     <loc>/fr/categories/</loc>
     <xhtml:link
                 rel="alternate"
@@ -139,9 +126,7 @@
                 hreflang="fr"
                 href="/fr/categories/"
                 />
-  </url>
-  
-  <url>
+  </url><url>
     <loc>/fr/tags/</loc>
     <xhtml:link
                 rel="alternate"
@@ -159,5 +144,4 @@
                 href="/fr/tags/"
                 />
   </url>
-  
 </urlset>

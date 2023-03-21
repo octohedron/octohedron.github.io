@@ -173,186 +173,182 @@
 <p>First of all, we need to design our Machine Learning Model for this task. And for that we will need a bunch of dependencies.</p>
 <p>We start by importing everything we are going to need into a new file called <code>DNNClassifier.py</code></p>
 <p>We will be using <code>Tensorflow</code> and <code>Pandas</code></p>
-<div class="highlight"><pre style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#069;font-weight:bold">import</span> <span style="color:#0cf;font-weight:bold">re</span>
-<span style="color:#069;font-weight:bold">import</span> <span style="color:#0cf;font-weight:bold">os</span>
-<span style="color:#069;font-weight:bold">import</span> <span style="color:#0cf;font-weight:bold">tensorflow</span> <span style="color:#069;font-weight:bold">as</span> <span style="color:#0cf;font-weight:bold">tf</span>
-<span style="color:#069;font-weight:bold">import</span> <span style="color:#0cf;font-weight:bold">tensorflow_hub</span> <span style="color:#069;font-weight:bold">as</span> <span style="color:#0cf;font-weight:bold">hub</span>
-<span style="color:#069;font-weight:bold">import</span> <span style="color:#0cf;font-weight:bold">pandas</span> <span style="color:#069;font-weight:bold">as</span> <span style="color:#0cf;font-weight:bold">pd</span>
-<span style="color:#069;font-weight:bold">from</span> <span style="color:#0cf;font-weight:bold">custom_log</span> <span style="color:#069;font-weight:bold">import</span> create_logger
-<span style="color:#069;font-weight:bold">from</span> <span style="color:#0cf;font-weight:bold">tensorflow.contrib.learn.python.learn.estimators</span> <span style="color:#069;font-weight:bold">import</span> run_config
-<span style="color:#069;font-weight:bold">from</span> <span style="color:#0cf;font-weight:bold">dnn_loader</span> <span style="color:#069;font-weight:bold">import</span> MODEL_DIR
-</code></pre></div><p>Note the <code>crate_logger</code> and <code>dnn_loader</code> imports are from different files in the project that we will get back to later.</p>
+<div class="highlight"><pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#069;font-weight:bold">import</span> <span style="color:#0cf;font-weight:bold">re</span>
+</span></span><span style="display:flex;"><span><span style="color:#069;font-weight:bold">import</span> <span style="color:#0cf;font-weight:bold">os</span>
+</span></span><span style="display:flex;"><span><span style="color:#069;font-weight:bold">import</span> <span style="color:#0cf;font-weight:bold">tensorflow</span> <span style="color:#069;font-weight:bold">as</span> <span style="color:#0cf;font-weight:bold">tf</span>
+</span></span><span style="display:flex;"><span><span style="color:#069;font-weight:bold">import</span> <span style="color:#0cf;font-weight:bold">tensorflow_hub</span> <span style="color:#069;font-weight:bold">as</span> <span style="color:#0cf;font-weight:bold">hub</span>
+</span></span><span style="display:flex;"><span><span style="color:#069;font-weight:bold">import</span> <span style="color:#0cf;font-weight:bold">pandas</span> <span style="color:#069;font-weight:bold">as</span> <span style="color:#0cf;font-weight:bold">pd</span>
+</span></span><span style="display:flex;"><span><span style="color:#069;font-weight:bold">from</span> <span style="color:#0cf;font-weight:bold">custom_log</span> <span style="color:#069;font-weight:bold">import</span> create_logger
+</span></span><span style="display:flex;"><span><span style="color:#069;font-weight:bold">from</span> <span style="color:#0cf;font-weight:bold">tensorflow.contrib.learn.python.learn.estimators</span> <span style="color:#069;font-weight:bold">import</span> run_config
+</span></span><span style="display:flex;"><span><span style="color:#069;font-weight:bold">from</span> <span style="color:#0cf;font-weight:bold">dnn_loader</span> <span style="color:#069;font-weight:bold">import</span> MODEL_DIR
+</span></span></code></pre></div><p>Note the <code>crate_logger</code> and <code>dnn_loader</code> imports are from different files in the project that we will get back to later.</p>
 <p>Now that we have everything we need, we are going to download and load the training datasets.</p>
-<div class="highlight"><pre style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">
-<span style="color:#09f;font-style:italic"># Load all files from a directory in a Data Frame.</span>
-
-
-<span style="color:#069;font-weight:bold">def</span> <span style="color:#c0f">load_directory_data</span>(directory):
-    data <span style="color:#555">=</span> {}
-    data[<span style="color:#c30">&#34;sentence&#34;</span>] <span style="color:#555">=</span> []
-    data[<span style="color:#c30">&#34;sentiment&#34;</span>] <span style="color:#555">=</span> []
-    <span style="color:#069;font-weight:bold">for</span> file_path <span style="color:#000;font-weight:bold">in</span> os<span style="color:#555">.</span>listdir(directory):
-        <span style="color:#069;font-weight:bold">with</span> tf<span style="color:#555">.</span>gfile<span style="color:#555">.</span>GFile(os<span style="color:#555">.</span>path<span style="color:#555">.</span>join(directory, file_path), <span style="color:#c30">&#34;r&#34;</span>) <span style="color:#069;font-weight:bold">as</span> f:
-            data[<span style="color:#c30">&#34;sentence&#34;</span>]<span style="color:#555">.</span>append(f<span style="color:#555">.</span>read())
-            data[<span style="color:#c30">&#34;sentiment&#34;</span>]<span style="color:#555">.</span>append(
-                re<span style="color:#555">.</span>match(<span style="color:#c30">&#34;\d+_(\d+)\.txt&#34;</span>, file_path)<span style="color:#555">.</span>group(<span style="color:#f60">1</span>))
-    <span style="color:#069;font-weight:bold">return</span> pd<span style="color:#555">.</span>Data Frame<span style="color:#555">.</span>from_dict(data)
-
-<span style="color:#09f;font-style:italic"># Merge positive and negative examples, add a polarity column and shuffle.</span>
-
-
-<span style="color:#069;font-weight:bold">def</span> <span style="color:#c0f">load_dataset</span>(directory):
-    pos_df <span style="color:#555">=</span> load_directory_data(os<span style="color:#555">.</span>path<span style="color:#555">.</span>join(directory, <span style="color:#c30">&#34;pos&#34;</span>))
-    neg_df <span style="color:#555">=</span> load_directory_data(os<span style="color:#555">.</span>path<span style="color:#555">.</span>join(directory, <span style="color:#c30">&#34;neg&#34;</span>))
-    pos_df[<span style="color:#c30">&#34;polarity&#34;</span>] <span style="color:#555">=</span> <span style="color:#f60">1</span>
-    neg_df[<span style="color:#c30">&#34;polarity&#34;</span>] <span style="color:#555">=</span> <span style="color:#f60">0</span>
-    <span style="color:#069;font-weight:bold">return</span> pd<span style="color:#555">.</span>concat([pos_df, neg_df])<span style="color:#555">.</span>sample(frac<span style="color:#555">=</span><span style="color:#f60">1</span>)<span style="color:#555">.</span>reset_index(drop<span style="color:#555">=</span>True)
-
-<span style="color:#09f;font-style:italic"># Download and process the dataset files.</span>
-
-
-<span style="color:#069;font-weight:bold">def</span> <span style="color:#c0f">download_and_load_datasets</span>(force_download<span style="color:#555">=</span>False):
-    dataset <span style="color:#555">=</span> tf<span style="color:#555">.</span>keras<span style="color:#555">.</span>utils<span style="color:#555">.</span>get_file(
-        fname<span style="color:#555">=</span><span style="color:#c30">&#34;aclImdb.tar.gz&#34;</span>,
-        origin<span style="color:#555">=</span><span style="color:#c30">&#34;http://ai.stanford.edu/~amaas/data/sentiment/aclImdb_v1.tar.gz&#34;</span>,
-        extract<span style="color:#555">=</span>True)
-
-    train_df <span style="color:#555">=</span> load_dataset(os<span style="color:#555">.</span>path<span style="color:#555">.</span>join(os<span style="color:#555">.</span>path<span style="color:#555">.</span>dirname(dataset),
-                                         <span style="color:#c30">&#34;aclImdb&#34;</span>, <span style="color:#c30">&#34;train&#34;</span>))
-    test_df <span style="color:#555">=</span> load_dataset(os<span style="color:#555">.</span>path<span style="color:#555">.</span>join(os<span style="color:#555">.</span>path<span style="color:#555">.</span>dirname(dataset),
-                                        <span style="color:#c30">&#34;aclImdb&#34;</span>, <span style="color:#c30">&#34;test&#34;</span>))
-
-    <span style="color:#069;font-weight:bold">return</span> train_df, test_df
-
-<span style="color:#09f;font-style:italic"># train_df and test_df are 25 thousand rows of sentence, sentiment and polarity</span>
-<span style="color:#09f;font-style:italic"># sentence: the sentence we are analyzing</span>
-<span style="color:#09f;font-style:italic"># sentiment: score of the movie review, i.e. 0-10</span>
-<span style="color:#09f;font-style:italic"># polarity: negative or positive</span>
-
-
-train_df, test_df <span style="color:#555">=</span> download_and_load_datasets()
-
-</code></pre></div><p>Those 3 python functions will take care of downloading and loading the data for training our Machine Learning Model.</p>
+<div class="highlight"><pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#09f;font-style:italic"># Load all files from a directory in a Data Frame.</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#069;font-weight:bold">def</span> <span style="color:#c0f">load_directory_data</span>(directory):
+</span></span><span style="display:flex;"><span>    data <span style="color:#555">=</span> {}
+</span></span><span style="display:flex;"><span>    data[<span style="color:#c30">&#34;sentence&#34;</span>] <span style="color:#555">=</span> []
+</span></span><span style="display:flex;"><span>    data[<span style="color:#c30">&#34;sentiment&#34;</span>] <span style="color:#555">=</span> []
+</span></span><span style="display:flex;"><span>    <span style="color:#069;font-weight:bold">for</span> file_path <span style="color:#000;font-weight:bold">in</span> os<span style="color:#555">.</span>listdir(directory):
+</span></span><span style="display:flex;"><span>        <span style="color:#069;font-weight:bold">with</span> tf<span style="color:#555">.</span>gfile<span style="color:#555">.</span>GFile(os<span style="color:#555">.</span>path<span style="color:#555">.</span>join(directory, file_path), <span style="color:#c30">&#34;r&#34;</span>) <span style="color:#069;font-weight:bold">as</span> f:
+</span></span><span style="display:flex;"><span>            data[<span style="color:#c30">&#34;sentence&#34;</span>]<span style="color:#555">.</span>append(f<span style="color:#555">.</span>read())
+</span></span><span style="display:flex;"><span>            data[<span style="color:#c30">&#34;sentiment&#34;</span>]<span style="color:#555">.</span>append(
+</span></span><span style="display:flex;"><span>                re<span style="color:#555">.</span>match(<span style="color:#c30">&#34;\d+_(\d+)\.txt&#34;</span>, file_path)<span style="color:#555">.</span>group(<span style="color:#f60">1</span>))
+</span></span><span style="display:flex;"><span>    <span style="color:#069;font-weight:bold">return</span> pd<span style="color:#555">.</span>Data Frame<span style="color:#555">.</span>from_dict(data)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#09f;font-style:italic"># Merge positive and negative examples, add a polarity column and shuffle.</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#069;font-weight:bold">def</span> <span style="color:#c0f">load_dataset</span>(directory):
+</span></span><span style="display:flex;"><span>    pos_df <span style="color:#555">=</span> load_directory_data(os<span style="color:#555">.</span>path<span style="color:#555">.</span>join(directory, <span style="color:#c30">&#34;pos&#34;</span>))
+</span></span><span style="display:flex;"><span>    neg_df <span style="color:#555">=</span> load_directory_data(os<span style="color:#555">.</span>path<span style="color:#555">.</span>join(directory, <span style="color:#c30">&#34;neg&#34;</span>))
+</span></span><span style="display:flex;"><span>    pos_df[<span style="color:#c30">&#34;polarity&#34;</span>] <span style="color:#555">=</span> <span style="color:#f60">1</span>
+</span></span><span style="display:flex;"><span>    neg_df[<span style="color:#c30">&#34;polarity&#34;</span>] <span style="color:#555">=</span> <span style="color:#f60">0</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#069;font-weight:bold">return</span> pd<span style="color:#555">.</span>concat([pos_df, neg_df])<span style="color:#555">.</span>sample(frac<span style="color:#555">=</span><span style="color:#f60">1</span>)<span style="color:#555">.</span>reset_index(drop<span style="color:#555">=</span><span style="color:#069;font-weight:bold">True</span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#09f;font-style:italic"># Download and process the dataset files.</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#069;font-weight:bold">def</span> <span style="color:#c0f">download_and_load_datasets</span>(force_download<span style="color:#555">=</span><span style="color:#069;font-weight:bold">False</span>):
+</span></span><span style="display:flex;"><span>    dataset <span style="color:#555">=</span> tf<span style="color:#555">.</span>keras<span style="color:#555">.</span>utils<span style="color:#555">.</span>get_file(
+</span></span><span style="display:flex;"><span>        fname<span style="color:#555">=</span><span style="color:#c30">&#34;aclImdb.tar.gz&#34;</span>,
+</span></span><span style="display:flex;"><span>        origin<span style="color:#555">=</span><span style="color:#c30">&#34;http://ai.stanford.edu/~amaas/data/sentiment/aclImdb_v1.tar.gz&#34;</span>,
+</span></span><span style="display:flex;"><span>        extract<span style="color:#555">=</span><span style="color:#069;font-weight:bold">True</span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    train_df <span style="color:#555">=</span> load_dataset(os<span style="color:#555">.</span>path<span style="color:#555">.</span>join(os<span style="color:#555">.</span>path<span style="color:#555">.</span>dirname(dataset),
+</span></span><span style="display:flex;"><span>                                         <span style="color:#c30">&#34;aclImdb&#34;</span>, <span style="color:#c30">&#34;train&#34;</span>))
+</span></span><span style="display:flex;"><span>    test_df <span style="color:#555">=</span> load_dataset(os<span style="color:#555">.</span>path<span style="color:#555">.</span>join(os<span style="color:#555">.</span>path<span style="color:#555">.</span>dirname(dataset),
+</span></span><span style="display:flex;"><span>                                        <span style="color:#c30">&#34;aclImdb&#34;</span>, <span style="color:#c30">&#34;test&#34;</span>))
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#069;font-weight:bold">return</span> train_df, test_df
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#09f;font-style:italic"># train_df and test_df are 25 thousand rows of sentence, sentiment and polarity</span>
+</span></span><span style="display:flex;"><span><span style="color:#09f;font-style:italic"># sentence: the sentence we are analyzing</span>
+</span></span><span style="display:flex;"><span><span style="color:#09f;font-style:italic"># sentiment: score of the movie review, i.e. 0-10</span>
+</span></span><span style="display:flex;"><span><span style="color:#09f;font-style:italic"># polarity: negative or positive</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>train_df, test_df <span style="color:#555">=</span> download_and_load_datasets()
+</span></span></code></pre></div><p>Those 3 python functions will take care of downloading and loading the data for training our Machine Learning Model.</p>
 <p>First function <code>load_directory_data</code> with <code>directory</code> parameter returns a <code>Pandas</code> data frame that will contain the training data.</p>
 <p>Second function <code>load_dataset</code>, also with a <code>directory</code> parameter will call the previously defined function <code>load_directory_data</code> with positive and negative reviews for training and return a data frame.</p>
 <p>Third function <code>download_and_load_datasets</code> downloads the dataset we will be using from the Tensorflow hub and loads the training and test data with <code>load_dataset</code></p>
 <p>Finally, we call the downloading and loading of the train and test data with <code>download_and_load_datasets</code></p>
 <hr>
 <p>Now that we have all the data we need, that is the training and test datasets loaded, we have to define our input functions for Tensorflow, the feature column, the configuration and the estimator, which would be our <code>DNNClassifier</code></p>
-<div class="highlight"><pre style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">
-train_df<span style="color:#555">.</span>head()
-
-<span style="color:#09f;font-style:italic"># Training input on the whole training set with no limit on training epochs.</span>
-train_input_fn <span style="color:#555">=</span> tf<span style="color:#555">.</span>estimator<span style="color:#555">.</span>inputs<span style="color:#555">.</span>pandas_input_fn(
-    train_df, train_df[<span style="color:#c30">&#34;polarity&#34;</span>], num_epochs<span style="color:#555">=</span>None, shuffle<span style="color:#555">=</span>True)
-
-
-<span style="color:#09f;font-style:italic"># # Prediction on the whole training set.</span>
-predict_train_input_fn <span style="color:#555">=</span> tf<span style="color:#555">.</span>estimator<span style="color:#555">.</span>inputs<span style="color:#555">.</span>pandas_input_fn(
-    train_df, train_df[<span style="color:#c30">&#34;polarity&#34;</span>], shuffle<span style="color:#555">=</span>False)
-
-
-<span style="color:#09f;font-style:italic"># Prediction on the test set.</span>
-predict_test_input_fn <span style="color:#555">=</span> tf<span style="color:#555">.</span>estimator<span style="color:#555">.</span>inputs<span style="color:#555">.</span>pandas_input_fn(
-    test_df, test_df[<span style="color:#c30">&#34;polarity&#34;</span>], shuffle<span style="color:#555">=</span>False)
-
-
-embedded_text_feature_column <span style="color:#555">=</span> hub<span style="color:#555">.</span>text_embedding_column(
-    key<span style="color:#555">=</span><span style="color:#c30">&#34;sentence&#34;</span>,
-    module_spec<span style="color:#555">=</span><span style="color:#c30">&#34;https://tfhub.dev/google/nnlm-en-dim128/1&#34;</span>)
-
-
-config <span style="color:#555">=</span> run_config<span style="color:#555">.</span>RunConfig(
-    model_dir<span style="color:#555">=</span>MODEL_DIR,
-    save_checkpoints_steps<span style="color:#555">=</span><span style="color:#f60">100</span>,
-    keep_checkpoint_max<span style="color:#555">=</span><span style="color:#f60">10</span>
-)
-
-<span style="color:#09f;font-style:italic"># Make Deep Neural Network</span>
-estimator <span style="color:#555">=</span> tf<span style="color:#555">.</span>estimator<span style="color:#555">.</span>DNNClassifier(
-    hidden_units<span style="color:#555">=</span>[<span style="color:#f60">500</span>, <span style="color:#f60">100</span>],
-    feature_columns<span style="color:#555">=</span>[embedded_text_feature_column],
-    n_classes<span style="color:#555">=</span><span style="color:#f60">2</span>,
-    optimizer<span style="color:#555">=</span>tf<span style="color:#555">.</span>train<span style="color:#555">.</span>AdagradOptimizer(learning_rate<span style="color:#555">=</span><span style="color:#f60">0.003</span>),
-    config<span style="color:#555">=</span>config)
-</code></pre></div><p>First, <code>train_df.head()</code> prints the data frame&rsquo;s top 5 rows, useful when looking at the output from the terminal.</p>
+<div class="highlight"><pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>train_df<span style="color:#555">.</span>head()
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#09f;font-style:italic"># Training input on the whole training set with no limit on training epochs.</span>
+</span></span><span style="display:flex;"><span>train_input_fn <span style="color:#555">=</span> tf<span style="color:#555">.</span>estimator<span style="color:#555">.</span>inputs<span style="color:#555">.</span>pandas_input_fn(
+</span></span><span style="display:flex;"><span>    train_df, train_df[<span style="color:#c30">&#34;polarity&#34;</span>], num_epochs<span style="color:#555">=</span><span style="color:#069;font-weight:bold">None</span>, shuffle<span style="color:#555">=</span><span style="color:#069;font-weight:bold">True</span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#09f;font-style:italic"># # Prediction on the whole training set.</span>
+</span></span><span style="display:flex;"><span>predict_train_input_fn <span style="color:#555">=</span> tf<span style="color:#555">.</span>estimator<span style="color:#555">.</span>inputs<span style="color:#555">.</span>pandas_input_fn(
+</span></span><span style="display:flex;"><span>    train_df, train_df[<span style="color:#c30">&#34;polarity&#34;</span>], shuffle<span style="color:#555">=</span><span style="color:#069;font-weight:bold">False</span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#09f;font-style:italic"># Prediction on the test set.</span>
+</span></span><span style="display:flex;"><span>predict_test_input_fn <span style="color:#555">=</span> tf<span style="color:#555">.</span>estimator<span style="color:#555">.</span>inputs<span style="color:#555">.</span>pandas_input_fn(
+</span></span><span style="display:flex;"><span>    test_df, test_df[<span style="color:#c30">&#34;polarity&#34;</span>], shuffle<span style="color:#555">=</span><span style="color:#069;font-weight:bold">False</span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>embedded_text_feature_column <span style="color:#555">=</span> hub<span style="color:#555">.</span>text_embedding_column(
+</span></span><span style="display:flex;"><span>    key<span style="color:#555">=</span><span style="color:#c30">&#34;sentence&#34;</span>,
+</span></span><span style="display:flex;"><span>    module_spec<span style="color:#555">=</span><span style="color:#c30">&#34;https://tfhub.dev/google/nnlm-en-dim128/1&#34;</span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>config <span style="color:#555">=</span> run_config<span style="color:#555">.</span>RunConfig(
+</span></span><span style="display:flex;"><span>    model_dir<span style="color:#555">=</span>MODEL_DIR,
+</span></span><span style="display:flex;"><span>    save_checkpoints_steps<span style="color:#555">=</span><span style="color:#f60">100</span>,
+</span></span><span style="display:flex;"><span>    keep_checkpoint_max<span style="color:#555">=</span><span style="color:#f60">10</span>
+</span></span><span style="display:flex;"><span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#09f;font-style:italic"># Make Deep Neural Network</span>
+</span></span><span style="display:flex;"><span>estimator <span style="color:#555">=</span> tf<span style="color:#555">.</span>estimator<span style="color:#555">.</span>DNNClassifier(
+</span></span><span style="display:flex;"><span>    hidden_units<span style="color:#555">=</span>[<span style="color:#f60">500</span>, <span style="color:#f60">100</span>],
+</span></span><span style="display:flex;"><span>    feature_columns<span style="color:#555">=</span>[embedded_text_feature_column],
+</span></span><span style="display:flex;"><span>    n_classes<span style="color:#555">=</span><span style="color:#f60">2</span>,
+</span></span><span style="display:flex;"><span>    optimizer<span style="color:#555">=</span>tf<span style="color:#555">.</span>train<span style="color:#555">.</span>AdagradOptimizer(learning_rate<span style="color:#555">=</span><span style="color:#f60">0.003</span>),
+</span></span><span style="display:flex;"><span>    config<span style="color:#555">=</span>config)
+</span></span></code></pre></div><p>First, <code>train_df.head()</code> prints the data frame&rsquo;s top 5 rows, useful when looking at the output from the terminal.</p>
 <p>Then, we define our <code>train_input_fn</code> which as the name implies is the train input function, which will be a tensorflow estimator pandas input function, and we will give it the train data frame. This returns our train input function into our <code>train_input_fn</code></p>
 <p>Same goes for the <code>predict_train_input_fn</code>, which will be assigned the return function for predicting returned by <code>tf.estimator.inputs.pandas_input_fn</code></p>
 <p>And also for <code>predict_test_input_fn</code>, which is our predict function but on the tet dataset. As returned from <code>tf.estimator.inputs.pandas_input_fn</code> but passing the test data frame.</p>
 <p>Finally, the <code>embedded_text_feature_column</code> is assigned a column by a module spec, in this case <code>https://tfhub.dev/google/nnlm-en-dim128/1</code> is the module spec and <code>sentence</code> is the key.</p>
 <p>Then we set up the configuration. We are importing the model directory from a different file, but basically it looks like this</p>
-<div class="highlight"><pre style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">MODEL_DIR <span style="color:#555">=</span> os<span style="color:#555">.</span>path<span style="color:#555">.</span>dirname(
-    os<span style="color:#555">.</span>getcwd() <span style="color:#555">+</span> <span style="color:#c30">&#34;/../data/models/DNNClassifier_model&#34;</span>)
-</code></pre></div><p>Now that we have everything set up, we can define our model.</p>
+<div class="highlight"><pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span>MODEL_DIR <span style="color:#555">=</span> os<span style="color:#555">.</span>path<span style="color:#555">.</span>dirname(
+</span></span><span style="display:flex;"><span>    os<span style="color:#555">.</span>getcwd() <span style="color:#555">+</span> <span style="color:#c30">&#34;/../data/models/DNNClassifier_model&#34;</span>)
+</span></span></code></pre></div><p>Now that we have everything set up, we can define our model.</p>
 <p>We use the <code>tf.estimator.DNNClassifier</code>, which is a deep neural network calssifier.</p>
 <p>We set the hidden units to <code>500</code> and <code>100</code>, which are an iterable number of hidden units per layer. All layers are fully connected, for example, 500 and 100 would mean that the first layer has 500 nodes and the second one has 100.</p>
 <h4 id="step-2---training-our-model">Step 2 - Training our model</h4>
-<div class="highlight"><pre style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">
-<span style="color:#09f;font-style:italic"># Training for 1,000 steps means 128,000 training examples with the default</span>
-<span style="color:#09f;font-style:italic"># batch size. This is roughly equivalent to 5 epochs since the training dataset</span>
-<span style="color:#09f;font-style:italic"># contains 25,000 examples.</span>
-estimator<span style="color:#555">.</span>train(input_fn<span style="color:#555">=</span>train_input_fn, steps<span style="color:#555">=</span><span style="color:#f60">1000</span>)
-
-<span style="color:#09f;font-style:italic"># evaluate</span>
-train_eval_result <span style="color:#555">=</span> estimator<span style="color:#555">.</span>evaluate(input_fn<span style="color:#555">=</span>predict_train_input_fn)
-test_eval_result <span style="color:#555">=</span> estimator<span style="color:#555">.</span>evaluate(input_fn<span style="color:#555">=</span>predict_test_input_fn)
-<span style="color:#09f;font-style:italic"># Show results</span>
-logger<span style="color:#555">.</span>info(<span style="color:#c30">&#34;Training accuracy: {accuracy}&#34;</span><span style="color:#555">.</span>format(<span style="color:#555">**</span>train_eval_result))
-logger<span style="color:#555">.</span>info(<span style="color:#c30">&#34;Test accuracy: {accuracy}&#34;</span><span style="color:#555">.</span>format(<span style="color:#555">**</span>test_eval_result))
-
-
-</code></pre></div><p>We train our model with <code>estimator.train</code> and we set 1000 steps. In this case we can benefit from using our GPU for faster computation.</p>
+<div class="highlight"><pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#09f;font-style:italic"># Training for 1,000 steps means 128,000 training examples with the default</span>
+</span></span><span style="display:flex;"><span><span style="color:#09f;font-style:italic"># batch size. This is roughly equivalent to 5 epochs since the training dataset</span>
+</span></span><span style="display:flex;"><span><span style="color:#09f;font-style:italic"># contains 25,000 examples.</span>
+</span></span><span style="display:flex;"><span>estimator<span style="color:#555">.</span>train(input_fn<span style="color:#555">=</span>train_input_fn, steps<span style="color:#555">=</span><span style="color:#f60">1000</span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#09f;font-style:italic"># evaluate</span>
+</span></span><span style="display:flex;"><span>train_eval_result <span style="color:#555">=</span> estimator<span style="color:#555">.</span>evaluate(input_fn<span style="color:#555">=</span>predict_train_input_fn)
+</span></span><span style="display:flex;"><span>test_eval_result <span style="color:#555">=</span> estimator<span style="color:#555">.</span>evaluate(input_fn<span style="color:#555">=</span>predict_test_input_fn)
+</span></span><span style="display:flex;"><span><span style="color:#09f;font-style:italic"># Show results</span>
+</span></span><span style="display:flex;"><span>logger<span style="color:#555">.</span>info(<span style="color:#c30">&#34;Training accuracy: </span><span style="color:#a00">{accuracy}</span><span style="color:#c30">&#34;</span><span style="color:#555">.</span>format(<span style="color:#555">**</span>train_eval_result))
+</span></span><span style="display:flex;"><span>logger<span style="color:#555">.</span>info(<span style="color:#c30">&#34;Test accuracy: </span><span style="color:#a00">{accuracy}</span><span style="color:#c30">&#34;</span><span style="color:#555">.</span>format(<span style="color:#555">**</span>test_eval_result))
+</span></span></code></pre></div><p>We train our model with <code>estimator.train</code> and we set 1000 steps. In this case we can benefit from using our GPU for faster computation.</p>
 <p>After the 1000 steps are completed, we evaluate the results of training our model and print them on out terminal</p>
-<div class="highlight"><pre style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">Training accuracy: 92%
-Test accuracy: 85%
-</code></pre></div><p>Now we have a working, trained Machine Learning model we can use for predict on any new text.</p>
+<div class="highlight"><pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>Training accuracy: 92%
+</span></span><span style="display:flex;"><span>Test accuracy: 85%
+</span></span></code></pre></div><p>Now we have a working, trained Machine Learning model we can use for predict on any new text.</p>
 <hr>
 <h4 id="step-3---the-api">Step 3 - The API</h4>
 <p>We just want to illustrate a very easy to set up API that can use our trained model to predict on new data. But we don&rsquo;t want to make things too complicated, so we&rsquo;ll use Flask</p>
-<div class="highlight"><pre style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">
-<span style="color:#09f;font-style:italic"># -*- coding: utf-8 -*-</span>
-<span style="color:#069;font-weight:bold">from</span> <span style="color:#0cf;font-weight:bold">flask</span> <span style="color:#069;font-weight:bold">import</span> Flask
-<span style="color:#069;font-weight:bold">import</span> <span style="color:#0cf;font-weight:bold">json</span>
-<span style="color:#069;font-weight:bold">from</span> <span style="color:#0cf;font-weight:bold">flask_cors</span> <span style="color:#069;font-weight:bold">import</span> CORS
-<span style="color:#069;font-weight:bold">from</span> <span style="color:#0cf;font-weight:bold">flask</span> <span style="color:#069;font-weight:bold">import</span> request
-<span style="color:#069;font-weight:bold">import</span> <span style="color:#0cf;font-weight:bold">tensorflow</span> <span style="color:#069;font-weight:bold">as</span> <span style="color:#0cf;font-weight:bold">tf</span>
-
-<span style="color:#069;font-weight:bold">from</span> <span style="color:#0cf;font-weight:bold">dnn_loader</span> <span style="color:#069;font-weight:bold">import</span> embedded_text_feature_column, config
-
-app <span style="color:#555">=</span> Flask(__name__)
-CORS(app)
-
-estimator <span style="color:#555">=</span> tf<span style="color:#555">.</span>estimator<span style="color:#555">.</span>DNNClassifier(
-    hidden_units<span style="color:#555">=</span>[<span style="color:#f60">500</span>, <span style="color:#f60">100</span>],
-    feature_columns<span style="color:#555">=</span>[embedded_text_feature_column],
-    n_classes<span style="color:#555">=</span><span style="color:#f60">2</span>,
-    optimizer<span style="color:#555">=</span>tf<span style="color:#555">.</span>train<span style="color:#555">.</span>AdagradOptimizer(learning_rate<span style="color:#555">=</span><span style="color:#f60">0.003</span>),
-    config<span style="color:#555">=</span>config)
-
-
-<span style="color:#99f">@app.route</span>(<span style="color:#c30">&#39;/api&#39;</span>, methods<span style="color:#555">=</span>[<span style="color:#c30">&#39;POST&#39;</span>])
-<span style="color:#069;font-weight:bold">def</span> <span style="color:#c0f">api</span>():
-    <span style="color:#069;font-weight:bold">try</span>:
-        <span style="color:#069;font-weight:bold">if</span> request<span style="color:#555">.</span>method <span style="color:#555">==</span> <span style="color:#c30">&#39;POST&#39;</span>:
-            text <span style="color:#555">=</span> request<span style="color:#555">.</span>form[<span style="color:#c30">&#34;text&#34;</span>]
-
-            <span style="color:#069;font-weight:bold">def</span> <span style="color:#c0f">input_eval_set</span>():
-                td <span style="color:#555">=</span> {}
-                td[<span style="color:#c30">&#34;sentence&#34;</span>] <span style="color:#555">=</span> []
-                td[<span style="color:#c30">&#34;sentence&#34;</span>]<span style="color:#555">.</span>append(text)
-                dataset <span style="color:#555">=</span> tf<span style="color:#555">.</span>data<span style="color:#555">.</span>Dataset<span style="color:#555">.</span>from_tensor_slices(td)
-                dataset <span style="color:#555">=</span> dataset<span style="color:#555">.</span>batch(<span style="color:#f60">1</span>)
-                <span style="color:#069;font-weight:bold">return</span> dataset<span style="color:#555">.</span>make_one_shot_iterator()<span style="color:#555">.</span>get_next()
-            pred <span style="color:#555">=</span> estimator<span style="color:#555">.</span>predict(
-                input_fn<span style="color:#555">=</span>input_eval_set, predict_keys<span style="color:#555">=</span><span style="color:#c30">&#34;classes&#34;</span>)
-            r <span style="color:#555">=</span> <span style="color:#366">next</span>(pred)[<span style="color:#c30">&#34;classes&#34;</span>][<span style="color:#f60">0</span>]
-            <span style="color:#069;font-weight:bold">if</span> r <span style="color:#555">==</span> <span style="color:#c30">b</span><span style="color:#c30">&#39;1&#39;</span>:
-                <span style="color:#069;font-weight:bold">return</span><span style="color:#c30">&#34;Positive&#34;</span>
-            <span style="color:#069;font-weight:bold">return</span> <span style="color:#c30">&#34;Negative&#34;</span>
-    <span style="color:#069;font-weight:bold">except</span> <span style="color:#c00;font-weight:bold">Exception</span>:
-        <span style="color:#069;font-weight:bold">return</span> <span style="color:#c30">&#34;Invalid request&#34;</span>
-
-</code></pre></div><p>That&rsquo;s the whole API handler code.</p>
+<div class="highlight"><pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#09f;font-style:italic"># -*- coding: utf-8 -*-</span>
+</span></span><span style="display:flex;"><span><span style="color:#069;font-weight:bold">from</span> <span style="color:#0cf;font-weight:bold">flask</span> <span style="color:#069;font-weight:bold">import</span> Flask
+</span></span><span style="display:flex;"><span><span style="color:#069;font-weight:bold">import</span> <span style="color:#0cf;font-weight:bold">json</span>
+</span></span><span style="display:flex;"><span><span style="color:#069;font-weight:bold">from</span> <span style="color:#0cf;font-weight:bold">flask_cors</span> <span style="color:#069;font-weight:bold">import</span> CORS
+</span></span><span style="display:flex;"><span><span style="color:#069;font-weight:bold">from</span> <span style="color:#0cf;font-weight:bold">flask</span> <span style="color:#069;font-weight:bold">import</span> request
+</span></span><span style="display:flex;"><span><span style="color:#069;font-weight:bold">import</span> <span style="color:#0cf;font-weight:bold">tensorflow</span> <span style="color:#069;font-weight:bold">as</span> <span style="color:#0cf;font-weight:bold">tf</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#069;font-weight:bold">from</span> <span style="color:#0cf;font-weight:bold">dnn_loader</span> <span style="color:#069;font-weight:bold">import</span> embedded_text_feature_column, config
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>app <span style="color:#555">=</span> Flask(__name__)
+</span></span><span style="display:flex;"><span>CORS(app)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>estimator <span style="color:#555">=</span> tf<span style="color:#555">.</span>estimator<span style="color:#555">.</span>DNNClassifier(
+</span></span><span style="display:flex;"><span>    hidden_units<span style="color:#555">=</span>[<span style="color:#f60">500</span>, <span style="color:#f60">100</span>],
+</span></span><span style="display:flex;"><span>    feature_columns<span style="color:#555">=</span>[embedded_text_feature_column],
+</span></span><span style="display:flex;"><span>    n_classes<span style="color:#555">=</span><span style="color:#f60">2</span>,
+</span></span><span style="display:flex;"><span>    optimizer<span style="color:#555">=</span>tf<span style="color:#555">.</span>train<span style="color:#555">.</span>AdagradOptimizer(learning_rate<span style="color:#555">=</span><span style="color:#f60">0.003</span>),
+</span></span><span style="display:flex;"><span>    config<span style="color:#555">=</span>config)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#99f">@app</span><span style="color:#555">.</span>route(<span style="color:#c30">&#39;/api&#39;</span>, methods<span style="color:#555">=</span>[<span style="color:#c30">&#39;POST&#39;</span>])
+</span></span><span style="display:flex;"><span><span style="color:#069;font-weight:bold">def</span> <span style="color:#c0f">api</span>():
+</span></span><span style="display:flex;"><span>    <span style="color:#069;font-weight:bold">try</span>:
+</span></span><span style="display:flex;"><span>        <span style="color:#069;font-weight:bold">if</span> request<span style="color:#555">.</span>method <span style="color:#555">==</span> <span style="color:#c30">&#39;POST&#39;</span>:
+</span></span><span style="display:flex;"><span>            text <span style="color:#555">=</span> request<span style="color:#555">.</span>form[<span style="color:#c30">&#34;text&#34;</span>]
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>            <span style="color:#069;font-weight:bold">def</span> <span style="color:#c0f">input_eval_set</span>():
+</span></span><span style="display:flex;"><span>                td <span style="color:#555">=</span> {}
+</span></span><span style="display:flex;"><span>                td[<span style="color:#c30">&#34;sentence&#34;</span>] <span style="color:#555">=</span> []
+</span></span><span style="display:flex;"><span>                td[<span style="color:#c30">&#34;sentence&#34;</span>]<span style="color:#555">.</span>append(text)
+</span></span><span style="display:flex;"><span>                dataset <span style="color:#555">=</span> tf<span style="color:#555">.</span>data<span style="color:#555">.</span>Dataset<span style="color:#555">.</span>from_tensor_slices(td)
+</span></span><span style="display:flex;"><span>                dataset <span style="color:#555">=</span> dataset<span style="color:#555">.</span>batch(<span style="color:#f60">1</span>)
+</span></span><span style="display:flex;"><span>                <span style="color:#069;font-weight:bold">return</span> dataset<span style="color:#555">.</span>make_one_shot_iterator()<span style="color:#555">.</span>get_next()
+</span></span><span style="display:flex;"><span>            pred <span style="color:#555">=</span> estimator<span style="color:#555">.</span>predict(
+</span></span><span style="display:flex;"><span>                input_fn<span style="color:#555">=</span>input_eval_set, predict_keys<span style="color:#555">=</span><span style="color:#c30">&#34;classes&#34;</span>)
+</span></span><span style="display:flex;"><span>            r <span style="color:#555">=</span> <span style="color:#366">next</span>(pred)[<span style="color:#c30">&#34;classes&#34;</span>][<span style="color:#f60">0</span>]
+</span></span><span style="display:flex;"><span>            <span style="color:#069;font-weight:bold">if</span> r <span style="color:#555">==</span> <span style="color:#c30">b</span><span style="color:#c30">&#39;1&#39;</span>:
+</span></span><span style="display:flex;"><span>                <span style="color:#069;font-weight:bold">return</span><span style="color:#c30">&#34;Positive&#34;</span>
+</span></span><span style="display:flex;"><span>            <span style="color:#069;font-weight:bold">return</span> <span style="color:#c30">&#34;Negative&#34;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#069;font-weight:bold">except</span> <span style="color:#c00;font-weight:bold">Exception</span>:
+</span></span><span style="display:flex;"><span>        <span style="color:#069;font-weight:bold">return</span> <span style="color:#c30">&#34;Invalid request&#34;</span>
+</span></span></code></pre></div><p>That&rsquo;s the whole API handler code.</p>
 <p>First we define an estimator that loads the model we already trained.</p>
 <p>Then we define a flask route <code>/api</code> with method <code>POST</code>.</p>
 <p>On it, when a new request is made, we set up an input for our model with the data from the POST request. Then we predict and return the results.</p>
@@ -372,7 +368,7 @@ estimator <span style="color:#555">=</span> tf<span style="color:#555">.</span>e
         <h3>Comments</h3>
         <div id="disqus_thread"></div>
 <script type="application/javascript">
-    var disqus_config = function () {
+    window.disqus_config = function () {
     
     
     
