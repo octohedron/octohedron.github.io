@@ -94,6 +94,42 @@
                 href="/es/contact/"
                 />
   </url><url>
+    <loc>/es/findjobs/</loc>
+    <lastmod>2018-07-07T15:53:27+06:00</lastmod>
+    <xhtml:link
+                rel="alternate"
+                hreflang="fr"
+                href="/fr/findjobs/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="en"
+                href="/en/findjobs/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="es"
+                href="/es/findjobs/"
+                />
+  </url><url>
+    <loc>/es/contractors/</loc>
+    <lastmod>2018-07-07T15:53:27+06:00</lastmod>
+    <xhtml:link
+                rel="alternate"
+                hreflang="fr"
+                href="/fr/contractors/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="en"
+                href="/en/contractors/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="es"
+                href="/es/contractors/"
+                />
+  </url><url>
     <loc>/es/projects/</loc>
     <lastmod>2018-07-07T15:45:06+06:00</lastmod>
     <xhtml:link
