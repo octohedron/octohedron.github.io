@@ -94,22 +94,22 @@
                 href="/en/contact/"
                 />
   </url><url>
-    <loc>/en/findjobs/</loc>
+    <loc>/en/jobs/</loc>
     <lastmod>2018-07-07T15:53:27+06:00</lastmod>
     <xhtml:link
                 rel="alternate"
                 hreflang="fr"
-                href="/fr/findjobs/"
+                href="/fr/jobs/"
                 />
     <xhtml:link
                 rel="alternate"
                 hreflang="es"
-                href="/es/findjobs/"
+                href="/es/jobs/"
                 />
     <xhtml:link
                 rel="alternate"
                 hreflang="en"
-                href="/en/findjobs/"
+                href="/en/jobs/"
                 />
   </url><url>
     <loc>/en/contractors/</loc>
