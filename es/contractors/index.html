@@ -253,6 +253,101 @@
 
 
 
+<!-- Start Contact Us -->
+<section class="contact-us section bg-gray" id="contact">
+    <div class="container">
+        <div class="row">
+            <div class="col">
+                <div class="title text-center">
+                    <h4>Programar una reunión</h4>
+                    
+                    <h2>Contáctenos.</h2>
+                    <span class="border"></span>
+                    
+                    <p>El equipo de RAISE está compuesto por ingenieros altamente calificados con experiencia en diversas industrias. Hay varias formas de contactar a RAISE. Envíenos un mensaje o llámenos.</p>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <!-- Contact Details -->
+            <div class="col-12 col-md-12">
+                <form id="contact-form" method="post" action="sendmail.php" role="form">
+                    <div class="row">
+                        <div class="contact-form col-12 col-md-6 ">
+                            <div class="form-group">
+                                <input type="text" placeholder="Su nombre" class="form-control" name="name" id="name">
+                            </div>
+                
+                            <div class="form-group">
+                                <input type="email" placeholder="Su correo electrónico" class="form-control" name="email" id="email">
+                            </div>
+                
+                            <div class="form-group">
+                                <input type="text" placeholder="Años de experiencia en tecnologías principales" class="form-control" name="subject" id="subject">
+                            </div>
+                            <div id="mail-success" class="success">
+                                Thank you. The Mailman is on His Way :)
+                            </div>
+                
+                            <div id="mail-fail" class="error">
+                                Sorry, something went wrong. Please try to reach us at info@raise.systems
+                            </div>
+                        
+                            <div class="form-group">
+                                <input type="text" placeholder="Tecnologías principales" class="form-control" name="subject" id="subject">
+                            </div>
+                            
+                            <div id="cf-submit ">
+                                <input type="submit" id="contact-submit" class="btn btn-transparent" value="Submit">
+                            </div>
+                        </div>
+                    
+                        
+                    <!-- Contact Form -->
+                    
+                    <div class="contact-form col-12 col-md-6">
+                        <div class="service-list bg-gray col-md-12">
+                            
+                                <h7>Subir su CV</h7>
+                            
+                            
+                            <div class="block text-center" id="file-upload-container">
+                                <i class="tf-ion-ios-copy-outline"></i>
+                                <h5 id="uploaded-file-name">No file selected</h5>
+                                <label for="file-upload" class="custom-file-upload">
+                                    Upload File
+                                </label>
+                                <input type="file" id="file-upload" accept=".jpg, .jpeg, .png, .pdf" style="display: none;">
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <script>
+                        const fileInput = document.getElementById("file-upload");
+                        const uploadedFileName = document.getElementById("uploaded-file-name");
+                    
+                        fileInput.addEventListener("change", function () {
+                            const selectedFile = this.files[0];
+                            if (selectedFile) {
+                                uploadedFileName.textContent = selectedFile.name;
+                            } else {
+                                uploadedFileName.textContent = "No file selected";
+                            }
+                        });
+                    </script>
+                    
+                </div>
+                    
+                        
+                </form>
+            </div>
+        </div>
+        
+    </div>
+</section>
+
+
+
         </div><!-- Footer Start -->
 <footer id="footer" class="bg-one">
     <div class="top-footer">
@@ -267,15 +362,15 @@
                     <ul>
                         
                         <li>
-                            <a href="/es/services">Salud y telemedicina</a>
+                            <a href="/es/contractors">Hire Experts</a>
                         </li>
                         
                         <li>
-                            <a href="https://raise.systems/startups">Startups</a>
+                            <a href="/es/jobs">Encontrar Trabajo</a>
                         </li>
                         
                         <li>
-                            <a href="/es/services">Dispositivos conectados</a>
+                            <a href="/es/projects">Proyectos</a>
                         </li>
                         
                     </ul>
@@ -285,15 +380,11 @@
                     <ul>
                         
                         <li>
-                            <a href="/es/about">Partners</a>
-                        </li>
-                        
-                        <li>
                             <a href="/es/about">Equipo</a>
                         </li>
                         
                         <li>
-                            <a href="/es/about">Preguntas frecuentes</a>
+                            <a href="/es/faqs">Preguntas frecuentes</a>
                         </li>
                         
                     </ul>

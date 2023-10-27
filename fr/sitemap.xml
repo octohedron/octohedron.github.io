@@ -74,6 +74,24 @@
                 href="/fr/contractors/"
                 />
   </url><url>
+    <loc>/fr/faqs/</loc>
+    <lastmod>2018-07-07T15:53:27+06:00</lastmod>
+    <xhtml:link
+                rel="alternate"
+                hreflang="en"
+                href="/en/faqs/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="es"
+                href="/es/faqs/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="fr"
+                href="/fr/faqs/"
+                />
+  </url><url>
     <loc>/fr/jobs/</loc>
     <lastmod>2018-07-07T15:53:27+06:00</lastmod>
     <xhtml:link
