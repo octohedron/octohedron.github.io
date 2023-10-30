@@ -92,6 +92,24 @@
                 href="/fr/faqs/"
                 />
   </url><url>
+    <loc>/fr/healthcare/</loc>
+    <lastmod>2018-07-07T15:53:27+06:00</lastmod>
+    <xhtml:link
+                rel="alternate"
+                hreflang="en"
+                href="/en/healthcare/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="es"
+                href="/es/healthcare/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="fr"
+                href="/fr/healthcare/"
+                />
+  </url><url>
     <loc>/fr/jobs/</loc>
     <lastmod>2018-07-07T15:53:27+06:00</lastmod>
     <xhtml:link
