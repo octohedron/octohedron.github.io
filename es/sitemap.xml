@@ -130,24 +130,6 @@
                 href="/es/faqs/"
                 />
   </url><url>
-    <loc>/es/healthcare/</loc>
-    <lastmod>2018-07-07T15:53:27+06:00</lastmod>
-    <xhtml:link
-                rel="alternate"
-                hreflang="fr"
-                href="/fr/healthcare/"
-                />
-    <xhtml:link
-                rel="alternate"
-                hreflang="en"
-                href="/en/healthcare/"
-                />
-    <xhtml:link
-                rel="alternate"
-                hreflang="es"
-                href="/es/healthcare/"
-                />
-  </url><url>
     <loc>/es/contractors/</loc>
     <lastmod>2018-07-07T15:53:27+06:00</lastmod>
     <xhtml:link
@@ -164,6 +146,24 @@
                 rel="alternate"
                 hreflang="es"
                 href="/es/contractors/"
+                />
+  </url><url>
+    <loc>/es/healthcare/</loc>
+    <lastmod>2018-07-07T15:53:27+06:00</lastmod>
+    <xhtml:link
+                rel="alternate"
+                hreflang="fr"
+                href="/fr/healthcare/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="en"
+                href="/en/healthcare/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="es"
+                href="/es/healthcare/"
                 />
   </url><url>
     <loc>/es/projects/</loc>

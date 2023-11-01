@@ -148,6 +148,205 @@
 </section>
 <div id="content">
 
+  <!DOCTYPE html>
+<html>
+<head>
+    <style>
+         
+        .cookie-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);  
+            z-index: 999;  
+        }
+
+        .cookie-banner {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            background-color: white;
+            color: black;
+            text-align: center;
+            padding: 10px 0;
+            z-index: 1000;  
+        }
+
+        .cookie-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .cookie-message {
+            flex: 1;
+            text-align: left;
+        }
+
+        .cookie-buttons {
+            flex: 0;
+            padding: 20px;
+            margin-left: 20px;
+        }
+
+        .cookie-button {
+            background-color: orangered;
+            color: #fff;
+            border: none;
+            padding: 15px 30px;
+            margin: 10px;
+            margin-top: 20px;
+            margin-bottom: 20px;
+            cursor: pointer;
+            border-radius: 10px;
+        }
+
+        .cookie-button:hover {
+            background-color: rgb(202, 54, 0);
+        }
+
+        .learn-more-link {
+            color: orangered;
+            text-decoration: underline;
+            cursor: pointer;
+        }
+
+         
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            z-index: 1001;  
+        }
+
+        .modal-content {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background-color: white;
+            padding: 20px;
+            border-radius: 10px;
+        }
+
+        .close-modal {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+
+<div class="cookie-overlay" id="cookie-overlay"></div>
+<div class="cookie-banner" id="cookie-banner">
+    <div class="cookie-content">
+        <div class="cookie-message">
+            <p>We use cookies to ensure you get the best experience on our website. <a href="#" class="learn-more-link" id="open-privacy-modal">Learn more</a></p>
+        </div>
+        <div class="row">
+            <button class="cookie-button" id="accept-cookies">Accept</button>
+            <button class="cookie-button" id="reject-cookies">Reject</button>
+        </div>
+    </div>
+</div>
+
+
+<div class="modal" id="privacy-modal">
+    <div class="modal-content" style="max-width: 800px;">
+        <span class="close-modal" id="close-privacy-modal">&times;</span>
+        <h2>Privacy Policy</h2>
+        <div style="max-height: 400px; overflow-y: scroll;">
+            <p><h5>Cookie Policy</h5>
+                At RAISE, we are committed to ensuring that your online experience is as informative and efficient as possible. To achieve this, we use cookies and similar technologies on our website. This Cookie Policy explains how we use cookies and the choices you have regarding their use.<br><br>
+                 <h5>What Are Cookies?</h5>
+                Cookies are small text files that are stored on your device when you visit a website. They serve various purposes, including helping websites function efficiently, remembering your preferences, and providing a personalized browsing experience.<br><br>
+                 <h5>Why We Use Cookies</h5>
+                Website Functionality: We use cookies to ensure that our website functions properly. This includes features like remembering your language preference and maintaining your logged-in status.<br><br>
+                Performance and Analytics: Cookies help us collect data on how visitors use our website. This information is crucial for improving our site's performance and enhancing user experience.<br><br>
+                Marketing and Personalization: We may use cookies to display personalized content and advertisements that are relevant to your interests and preferences.<br><br>
+                <h5>Types of Cookies We Use</h5>
+                Essential Cookies: These are necessary for the basic operation of our website. They are usually set in response to your actions, such as logging in or completing forms.<br><br>
+                Performance Cookies: These cookies help us understand how you use our website. They collect information about which pages you visit most and if you encounter any errors.<br><br>
+                Functionality Cookies: These cookies remember your choices and preferences, such as language and region settings, to provide a more personalized experience.<br><br>
+                Advertising Cookies: We may partner with third-party service providers to display advertisements. These cookies help us deliver ads that are relevant to you.<br><br>
+                <h5>Your Choices</h5>
+                You have the option to manage and control cookies on your device. You can:<br><br>
+                <b>Accept Cookies:</b> By continuing to use our website, you agree to the use of cookies as described in this policy.<br><br>
+                <b>Reject Cookies:</b> You can adjust your browser settings to reject cookies. Please note that this may affect certain functionalities of our website.<br><br>
+                Manage Preferences: Many browsers allow you to manage your cookie preferences. You can choose to delete specific cookies or block certain types of cookies.<br><br>
+                 <h5>Updates to Our Cookie Policy</h5>
+                We may occasionally update our Cookie Policy to reflect changes in technology, regulations, or our website's functionality. Please revisit this policy periodically to stay informed about how we use cookies.<br><br>
+                <h5>Contact Us</h5>
+                If you have any questions or concerns regarding our Cookie Policy, please don't hesitate to contact us. Your privacy and online experience are important to us.<br><br>
+                Last updated: 01.11.2023</p>
+        </div>
+    </div>
+</div>
+
+<script>
+    
+    const cookieOverlay = document.getElementById('cookie-overlay');
+    const cookieBanner = document.getElementById('cookie-banner');
+    const acceptCookiesButton = document.getElementById('accept-cookies');
+    const rejectCookiesButton = document.getElementById('reject-cookies');
+    const openPrivacyModalButton = document.getElementById('open-privacy-modal');
+    const privacyModal = document.getElementById('privacy-modal');
+    const closePrivacyModalButton = document.getElementById('close-privacy-modal');
+
+    
+    const hasAcceptedCookies = localStorage.getItem('hasAcceptedCookies');
+    const hasRejectedCookies = localStorage.getItem('hasRejectedCookies');
+
+    
+    if (!hasAcceptedCookies && !hasRejectedCookies) {
+        cookieOverlay.style.display = 'block';
+        cookieBanner.style.display = 'block';
+    }
+    
+
+    
+    acceptCookiesButton.addEventListener('click', () => {
+        localStorage.setItem('hasAcceptedCookies', 'true');
+        cookieOverlay.style.display = 'none';
+        cookieBanner.style.display = 'none';
+        
+    });
+
+    
+    rejectCookiesButton.addEventListener('click', () => {
+        localStorage.setItem('hasRejectedCookies', 'true');
+        cookieOverlay.style.display = 'none';
+        cookieBanner.style.display = 'none';
+        
+    });
+
+    
+    openPrivacyModalButton.addEventListener('click', () => {
+        privacyModal.style.display = 'block';
+    });
+
+    
+    closePrivacyModalButton.addEventListener('click', () => {
+        privacyModal.style.display = 'none';
+    });
+</script>
+
+</body>
+</html>
+
+
   
 <!-- Hero Area -->
 <section class="hero-area" style="background-image: url(https://www.surveycto.com/wp-content/uploads/2018/04/ai-and-dev.jpg)">
