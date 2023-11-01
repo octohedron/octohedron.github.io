@@ -306,13 +306,18 @@
     const closePrivacyModalButton = document.getElementById('close-privacy-modal');
 
     
-    const hasAcceptedCookies = localStorage.getItem('hasAcceptedCookies');
-    const hasRejectedCookies = localStorage.getItem('hasRejectedCookies');
+    var hasAcceptedCookies = localStorage.getItem('hasAcceptedCookies');
+    var hasRejectedCookies = localStorage.getItem('hasRejectedCookies');
 
     
     if (!hasAcceptedCookies && !hasRejectedCookies) {
         cookieOverlay.style.display = 'block';
         cookieBanner.style.display = 'block';
+    }
+    
+    if (hasAcceptedCookies || hasRejectedCookies) {
+        cookieOverlay.style.display = 'none';
+        cookieBanner.style.display = 'none';
     }
     
 
