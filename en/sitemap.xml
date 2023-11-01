@@ -76,6 +76,60 @@
                 href="/en/blog/"
                 />
   </url><url>
+    <loc>/en/applications/</loc>
+    <lastmod>2018-07-07T15:53:27+06:00</lastmod>
+    <xhtml:link
+                rel="alternate"
+                hreflang="fr"
+                href="/fr/applications/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="es"
+                href="/es/applications/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="en"
+                href="/en/applications/"
+                />
+  </url><url>
+    <loc>/en/automation/</loc>
+    <lastmod>2018-07-07T15:53:27+06:00</lastmod>
+    <xhtml:link
+                rel="alternate"
+                hreflang="fr"
+                href="/fr/automation/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="es"
+                href="/es/automation/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="en"
+                href="/en/automation/"
+                />
+  </url><url>
+    <loc>/en/cloud/</loc>
+    <lastmod>2018-07-07T15:53:27+06:00</lastmod>
+    <xhtml:link
+                rel="alternate"
+                hreflang="fr"
+                href="/fr/cloud/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="es"
+                href="/es/cloud/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="en"
+                href="/en/cloud/"
+                />
+  </url><url>
     <loc>/en/contact/</loc>
     <lastmod>2018-07-07T15:53:27+06:00</lastmod>
     <xhtml:link
@@ -92,6 +146,24 @@
                 rel="alternate"
                 hreflang="en"
                 href="/en/contact/"
+                />
+  </url><url>
+    <loc>/en/embeddedsoftware/</loc>
+    <lastmod>2018-07-07T15:53:27+06:00</lastmod>
+    <xhtml:link
+                rel="alternate"
+                hreflang="fr"
+                href="/fr/embeddedsoftware/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="es"
+                href="/es/embeddedsoftware/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="en"
+                href="/en/embeddedsoftware/"
                 />
   </url><url>
     <loc>/en/faqs/</loc>
@@ -164,6 +236,24 @@
                 rel="alternate"
                 hreflang="en"
                 href="/en/contractors/"
+                />
+  </url><url>
+    <loc>/en/websites/</loc>
+    <lastmod>2018-07-07T15:53:27+06:00</lastmod>
+    <xhtml:link
+                rel="alternate"
+                hreflang="fr"
+                href="/fr/websites/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="es"
+                href="/es/websites/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="en"
+                href="/en/websites/"
                 />
   </url><url>
     <loc>/en/projects/</loc>

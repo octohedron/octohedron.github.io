@@ -76,6 +76,42 @@
                 href="/es/blog/"
                 />
   </url><url>
+    <loc>/es/applications/</loc>
+    <lastmod>2018-07-07T15:53:27+06:00</lastmod>
+    <xhtml:link
+                rel="alternate"
+                hreflang="fr"
+                href="/fr/applications/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="en"
+                href="/en/applications/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="es"
+                href="/es/applications/"
+                />
+  </url><url>
+    <loc>/es/automation/</loc>
+    <lastmod>2018-07-07T15:53:27+06:00</lastmod>
+    <xhtml:link
+                rel="alternate"
+                hreflang="fr"
+                href="/fr/automation/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="en"
+                href="/en/automation/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="es"
+                href="/es/automation/"
+                />
+  </url><url>
     <loc>/es/contact/</loc>
     <lastmod>2018-07-07T15:53:27+06:00</lastmod>
     <xhtml:link
@@ -92,6 +128,24 @@
                 rel="alternate"
                 hreflang="es"
                 href="/es/contact/"
+                />
+  </url><url>
+    <loc>/es/embeddedsoftware/</loc>
+    <lastmod>2018-07-07T15:53:27+06:00</lastmod>
+    <xhtml:link
+                rel="alternate"
+                hreflang="fr"
+                href="/fr/embeddedsoftware/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="en"
+                href="/en/embeddedsoftware/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="es"
+                href="/es/embeddedsoftware/"
                 />
   </url><url>
     <loc>/es/jobs/</loc>
@@ -146,6 +200,42 @@
                 rel="alternate"
                 hreflang="es"
                 href="/es/contractors/"
+                />
+  </url><url>
+    <loc>/es/cloud/</loc>
+    <lastmod>2018-07-07T15:53:27+06:00</lastmod>
+    <xhtml:link
+                rel="alternate"
+                hreflang="fr"
+                href="/fr/cloud/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="en"
+                href="/en/cloud/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="es"
+                href="/es/cloud/"
+                />
+  </url><url>
+    <loc>/es/websites/</loc>
+    <lastmod>2018-07-07T15:53:27+06:00</lastmod>
+    <xhtml:link
+                rel="alternate"
+                hreflang="fr"
+                href="/fr/websites/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="en"
+                href="/en/websites/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="es"
+                href="/es/websites/"
                 />
   </url><url>
     <loc>/es/healthcare/</loc>
