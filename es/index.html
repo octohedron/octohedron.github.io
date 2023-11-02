@@ -470,8 +470,58 @@
 
     
     <!-- Start Projects Section -->
+    <head>
+        <style>
+            .menu-item {
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                transition: transform 1.3s;
+                cursor: pointer;
+                background-color: rgb(122, 122, 122);
+                margin-bottom: 7%;
+                max-width: 250%;
+            }
+            .menu-item:hover{
+                background-color: rgb(89, 89, 89);
+            }
+    
+            .menu-item.expanded {
+                transform: scale(1.1);
+                background-color: rgb(173, 171, 171);
+                text-decoration-color: black;
+                
+            }
+    
+            .menu-image {
+                display: none;
+                max-width: 100%;
+                max-height: 100%;
+                padding-left: 5%;
+                padding-right: 5%;
+
+            }
+    
+            .menu-item.expanded .menu-image {
+                display: block;
+            }
+    
+            .learn-more-button {
+                display: none;
+                margin: 10px;
+            }
+    
+            .menu-item.expanded .learn-more-button {
+                display: block;
+            }
+        </style>
+    </head>
     <section class="portfolio section" id="portfolio">
+
+
         <div class="container-fluid">
+
+
             <div class="row">
                 <div class="col">
                     <div class="title text-center">
@@ -492,55 +542,136 @@
                 <div class="row">
                     
                         <div class="col col-centered">
-                            <a class="project-link" href="https://raise.systems/es/healthcare">Healthcare</a>
+                                <div class="project-link menu-item">
+
+                                    <span class="name">Healthcare</span>
+                                    <img class="menu-image rounded" src="/images/projects/healthcare.jpg" alt="Healthcare Image">
+                                    <a class="btn btn-main text-center learn-more-button" href="https://raise.systems/es/healthcare">Learn More</a>
+                                </div>
+                            </a>
                         </div>
                     
                         <div class="col col-centered">
-                            <a class="project-link" href="https://raise.systems/es/cloud">Cloud</a>
+                                <div class="project-link menu-item">
+
+                                    <span class="name">Cloud</span>
+                                    <img class="menu-image rounded" src="/images/projects/cloud.jpg" alt="Cloud Image">
+                                    <a class="btn btn-main text-center learn-more-button" href="https://raise.systems/es/cloud">Learn More</a>
+                                </div>
+                            </a>
                         </div>
                     
                         <div class="col col-centered">
-                            <a class="project-link" href="https://raise.systems/es/applications">Applications</a>
+                                <div class="project-link menu-item">
+
+                                    <span class="name">Applications</span>
+                                    <img class="menu-image rounded" src="/images/projects/applications.jpg" alt="Applications Image">
+                                    <a class="btn btn-main text-center learn-more-button" href="https://raise.systems/es/applications">Learn More</a>
+                                </div>
+                            </a>
                         </div>
                     
                         <div class="col col-centered">
-                            <a class="project-link" href="https://raise.systems/es/automation">Automation</a>
+                                <div class="project-link menu-item">
+
+                                    <span class="name">Automation</span>
+                                    <img class="menu-image rounded" src="/images/projects/automation.jpg" alt="Automation Image">
+                                    <a class="btn btn-main text-center learn-more-button" href="https://raise.systems/es/automation">Learn More</a>
+                                </div>
+                            </a>
                         </div>
                     
                         <div class="col col-centered">
-                            <a class="project-link" href="https://raise.systems/es/websites">Websites</a>
+                                <div class="project-link menu-item">
+
+                                    <span class="name">Websites</span>
+                                    <img class="menu-image rounded" src="/images/projects/websites.jpg" alt="Websites Image">
+                                    <a class="btn btn-main text-center learn-more-button" href="https://raise.systems/es/websites">Learn More</a>
+                                </div>
+                            </a>
                         </div>
                     
                         <div class="col col-centered">
-                            <a class="project-link" href="https://raise.systems/es/embeddedsoftware">Embedded Software</a>
+                                <div class="project-link menu-item">
+
+                                    <span class="name">Embedded Software</span>
+                                    <img class="menu-image rounded" src="/images/projects/embeddedsoftware.jpg" alt="Embedded Software Image">
+                                    <a class="btn btn-main text-center learn-more-button" href="https://raise.systems/es/embeddedsoftware">Learn More</a>
+                                </div>
+                            </a>
                         </div>
                     
                         <div class="col col-centered">
-                            <a class="project-link" href="https://raise.systems/es/communications">Comunicación</a>
+                                <div class="project-link menu-item">
+
+                                    <span class="name">Comunicación</span>
+                                    <img class="menu-image rounded" src="/images/projects/healthcare.jpg" alt="Comunicación Image">
+                                    <a class="btn btn-main text-center learn-more-button" href="https://raise.systems/es/communications">Learn More</a>
+                                </div>
+                            </a>
                         </div>
                     
                         <div class="col col-centered">
-                            <a class="project-link" href="https://raise.systems/es/artificial-intelligence">Inteligencia Artificial</a>
+                                <div class="project-link menu-item">
+
+                                    <span class="name">Inteligencia Artificial</span>
+                                    <img class="menu-image rounded" src="/images/websites/websites_1.jpg" alt="Inteligencia Artificial Image">
+                                    <a class="btn btn-main text-center learn-more-button" href="https://raise.systems/es/artificial-intelligence">Learn More</a>
+                                </div>
+                            </a>
                         </div>
                     
                         <div class="col col-centered">
-                            <a class="project-link" href="https://raise.systems/es/connected-devices">Dispositivos</a>
+                                <div class="project-link menu-item">
+
+                                    <span class="name">Dispositivos</span>
+                                    <img class="menu-image rounded" src="/images/websites/websites_1.jpg" alt="Dispositivos Image">
+                                    <a class="btn btn-main text-center learn-more-button" href="https://raise.systems/es/connected-devices">Learn More</a>
+                                </div>
+                            </a>
                         </div>
                     
                         <div class="col col-centered">
-                            <a class="project-link" href="https://raise.systems/es/cloud%20orchestration">Cloud Automation</a>
+                                <div class="project-link menu-item">
+
+                                    <span class="name">Cloud Automation</span>
+                                    <img class="menu-image rounded" src="/images/websites/websites_1.jpg" alt="Cloud Automation Image">
+                                    <a class="btn btn-main text-center learn-more-button" href="https://raise.systems/es/cloud%20orchestration">Learn More</a>
+                                </div>
+                            </a>
                         </div>
                     
                         <div class="col col-centered">
-                            <a class="project-link" href="https://raise.systems/es/internet-of-things">Internet de las cosas</a>
+                                <div class="project-link menu-item">
+
+                                    <span class="name">Internet de las cosas</span>
+                                    <img class="menu-image rounded" src="/images/websites/websites_1.jpg" alt="Internet de las cosas Image">
+                                    <a class="btn btn-main text-center learn-more-button" href="https://raise.systems/es/internet-of-things">Learn More</a>
+                                </div>
+                            </a>
                         </div>
                     
                         <div class="col col-centered">
-                            <a class="project-link" href="https://raise.systems/es/bigdata">Big Data</a>
+                                <div class="project-link menu-item">
+
+                                    <span class="name">Big Data</span>
+                                    <img class="menu-image rounded" src="/images/websites/websites_1.jpg" alt="Big Data Image">
+                                    <a class="btn btn-main text-center learn-more-button" href="https://raise.systems/es/bigdata">Learn More</a>
+                                </div>
+                            </a>
                         </div>
                     
                 </div>
             </div>
+            <script>
+                const menuItems = document.querySelectorAll('.menu-item');
+        
+                menuItems.forEach((menuItem) => {
+                    menuItem.addEventListener('click', () => {
+                        menuItem.classList.toggle('expanded');
+                    });
+                });
+            </script>
           
         </div>
         </div>

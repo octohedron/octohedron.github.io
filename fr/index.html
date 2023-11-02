@@ -492,8 +492,58 @@
 
     
     <!-- Start Projects Section -->
+    <head>
+        <style>
+            .menu-item {
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                transition: transform 1.3s;
+                cursor: pointer;
+                background-color: rgb(122, 122, 122);
+                margin-bottom: 7%;
+                max-width: 250%;
+            }
+            .menu-item:hover{
+                background-color: rgb(89, 89, 89);
+            }
+    
+            .menu-item.expanded {
+                transform: scale(1.1);
+                background-color: rgb(173, 171, 171);
+                text-decoration-color: black;
+                
+            }
+    
+            .menu-image {
+                display: none;
+                max-width: 100%;
+                max-height: 100%;
+                padding-left: 5%;
+                padding-right: 5%;
+
+            }
+    
+            .menu-item.expanded .menu-image {
+                display: block;
+            }
+    
+            .learn-more-button {
+                display: none;
+                margin: 10px;
+            }
+    
+            .menu-item.expanded .learn-more-button {
+                display: block;
+            }
+        </style>
+    </head>
     <section class="portfolio section" id="portfolio">
+
+
         <div class="container-fluid">
+
+
             <div class="row">
                 <div class="col">
                     <div class="title text-center">
@@ -514,23 +564,56 @@
                 <div class="row">
                     
                         <div class="col col-centered">
-                            <a class="project-link" href="https://raise.systems//photography">Photography</a>
+                                <div class="project-link menu-item">
+
+                                    <span class="name">Photography</span>
+                                    <img class="menu-image rounded" src="/" alt="Photography Image">
+                                    <a class="btn btn-main text-center learn-more-button" href="https://raise.systems//photography">Learn More</a>
+                                </div>
+                            </a>
                         </div>
                     
                         <div class="col col-centered">
-                            <a class="project-link" href="https://raise.systems//ios">Ios App</a>
+                                <div class="project-link menu-item">
+
+                                    <span class="name">Ios App</span>
+                                    <img class="menu-image rounded" src="/" alt="Ios App Image">
+                                    <a class="btn btn-main text-center learn-more-button" href="https://raise.systems//ios">Learn More</a>
+                                </div>
+                            </a>
                         </div>
                     
                         <div class="col col-centered">
-                            <a class="project-link" href="https://raise.systems//development">Development</a>
+                                <div class="project-link menu-item">
+
+                                    <span class="name">Development</span>
+                                    <img class="menu-image rounded" src="/" alt="Development Image">
+                                    <a class="btn btn-main text-center learn-more-button" href="https://raise.systems//development">Learn More</a>
+                                </div>
+                            </a>
                         </div>
                     
                         <div class="col col-centered">
-                            <a class="project-link" href="https://raise.systems//design">Design</a>
+                                <div class="project-link menu-item">
+
+                                    <span class="name">Design</span>
+                                    <img class="menu-image rounded" src="/" alt="Design Image">
+                                    <a class="btn btn-main text-center learn-more-button" href="https://raise.systems//design">Learn More</a>
+                                </div>
+                            </a>
                         </div>
                     
                 </div>
             </div>
+            <script>
+                const menuItems = document.querySelectorAll('.menu-item');
+        
+                menuItems.forEach((menuItem) => {
+                    menuItem.addEventListener('click', () => {
+                        menuItem.classList.toggle('expanded');
+                    });
+                });
+            </script>
           
         </div>
         </div>
