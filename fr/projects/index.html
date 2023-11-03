@@ -178,19 +178,25 @@
                 align-items: center;
                 transition: transform 1.3s;
                 cursor: pointer;
-                background-color: rgb(122, 122, 122);
+                background-color: rgb(173, 171, 171);
                 margin-bottom: 7%;
+                width: 325px;
                 max-width: 250%;
+
             }
             .menu-item:hover{
-                background-color: rgb(89, 89, 89);
+                background-color: rgb(109, 109, 109);
+                transform: scale(1.1);
+                transition: all 0.7s ease;
             }
     
             .menu-item.expanded {
                 transform: scale(1.1);
                 background-color: rgb(173, 171, 171);
                 text-decoration-color: black;
-                
+                box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+                border-radius: 10px;
+                transition: all 0.5s ease;  
             }
     
             .menu-image {
@@ -283,15 +289,32 @@
                     
                 </div>
             </div>
+            
+
             <script>
                 const menuItems = document.querySelectorAll('.menu-item');
-        
+            
                 menuItems.forEach((menuItem) => {
                     menuItem.addEventListener('click', () => {
-                        menuItem.classList.toggle('expanded');
+                        
+                        const isExpanded = menuItem.classList.contains('expanded');
+                        
+                        
+                        menuItems.forEach((item) => {
+                            item.classList.remove('expanded');
+                        });
+                        
+                        
+                        if (!isExpanded) {
+                            menuItem.classList.add('expanded');
+                        }
                     });
                 });
             </script>
+
+
+
+
           
         </div>
         </div>
