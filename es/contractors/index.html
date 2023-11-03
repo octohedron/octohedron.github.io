@@ -111,7 +111,7 @@
                             
                             
                             <li class="nav-item">
-                                <a class="nav-link" href="/es/contractors">Hire Experts</a>
+                                <a class="nav-link" href="/es/contractors">Encuentra Expertos</a>
                             </li>
                             
                             <li class="nav-item">
@@ -152,13 +152,13 @@
     <div class="container">
         <div class="row">
             <div class="col-md-12">
-                <h2>Hire Experts</h2>
+                <h2>Encuentra Expertos</h2>
                 <nav aria-label="breadcrumb mx-auto" role="navigation">
                     <ol class="breadcrumb">
                         <li class="breadcrumb-item">
                             <a href="/">Home</a>
                         </li>
-                        <li class="breadcrumb-item active" aria-current="page">Hire Experts</li>
+                        <li class="breadcrumb-item active" aria-current="page">Encuentra Expertos</li>
                     </ol>
                 </nav>
             </div>
@@ -255,12 +255,12 @@
         <div class="row">
             <div class="col">
                 <div class="title text-center">
-                    <h4>Programar una reunión</h4>
+                    <h4>Pide una entrevista</h4>
                     
-                    <h2>Contáctenos.</h2>
+                    <h2>Contacto</h2>
                     <span class="border"></span>
                     
-                    <p>El equipo de RAISE está compuesto por ingenieros altamente calificados con experiencia en diversas industrias. Hay varias formas de contactar a RAISE. Envíenos un mensaje o llámenos.</p>
+                    <p>El equipo de RAISE está compuesto por ingenieros del más alto nivel, altamente capacitados, con experiencia en todo tipo de proyectos, y brindamos servicios a pequeñas, medianas y grandes empresas, dando lo mejor de nosotros en cada proyecto.</p>
                 </div>
             </div>
         </div>
@@ -271,15 +271,15 @@
                     <div class="row">
                         <div class="contact-form col-12 col-md-6 ">
                             <div class="form-group">
-                                <input type="text" placeholder="Su nombre" class="form-control" name="name" id="name">
+                                <input type="text" placeholder="Tu nombre" class="form-control" name="name" id="name">
                             </div>
                 
                             <div class="form-group">
-                                <input type="email" placeholder="Su correo electrónico" class="form-control" name="email" id="email">
+                                <input type="email" placeholder="Tu email" class="form-control" name="email" id="email">
                             </div>
                 
                             <div class="form-group">
-                                <input type="text" placeholder="Tecnologías principales" class="form-control" name="subject" id="subject">
+                                <input type="text" placeholder="Asunto" class="form-control" name="subject" id="subject">
                             </div>
                             <div id="mail-success" class="success">
                                 Thank you. The Mailman is on His Way :)
@@ -288,72 +288,39 @@
                             <div id="mail-fail" class="error">
                                 Sorry, something went wrong. Please try to reach us at info@raise.systems
                             </div>
-                        
+                        </div>
+                        <!-- Contact Form -->
+                        <div class="contact-form col-12 col-md-6 ">
                             <div class="form-group">
-                                <input type="text" placeholder="Años de experiencia en tecnologías principales" class="form-control" name="subject" id="subject">
+                                <textarea rows="6" placeholder="Mensaje" class="form-control" name="message" id="message"></textarea>
                             </div>
-                            
-                            <div id="cf-submit ">
+                            <div id="cf-submit">
                                 <input type="submit" id="contact-submit" class="btn btn-transparent" value="Submit">
                             </div>
                         </div>
-                    
-                        
-                    <!-- Contact Form -->
-                    
-                   
-                    
-
-                    
-                    <div class="contact-form col-12 col-md-6">
-                        <div class="service-list bg-gray col-md-12">
-                            
-                                <h5>Subir su CV</h5>
-                            
-                            
-                            <div class="block text-center" id="file-upload-container">
-                                <label for="file-upload" class="custom-file-upload">
-                                    <i class="tf-ion-ios-copy-outline"></i>
-                                    <br>
-                                    <span id="file-upload-text">
-                                        
-                                            Subir archivo
-                                        
-                                    </span>
-                                </label>
-                                <input type="file" id="file-upload" accept=".jpg, .jpeg, .png, .pdf" style="display: none;">
-                            </div>
-                        </div>
                     </div>
-                    
-                    <script>
-                        const fileInput = document.getElementById("file-upload");
-                        const fileUploadText = document.getElementById("file-upload-text");
-                    
-                        fileInput.addEventListener("change", function () {
-                            const selectedFile = this.files[0];
-                            if (selectedFile) {
-                                fileUploadText.textContent = selectedFile.name;
-                            } else {
-                                fileUploadText.textContent = "Subir archivo";
-                            }
-                        });
-                    
-                        
-                        const fileUploadContainer = document.getElementById("file-upload-container");
-                        fileUploadContainer.addEventListener("click", function () {
-                            fileInput.click();
-                        });
-                    </script>
-                    
-                    
-                </div>
-                    
-                        
                 </form>
             </div>
         </div>
-        
+        <div class="row">
+            <div class="col-12 col-md-6">
+                <div class="address-block contact-meta-block">
+                    <i class="tf-ion-android-pin"></i>
+                    <h4>Our Location</h4>
+                    <p>Valencia, España</p>
+                </div>
+            </div>
+            <div class="col-12 col-md-6">
+                <div class="phone-block contact-meta-block">
+                    <i class="tf-ion-ios-telephone"></i>
+                    <h4>Call Us</h4>
+                    <p>
+                         Office: &#43;34 644001590  
+                        <br> 
+                    </p>
+                </div>
+            </div>
+        </div>
     </div>
 </section>
 
@@ -373,7 +340,7 @@
                     <ul>
                         
                         <li>
-                            <a href="/es/contractors">Hire Experts</a>
+                            <a href="/es/contractors">Encuentra Expertos</a>
                         </li>
                         
                         <li>

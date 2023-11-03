@@ -279,7 +279,7 @@
                             </div>
                 
                             <div class="form-group">
-                                <input type="text" placeholder="Main technologies" class="form-control" name="subject" id="subject">
+                                <input type="text" placeholder="Subject" class="form-control" name="subject" id="subject">
                             </div>
                             <div id="mail-success" class="success">
                                 Thank you. The Mailman is on His Way :)
@@ -288,72 +288,39 @@
                             <div id="mail-fail" class="error">
                                 Sorry, something went wrong. Please try to reach us at info@raise.systems
                             </div>
-                        
+                        </div>
+                        <!-- Contact Form -->
+                        <div class="contact-form col-12 col-md-6 ">
                             <div class="form-group">
-                                <input type="text" placeholder="Years of experience in main technologies" class="form-control" name="subject" id="subject">
+                                <textarea rows="6" placeholder="Message" class="form-control" name="message" id="message"></textarea>
                             </div>
-                            
-                            <div id="cf-submit ">
+                            <div id="cf-submit">
                                 <input type="submit" id="contact-submit" class="btn btn-transparent" value="Submit">
                             </div>
                         </div>
-                    
-                        
-                    <!-- Contact Form -->
-                    
-                   
-                    
-
-                    
-                    <div class="contact-form col-12 col-md-6">
-                        <div class="service-list bg-gray col-md-12">
-                            
-                                <h5>Upload your CV</h5>
-                            
-                            
-                            <div class="block text-center" id="file-upload-container">
-                                <label for="file-upload" class="custom-file-upload">
-                                    <i class="tf-ion-ios-copy-outline"></i>
-                                    <br>
-                                    <span id="file-upload-text">
-                                        
-                                            Upload file
-                                        
-                                    </span>
-                                </label>
-                                <input type="file" id="file-upload" accept=".jpg, .jpeg, .png, .pdf" style="display: none;">
-                            </div>
-                        </div>
                     </div>
-                    
-                    <script>
-                        const fileInput = document.getElementById("file-upload");
-                        const fileUploadText = document.getElementById("file-upload-text");
-                    
-                        fileInput.addEventListener("change", function () {
-                            const selectedFile = this.files[0];
-                            if (selectedFile) {
-                                fileUploadText.textContent = selectedFile.name;
-                            } else {
-                                fileUploadText.textContent = "Upload file";
-                            }
-                        });
-                    
-                        
-                        const fileUploadContainer = document.getElementById("file-upload-container");
-                        fileUploadContainer.addEventListener("click", function () {
-                            fileInput.click();
-                        });
-                    </script>
-                    
-                    
-                </div>
-                    
-                        
                 </form>
             </div>
         </div>
-        
+        <div class="row">
+            <div class="col-12 col-md-6">
+                <div class="address-block contact-meta-block">
+                    <i class="tf-ion-android-pin"></i>
+                    <h4>Our Location</h4>
+                    <p>Valencia, Spain</p>
+                </div>
+            </div>
+            <div class="col-12 col-md-6">
+                <div class="phone-block contact-meta-block">
+                    <i class="tf-ion-ios-telephone"></i>
+                    <h4>Call Us</h4>
+                    <p>
+                         Office: &#43;34 644001590  
+                        <br> 
+                    </p>
+                </div>
+            </div>
+        </div>
     </div>
 </section>
 
