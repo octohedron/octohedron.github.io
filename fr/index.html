@@ -109,14 +109,12 @@
                             <li class="nav-item">
                                 <a class="nav-link" href="/">Home</a>
                             </li>
-                            
-                            
                             <li class="nav-item">
-                                <a class="nav-link" href="/fr/contractors">Hire Experts</a>
+                                <a class="nav-link" href="https://startups.raise.systems">Startups</a>
                             </li>
                             
                             <li class="nav-item">
-                                <a class="nav-link" href="/fr/jobs">Find Jobs</a>
+                                <a class="nav-link" href="/fr/about">FR About</a>
                             </li>
                             
                             <li class="nav-item">
@@ -132,10 +130,6 @@
                             </li>
                             
                             <li class="nav-item">
-                                <a class="nav-link" href="/fr/about">FR About</a>
-                            </li>
-                            
-                            <li class="nav-item">
                                 <a class="nav-link" href="/fr/contact">FR Contact</a>
                             </li>
                             
@@ -147,210 +141,6 @@
     </div>
 </section>
 <div id="content">
-
-  <!DOCTYPE html>
-<html>
-<head>
-    <style>
-         
-        .cookie-overlay {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-color: rgba(0, 0, 0, 0.5);  
-            z-index: 999;  
-        }
-
-        .cookie-banner {
-            position: fixed;
-            bottom: 0;
-            left: 0;
-            width: 100%;
-            background-color: white;
-            color: black;
-            text-align: center;
-            padding: 10px 0;
-            z-index: 1000;  
-        }
-
-        .cookie-content {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 20px;
-        }
-
-        .cookie-message {
-            flex: 1;
-            text-align: left;
-        }
-
-        .cookie-buttons {
-            flex: 0;
-            padding: 20px;
-            margin-left: 20px;
-        }
-
-        .cookie-button {
-            background-color: orangered;
-            color: #fff;
-            border: none;
-            padding: 15px 30px;
-            margin: 10px;
-            margin-top: 20px;
-            margin-bottom: 20px;
-            cursor: pointer;
-            border-radius: 10px;
-        }
-
-        .cookie-button:hover {
-            background-color: rgb(202, 54, 0);
-        }
-
-        .learn-more-link {
-            color: orangered;
-            text-decoration: underline;
-            cursor: pointer;
-        }
-
-         
-        .modal {
-            display: none;
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-color: rgba(0, 0, 0, 0.5);
-            z-index: 1001;  
-        }
-
-        .modal-content {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            background-color: white;
-            padding: 20px;
-            border-radius: 10px;
-        }
-
-        .close-modal {
-            position: absolute;
-            top: 10px;
-            right: 10px;
-            cursor: pointer;
-        }
-    </style>
-</head>
-<body>
-
-<div class="cookie-overlay" id="cookie-overlay"></div>
-<div class="cookie-banner" id="cookie-banner">
-    <div class="cookie-content">
-        <div class="cookie-message">
-            <p>We use cookies to ensure you get the best experience on our website. <a href="#" class="learn-more-link" id="open-privacy-modal">Learn more</a></p>
-        </div>
-        <div class="row">
-            <button class="cookie-button" id="accept-cookies">Accept</button>
-            <button class="cookie-button" id="reject-cookies">Reject</button>
-        </div>
-    </div>
-</div>
-
-
-<div class="modal" id="privacy-modal">
-    <div class="modal-content" style="max-width: 800px;">
-        <span class="close-modal" id="close-privacy-modal">&times;</span>
-        <h2>Privacy Policy</h2>
-        <div style="max-height: 400px; overflow-y: scroll;">
-            <p><h5>Cookie Policy</h5>
-                At RAISE, we are committed to ensuring that your online experience is as informative and efficient as possible. To achieve this, we use cookies and similar technologies on our website. This Cookie Policy explains how we use cookies and the choices you have regarding their use.<br><br>
-                 <h5>What Are Cookies?</h5>
-                Cookies are small text files that are stored on your device when you visit a website. They serve various purposes, including helping websites function efficiently, remembering your preferences, and providing a personalized browsing experience.<br><br>
-                 <h5>Why We Use Cookies</h5>
-                Website Functionality: We use cookies to ensure that our website functions properly. This includes features like remembering your language preference and maintaining your logged-in status.<br><br>
-                Performance and Analytics: Cookies help us collect data on how visitors use our website. This information is crucial for improving our site's performance and enhancing user experience.<br><br>
-                Marketing and Personalization: We may use cookies to display personalized content and advertisements that are relevant to your interests and preferences.<br><br>
-                <h5>Types of Cookies We Use</h5>
-                Essential Cookies: These are necessary for the basic operation of our website. They are usually set in response to your actions, such as logging in or completing forms.<br><br>
-                Performance Cookies: These cookies help us understand how you use our website. They collect information about which pages you visit most and if you encounter any errors.<br><br>
-                Functionality Cookies: These cookies remember your choices and preferences, such as language and region settings, to provide a more personalized experience.<br><br>
-                Advertising Cookies: We may partner with third-party service providers to display advertisements. These cookies help us deliver ads that are relevant to you.<br><br>
-                <h5>Your Choices</h5>
-                You have the option to manage and control cookies on your device. You can:<br><br>
-                <b>Accept Cookies:</b> By continuing to use our website, you agree to the use of cookies as described in this policy.<br><br>
-                <b>Reject Cookies:</b> You can adjust your browser settings to reject cookies. Please note that this may affect certain functionalities of our website.<br><br>
-                Manage Preferences: Many browsers allow you to manage your cookie preferences. You can choose to delete specific cookies or block certain types of cookies.<br><br>
-                 <h5>Updates to Our Cookie Policy</h5>
-                We may occasionally update our Cookie Policy to reflect changes in technology, regulations, or our website's functionality. Please revisit this policy periodically to stay informed about how we use cookies.<br><br>
-                <h5>Contact Us</h5>
-                If you have any questions or concerns regarding our Cookie Policy, please don't hesitate to contact us. Your privacy and online experience are important to us.<br><br>
-                Last updated: 01.11.2023</p>
-        </div>
-    </div>
-</div>
-
-<script>
-    
-    const cookieOverlay = document.getElementById('cookie-overlay');
-    const cookieBanner = document.getElementById('cookie-banner');
-    const acceptCookiesButton = document.getElementById('accept-cookies');
-    const rejectCookiesButton = document.getElementById('reject-cookies');
-    const openPrivacyModalButton = document.getElementById('open-privacy-modal');
-    const privacyModal = document.getElementById('privacy-modal');
-    const closePrivacyModalButton = document.getElementById('close-privacy-modal');
-
-    
-    var hasAcceptedCookies = localStorage.getItem('hasAcceptedCookies');
-    var hasRejectedCookies = localStorage.getItem('hasRejectedCookies');
-
-    
-    if (!hasAcceptedCookies && !hasRejectedCookies) {
-        cookieOverlay.style.display = 'block';
-        cookieBanner.style.display = 'block';
-    } else {
-        cookieOverlay.style.display = 'none';
-        cookieBanner.style.display = 'none';
-    }
-    
-    
-    
-
-    
-    acceptCookiesButton.addEventListener('click', () => {
-        localStorage.setItem('hasAcceptedCookies', 'true');
-        cookieOverlay.style.display = 'none';
-        cookieBanner.style.display = 'none';
-        
-    });
-
-    
-    rejectCookiesButton.addEventListener('click', () => {
-        localStorage.setItem('hasRejectedCookies', 'true');
-        cookieOverlay.style.display = 'none';
-        cookieBanner.style.display = 'none';
-        
-    });
-
-    
-    openPrivacyModalButton.addEventListener('click', () => {
-        privacyModal.style.display = 'block';
-    });
-
-    
-    closePrivacyModalButton.addEventListener('click', () => {
-        privacyModal.style.display = 'none';
-    });
-</script>
-
-</body>
-</html>
-
 
   
 <!-- Hero Area -->
@@ -439,6 +229,25 @@
 
   
   
+<!-- Start About Section -->
+<section class="about-2 section bg-gray" id="about">
+    <div class="container">
+        <div class="row">
+            <div class="col-12 col-md-5">
+                
+                    <h2>FRANCAIS We have explored the digital landscape with passion for a long time</h2>
+                
+            </div>
+            <div class="col-12 col-md-7">
+                
+                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quae deleniti ipsa labore necessitatibus culpa veritatis quo accusantium, neque enim ea ad eaque iure, quas tempore velit, quibusdam dolor illo! Explicabo. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquid quisquam maiores iste soluta, nihil dolorem?</p>
+                
+            </div>
+        </div>
+    </div>
+</section>
+<!-- End About section -->
+
   
   
 
@@ -492,116 +301,6 @@
 
     
     <!-- Start Projects Section -->
-    <head>
-        <style>
-            .menu-container {
-                display: flex;
-                flex-wrap: wrap;
-                justify-content: center;
-            }
-
-            .menu-item {
-                position: relative;
-                flex: 0 0 325px;
-                flex-direction: column;
-                align-items: center;
-                cursor: pointer;
-                background-color: #0f2f47;
-                margin: 0 15px 15px 0;
-                border-radius: 10px;
-                overflow: hidden;
-                transition: transform 0.5s, background-color 0.5s;
-            }
-
-            .menu-item:hover {
-                background-color: #061622;
-                transform: scale(1.1);
-            }
-
-            .menu-item.expanded {
-                position: absolute;
-                z-index: 2;
-                transform: scale(1.1);
-                transition: all 0.5s ease;
-                background-color: #0f2f47;
-                box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
-                border-radius: 10px;
-            }
-
-            .menu-image {
-                display: none;
-                max-width: 100%;
-                max-height: 100%;
-                padding-left: 5%;
-                padding-right: 5%;
-            }
-
-            .menu-item.expanded .menu-image {
-                display: block;
-            }
-
-            .learn-more-button {
-                display: none;
-                margin: 10px;
-            }
-
-            .menu-item.expanded .learn-more-button {
-                display: block;
-            }
-
-            @media (max-width: 768px) {
-                .menu-item {
-                display: flex;
-                flex-direction: column;
-                align-items: center;
-                transition: transform 1.3s;
-                cursor: pointer;
-                background-color: #0f2f47;
-                margin-bottom: 7%;
-                width: 325px;
-                max-width: 250%;
-
-            }
-            .menu-item:hover{
-                background-color: #061622;
-                transform: scale(1.1);
-                transition: all 0.7s ease;
-                transition: all 0s ease;
-            }
-    
-            .menu-item.expanded {
-                transform: scale(1.1);
-                background-color: #0f2f47;
-                text-decoration-color: black;
-                box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
-                border-radius: 10px;
-                  
-            }
-    
-            .menu-image {
-                display: none;
-                max-width: 100%;
-                max-height: 100%;
-                padding-left: 5%;
-                padding-right: 5%;
-
-            }
-    
-            .menu-item.expanded .menu-image {
-                display: block;
-            }
-    
-            .learn-more-button {
-                display: none;
-                margin: 10px;
-            }
-    
-            .menu-item.expanded .learn-more-button {
-                display: block;
-            }
-            }
-        </style>
-    </head>
     <section class="portfolio section" id="portfolio">
         <div class="container-fluid">
             <div class="row">
@@ -621,62 +320,102 @@
                 </div>
             </div>
             <div class="container project-category-container">
-                <div class="row menu-container">
+                <div class="row">
                     
                         <div class="col col-centered">
-                            <div class="project-link menu-item">
-                                <span class="name">Photography</span>
-                                <img class="menu-image rounded" src="/" alt="Photography Image">
-                                <a class="btn btn-main text-center learn-more-button" href="https://raise.systems//photography">Learn More</a>
-                            </div>
+                            <a class="project-link">Photography</a>
                         </div>
                     
                         <div class="col col-centered">
-                            <div class="project-link menu-item">
-                                <span class="name">Ios App</span>
-                                <img class="menu-image rounded" src="/" alt="Ios App Image">
-                                <a class="btn btn-main text-center learn-more-button" href="https://raise.systems//ios">Learn More</a>
-                            </div>
+                            <a class="project-link">Ios App</a>
                         </div>
                     
                         <div class="col col-centered">
-                            <div class="project-link menu-item">
-                                <span class="name">Development</span>
-                                <img class="menu-image rounded" src="/" alt="Development Image">
-                                <a class="btn btn-main text-center learn-more-button" href="https://raise.systems//development">Learn More</a>
-                            </div>
+                            <a class="project-link">Development</a>
                         </div>
                     
                         <div class="col col-centered">
-                            <div class="project-link menu-item">
-                                <span class="name">Design</span>
-                                <img class="menu-image rounded" src="/" alt="Design Image">
-                                <a class="btn btn-main text-center learn-more-button" href="https://raise.systems//design">Learn More</a>
-                            </div>
+                            <a class="project-link">Design</a>
                         </div>
                     
                 </div>
             </div>
-            <script>
-                const menuItems = document.querySelectorAll('.menu-item');
-
-                menuItems.forEach((menuItem) => {
-                    menuItem.addEventListener('click', () => {
-                        
-                        const isExpanded = menuItem.classList.contains('expanded');
-
-                        
-                        menuItems.forEach((item) => {
-                            item.classList.remove('expanded');
-                        });
-
-                        
-                        if (!isExpanded) {
-                            menuItem.classList.add('expanded');
-                        }
-                    });
-                });
-            </script>
+            <div class="row">
+                
+                <div class="col-sm-12 col-md-4 padding-0">
+                        <div class="portfolio-block">
+                            <img class="img-fluid" src="/images/projects/sentiment-analysis.png" alt="portfolio-image">
+                            <div class="caption">
+                                <a class="search-icon" href="/images/projects/sentiment-analysis.png" data-lightbox="image-1">
+                                    <i class="tf-ion-ios-search-strong"></i>
+                                <h4 style="display:inline">AirBnB Postcard</h4>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                
+                <div class="col-sm-12 col-md-4 padding-0">
+                        <div class="portfolio-block">
+                            <img class="img-fluid" src="/images/projects/demand-forecasting.png" alt="portfolio-image">
+                            <div class="caption">
+                                <a class="search-icon" href="/images/projects/demand-forecasting.png" data-lightbox="image-1">
+                                    <i class="tf-ion-ios-search-strong"></i>
+                                <h4 style="display:inline">D Design</h4>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                
+                <div class="col-sm-12 col-md-4 padding-0">
+                        <div class="portfolio-block">
+                            <img class="img-fluid" src="/images/projects/text-classification.png" alt="portfolio-image">
+                            <div class="caption">
+                                <a class="search-icon" href="/images/projects/text-classification.png" data-lightbox="image-1">
+                                    <i class="tf-ion-ios-search-strong"></i>
+                                <h4 style="display:inline">Xbox 360</h4>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                
+                <div class="col-sm-12 col-md-4 padding-0">
+                        <div class="portfolio-block">
+                            <img class="img-fluid" src="/images/projects/computer-vision.jpg" alt="portfolio-image">
+                            <div class="caption">
+                                <a class="search-icon" href="/images/projects/computer-vision.jpg" data-lightbox="image-1">
+                                    <i class="tf-ion-ios-search-strong"></i>
+                                <h4 style="display:inline">Ballon Card</h4>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                
+                <div class="col-sm-12 col-md-4 padding-0">
+                        <div class="portfolio-block">
+                            <img class="img-fluid" src="/images/projects/influencer-analysis.png" alt="portfolio-image">
+                            <div class="caption">
+                                <a class="search-icon" href="/images/projects/influencer-analysis.png" data-lightbox="image-1">
+                                    <i class="tf-ion-ios-search-strong"></i>
+                                <h4 style="display:inline">Ready Toons</h4>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                
+                <div class="col-sm-12 col-md-4 padding-0">
+                        <div class="portfolio-block">
+                            <img class="img-fluid" src="/images/projects/recommendation-systems.png" alt="portfolio-image">
+                            <div class="caption">
+                                <a class="search-icon" href="/images/projects/recommendation-systems.png" data-lightbox="image-1">
+                                    <i class="tf-ion-ios-search-strong"></i>
+                                <h4 style="display:inline">Illustration</h4>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                
+            </div>
+        </div>
         </div>
         
     </section>
@@ -1256,7 +995,7 @@
                     </div>
                     <div class="post-title">
                         <h3 class="mt-0">
-                            <a href="/fr/applications/">FRANCAIS Contactez Nous</a>
+                            <a href="/fr/contact/">FRANCAIS Contactez Nous</a>
                         </h3>
                     </div>
                     <div class="post-meta">
@@ -1274,7 +1013,7 @@
                     <div class="post-content">
                         <p></p>
                     </div>
-                    <a class="btn btn-main" href="/fr/applications/">Read more</a>
+                    <a class="btn btn-main" href="/fr/contact/">Read more</a>
                 </div>
             </article>
             <!-- /single blog post -->
@@ -1287,7 +1026,7 @@
                     </div>
                     <div class="post-title">
                         <h3 class="mt-0">
-                            <a href="/fr/automation/">FRANCAIS Contactez Nous</a>
+                            <a href="/fr/projects/">FRANCAIS Projects</a>
                         </h3>
                     </div>
                     <div class="post-meta">
@@ -1305,7 +1044,7 @@
                     <div class="post-content">
                         <p></p>
                     </div>
-                    <a class="btn btn-main" href="/fr/automation/">Read more</a>
+                    <a class="btn btn-main" href="/fr/projects/">Read more</a>
                 </div>
             </article>
             <!-- /single blog post -->
@@ -1315,8 +1054,6 @@
 </section>
 <!-- Blog Section End -->
 
-
-  
 
   
 <!-- Start Contact Us -->
@@ -1394,7 +1131,6 @@
     </div>
 </section>
 
-  
 
 
         </div><!-- Footer Start -->
@@ -1411,15 +1147,15 @@
                     <ul>
                         
                         <li>
-                            <a href="/fr/contractors">Hire Experts</a>
+                            <a href="/fr/services">FR Graphic Design</a>
                         </li>
                         
                         <li>
-                            <a href="/fr/jobs">Find Jobs</a>
+                            <a href="https://startups.raise.systems/">FR Web Design</a>
                         </li>
                         
                         <li>
-                            <a href="/fr/projects">FR Projects</a>
+                            <a href="/fr/services">FR Web Development</a>
                         </li>
                         
                     </ul>
@@ -1429,11 +1165,15 @@
                     <ul>
                         
                         <li>
+                            <a href="/fr/about">FR Partners</a>
+                        </li>
+                        
+                        <li>
                             <a href="/fr/about">FR About</a>
                         </li>
                         
                         <li>
-                            <a href="/fr/faqs">FR FAQ&#39;s</a>
+                            <a href="/fr/about">FR FAQ&#39;s</a>
                         </li>
                         
                     </ul>

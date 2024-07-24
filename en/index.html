@@ -109,14 +109,12 @@
                             <li class="nav-item">
                                 <a class="nav-link" href="/">Home</a>
                             </li>
-                            
-                            
                             <li class="nav-item">
-                                <a class="nav-link" href="/en/contractors">Hire Experts</a>
+                                <a class="nav-link" href="https://startups.raise.systems">Startups</a>
                             </li>
                             
                             <li class="nav-item">
-                                <a class="nav-link" href="/en/jobs">Find Jobs</a>
+                                <a class="nav-link" href="/en/about">About</a>
                             </li>
                             
                             <li class="nav-item">
@@ -132,10 +130,6 @@
                             </li>
                             
                             <li class="nav-item">
-                                <a class="nav-link" href="/en/about">About</a>
-                            </li>
-                            
-                            <li class="nav-item">
                                 <a class="nav-link" href="/en/contact">Contact</a>
                             </li>
                             
@@ -147,210 +141,6 @@
     </div>
 </section>
 <div id="content">
-
-  <!DOCTYPE html>
-<html>
-<head>
-    <style>
-         
-        .cookie-overlay {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-color: rgba(0, 0, 0, 0.5);  
-            z-index: 999;  
-        }
-
-        .cookie-banner {
-            position: fixed;
-            bottom: 0;
-            left: 0;
-            width: 100%;
-            background-color: white;
-            color: black;
-            text-align: center;
-            padding: 10px 0;
-            z-index: 1000;  
-        }
-
-        .cookie-content {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 20px;
-        }
-
-        .cookie-message {
-            flex: 1;
-            text-align: left;
-        }
-
-        .cookie-buttons {
-            flex: 0;
-            padding: 20px;
-            margin-left: 20px;
-        }
-
-        .cookie-button {
-            background-color: orangered;
-            color: #fff;
-            border: none;
-            padding: 15px 30px;
-            margin: 10px;
-            margin-top: 20px;
-            margin-bottom: 20px;
-            cursor: pointer;
-            border-radius: 10px;
-        }
-
-        .cookie-button:hover {
-            background-color: rgb(202, 54, 0);
-        }
-
-        .learn-more-link {
-            color: orangered;
-            text-decoration: underline;
-            cursor: pointer;
-        }
-
-         
-        .modal {
-            display: none;
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-color: rgba(0, 0, 0, 0.5);
-            z-index: 1001;  
-        }
-
-        .modal-content {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            background-color: white;
-            padding: 20px;
-            border-radius: 10px;
-        }
-
-        .close-modal {
-            position: absolute;
-            top: 10px;
-            right: 10px;
-            cursor: pointer;
-        }
-    </style>
-</head>
-<body>
-
-<div class="cookie-overlay" id="cookie-overlay"></div>
-<div class="cookie-banner" id="cookie-banner">
-    <div class="cookie-content">
-        <div class="cookie-message">
-            <p>We use cookies to ensure you get the best experience on our website. <a href="#" class="learn-more-link" id="open-privacy-modal">Learn more</a></p>
-        </div>
-        <div class="row">
-            <button class="cookie-button" id="accept-cookies">Accept</button>
-            <button class="cookie-button" id="reject-cookies">Reject</button>
-        </div>
-    </div>
-</div>
-
-
-<div class="modal" id="privacy-modal">
-    <div class="modal-content" style="max-width: 800px;">
-        <span class="close-modal" id="close-privacy-modal">&times;</span>
-        <h2>Privacy Policy</h2>
-        <div style="max-height: 400px; overflow-y: scroll;">
-            <p><h5>Cookie Policy</h5>
-                At RAISE, we are committed to ensuring that your online experience is as informative and efficient as possible. To achieve this, we use cookies and similar technologies on our website. This Cookie Policy explains how we use cookies and the choices you have regarding their use.<br><br>
-                 <h5>What Are Cookies?</h5>
-                Cookies are small text files that are stored on your device when you visit a website. They serve various purposes, including helping websites function efficiently, remembering your preferences, and providing a personalized browsing experience.<br><br>
-                 <h5>Why We Use Cookies</h5>
-                Website Functionality: We use cookies to ensure that our website functions properly. This includes features like remembering your language preference and maintaining your logged-in status.<br><br>
-                Performance and Analytics: Cookies help us collect data on how visitors use our website. This information is crucial for improving our site's performance and enhancing user experience.<br><br>
-                Marketing and Personalization: We may use cookies to display personalized content and advertisements that are relevant to your interests and preferences.<br><br>
-                <h5>Types of Cookies We Use</h5>
-                Essential Cookies: These are necessary for the basic operation of our website. They are usually set in response to your actions, such as logging in or completing forms.<br><br>
-                Performance Cookies: These cookies help us understand how you use our website. They collect information about which pages you visit most and if you encounter any errors.<br><br>
-                Functionality Cookies: These cookies remember your choices and preferences, such as language and region settings, to provide a more personalized experience.<br><br>
-                Advertising Cookies: We may partner with third-party service providers to display advertisements. These cookies help us deliver ads that are relevant to you.<br><br>
-                <h5>Your Choices</h5>
-                You have the option to manage and control cookies on your device. You can:<br><br>
-                <b>Accept Cookies:</b> By continuing to use our website, you agree to the use of cookies as described in this policy.<br><br>
-                <b>Reject Cookies:</b> You can adjust your browser settings to reject cookies. Please note that this may affect certain functionalities of our website.<br><br>
-                Manage Preferences: Many browsers allow you to manage your cookie preferences. You can choose to delete specific cookies or block certain types of cookies.<br><br>
-                 <h5>Updates to Our Cookie Policy</h5>
-                We may occasionally update our Cookie Policy to reflect changes in technology, regulations, or our website's functionality. Please revisit this policy periodically to stay informed about how we use cookies.<br><br>
-                <h5>Contact Us</h5>
-                If you have any questions or concerns regarding our Cookie Policy, please don't hesitate to contact us. Your privacy and online experience are important to us.<br><br>
-                Last updated: 01.11.2023</p>
-        </div>
-    </div>
-</div>
-
-<script>
-    
-    const cookieOverlay = document.getElementById('cookie-overlay');
-    const cookieBanner = document.getElementById('cookie-banner');
-    const acceptCookiesButton = document.getElementById('accept-cookies');
-    const rejectCookiesButton = document.getElementById('reject-cookies');
-    const openPrivacyModalButton = document.getElementById('open-privacy-modal');
-    const privacyModal = document.getElementById('privacy-modal');
-    const closePrivacyModalButton = document.getElementById('close-privacy-modal');
-
-    
-    var hasAcceptedCookies = localStorage.getItem('hasAcceptedCookies');
-    var hasRejectedCookies = localStorage.getItem('hasRejectedCookies');
-
-    
-    if (!hasAcceptedCookies && !hasRejectedCookies) {
-        cookieOverlay.style.display = 'block';
-        cookieBanner.style.display = 'block';
-    } else {
-        cookieOverlay.style.display = 'none';
-        cookieBanner.style.display = 'none';
-    }
-    
-    
-    
-
-    
-    acceptCookiesButton.addEventListener('click', () => {
-        localStorage.setItem('hasAcceptedCookies', 'true');
-        cookieOverlay.style.display = 'none';
-        cookieBanner.style.display = 'none';
-        
-    });
-
-    
-    rejectCookiesButton.addEventListener('click', () => {
-        localStorage.setItem('hasRejectedCookies', 'true');
-        cookieOverlay.style.display = 'none';
-        cookieBanner.style.display = 'none';
-        
-    });
-
-    
-    openPrivacyModalButton.addEventListener('click', () => {
-        privacyModal.style.display = 'block';
-    });
-
-    
-    closePrivacyModalButton.addEventListener('click', () => {
-        privacyModal.style.display = 'none';
-    });
-</script>
-
-</body>
-</html>
-
 
   
 <!-- Hero Area -->
@@ -364,10 +154,10 @@
                 <div class="col-md-12">
                     <div class="block">
                         
-                        <h2>RAISE Systems: Excellence in Software Solutions &amp; Consulting</h2>
+                        <h2>RAISE Software development</h2>
                         
                         
-                        <p>Your Gateway to Elite Software Expertise &amp; Versatile Industry Applications</p>
+                        <p> world forever. We help compaines and investors find a place to connect and track their investments over time.</p>
                         
                         
                     </div>
@@ -385,77 +175,19 @@
   
   
 <!-- Start About Section -->
-<section class="about section bg-gray" id="about">
+<section class="about-2 section bg-gray" id="about">
     <div class="container">
-            
-            <div class="row mb-50 justify-content-center">
-                <div class="col-md-5 col-sm-12 text-center offset-md-0">
-                    <img class="img-fluid shadow rounded" src="/images/about-homepage/softwarestandarts.jpg" alt="service-image"/>
-                </div>
-                <div class="col-md-5 col-sm-12">
-                    <div class="content">
-                        
-                        <h2>Elevating Software Standards</h2>
-                        
-                        
-                        <p>At RAISE Systems, we harness the power of top-tier software talent. Dive into our pool of meticulously vetted contractors and freelancers, each handpicked through a rigorous interview process. Experience unmatched expertise tailored to your project&rsquo;s unique needs.</p>
-                        
-                    </div>
-                </div>
-            </div>
-
-            <div class="row mt-50 justify-content-center">
-                <div class="col-md-5 col-md-5 col-sm-12 offset-md-1">
-                    <div class="content">
-                        
-                        <h2>Versatile Industry Expertise</h2>
-                    
-                    
-                        <p>From the intricacies of Healthcare and Fintech to the evolving landscapes of Cybersecurity, DevOps, and Cloud Technologies, our consultants bring deep industry knowledge to the table. We&rsquo;re not just software developers; we&rsquo;re your strategic partners in navigating industry-specific challenges.</p>
-                    
-                    </div>
-                </div>
-                <div class="col-12 col-md-5 col-sm-12 text-center">
-                    <img class="img-fluid shadow rounded" src="/images/about-homepage/industryexpertise.jpg" alt="service-image"/>
-                </div>
-            </div>
-
-            <div class="row mt-50 justify-content-center">
-                <div class="col-md-5 col-sm-12 text-center offset-md-0">
-                    <img class="img-fluid shadow rounded" src="/images/about-homepage/consulting.jpg" alt="service-image"/>
-                </div>
-                <div class="col-md-5 col-sm-12">
-                    <div class="content">
-                        
+        <div class="row">
+            <div class="col-12 col-md-5">
                 
-                        <h2>Customized Development &amp; Consulting</h2>
-                        
-                        
-                        <p>Your vision deserves bespoke solutions. Whether it&rsquo;s building from scratch or enhancing existing systems, we offer comprehensive software development and consulting services. Our approach is always aligned with your business goals, ensuring results that resonate with your objectives.</p>
-                        
-                    </div>
-                </div>
+                    <h2>Innovation in a wide range of industries</h2>
+                
             </div>
-
-            <div class="row mt-50 justify-content-center">
-                <div class="col-md-5 col-md-5 col-sm-12 offset-md-1">
-                    <div class="content">
-                         
-                        <h2>RAISE Systems: Where Software Excellence Meets Business Acumen</h2>
-                        
-                        
-                        <p>Join forces with us to transform your digital landscape. Let&rsquo;s innovate, optimize, and elevate together!</p>
-                        
-                    </div>
-                </div>
-                <div class="col-12 col-md-5 col-sm-12 text-center">
-                    <img class="img-fluid shadow rounded" src="/images/about-homepage/business.jpg" alt="service-image"/>
-                </div>
+            <div class="col-12 col-md-7">
+                
+                    <p>Welcome to Raise, where the future of technology meets innovative solutions. As pioneers in AI-driven software development, we harness the transformative power of artificial intelligence to create bespoke financial tech applications that drive growth and efficiency. Our expert consultants are dedicated to understanding your unique challenges and tailoring solutions that fit seamlessly into your operations. Whether you&rsquo;re seeking specialized contractors for a specific project or comprehensive consulting to streamline your business processes, our team is here to guide you every step of the way. Dive into a world where technology and strategy converge for unparalleled results.</p>
+                
             </div>
-
-           
-
-                          
         </div>
     </div>
 </section>
@@ -472,116 +204,6 @@
 
     
     <!-- Start Projects Section -->
-    <head>
-        <style>
-            .menu-container {
-                display: flex;
-                flex-wrap: wrap;
-                justify-content: center;
-            }
-
-            .menu-item {
-                position: relative;
-                flex: 0 0 325px;
-                flex-direction: column;
-                align-items: center;
-                cursor: pointer;
-                background-color: #0f2f47;
-                margin: 0 15px 15px 0;
-                border-radius: 10px;
-                overflow: hidden;
-                transition: transform 0.5s, background-color 0.5s;
-            }
-
-            .menu-item:hover {
-                background-color: #061622;
-                transform: scale(1.1);
-            }
-
-            .menu-item.expanded {
-                position: absolute;
-                z-index: 2;
-                transform: scale(1.1);
-                transition: all 0.5s ease;
-                background-color: #0f2f47;
-                box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
-                border-radius: 10px;
-            }
-
-            .menu-image {
-                display: none;
-                max-width: 100%;
-                max-height: 100%;
-                padding-left: 5%;
-                padding-right: 5%;
-            }
-
-            .menu-item.expanded .menu-image {
-                display: block;
-            }
-
-            .learn-more-button {
-                display: none;
-                margin: 10px;
-            }
-
-            .menu-item.expanded .learn-more-button {
-                display: block;
-            }
-
-            @media (max-width: 768px) {
-                .menu-item {
-                display: flex;
-                flex-direction: column;
-                align-items: center;
-                transition: transform 1.3s;
-                cursor: pointer;
-                background-color: #0f2f47;
-                margin-bottom: 7%;
-                width: 325px;
-                max-width: 250%;
-
-            }
-            .menu-item:hover{
-                background-color: #061622;
-                transform: scale(1.1);
-                transition: all 0.7s ease;
-                transition: all 0s ease;
-            }
-    
-            .menu-item.expanded {
-                transform: scale(1.1);
-                background-color: #0f2f47;
-                text-decoration-color: black;
-                box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
-                border-radius: 10px;
-                  
-            }
-    
-            .menu-image {
-                display: none;
-                max-width: 100%;
-                max-height: 100%;
-                padding-left: 5%;
-                padding-right: 5%;
-
-            }
-    
-            .menu-item.expanded .menu-image {
-                display: block;
-            }
-    
-            .learn-more-button {
-                display: none;
-                margin: 10px;
-            }
-    
-            .menu-item.expanded .learn-more-button {
-                display: block;
-            }
-            }
-        </style>
-    </head>
     <section class="portfolio section" id="portfolio">
         <div class="container-fluid">
             <div class="row">
@@ -601,126 +223,134 @@
                 </div>
             </div>
             <div class="container project-category-container">
-                <div class="row menu-container">
+                <div class="row">
                     
                         <div class="col col-centered">
-                            <div class="project-link menu-item">
-                                <span class="name">Healthcare</span>
-                                <img class="menu-image rounded" src="/images/projects/healthcare.jpg" alt="Healthcare Image">
-                                <a class="btn btn-main text-center learn-more-button" href="https://raise.systems/en/healthcare">Learn More</a>
-                            </div>
+                            <a class="project-link">Healthcare</a>
                         </div>
                     
                         <div class="col col-centered">
-                            <div class="project-link menu-item">
-                                <span class="name">Cloud</span>
-                                <img class="menu-image rounded" src="/images/projects/cloud.jpg" alt="Cloud Image">
-                                <a class="btn btn-main text-center learn-more-button" href="https://raise.systems/en/cloud">Learn More</a>
-                            </div>
+                            <a class="project-link">Social Media</a>
                         </div>
                     
                         <div class="col col-centered">
-                            <div class="project-link menu-item">
-                                <span class="name">Applications</span>
-                                <img class="menu-image rounded" src="/images/projects/applications.jpg" alt="Applications Image">
-                                <a class="btn btn-main text-center learn-more-button" href="https://raise.systems/en/applications">Learn More</a>
-                            </div>
+                            <a class="project-link">Data Science</a>
                         </div>
                     
                         <div class="col col-centered">
-                            <div class="project-link menu-item">
-                                <span class="name">Automation</span>
-                                <img class="menu-image rounded" src="/images/projects/automation.jpg" alt="Automation Image">
-                                <a class="btn btn-main text-center learn-more-button" href="https://raise.systems/en/automation">Learn More</a>
-                            </div>
+                            <a class="project-link">Psychology</a>
                         </div>
                     
                         <div class="col col-centered">
-                            <div class="project-link menu-item">
-                                <span class="name">Websites</span>
-                                <img class="menu-image rounded" src="/images/projects/websites.jpg" alt="Websites Image">
-                                <a class="btn btn-main text-center learn-more-button" href="https://raise.systems/en/websites">Learn More</a>
-                            </div>
+                            <a class="project-link">Retail</a>
                         </div>
                     
                         <div class="col col-centered">
-                            <div class="project-link menu-item">
-                                <span class="name">Embedded Software</span>
-                                <img class="menu-image rounded" src="/images/projects/embeddedsoftware.jpg" alt="Embedded Software Image">
-                                <a class="btn btn-main text-center learn-more-button" href="https://raise.systems/en/embeddedsoftware">Learn More</a>
-                            </div>
+                            <a class="project-link">Tourism</a>
                         </div>
                     
                         <div class="col col-centered">
-                            <div class="project-link menu-item">
-                                <span class="name">Communications</span>
-                                <img class="menu-image rounded" src="/images/websites/websites_1.jpg" alt="Communications Image">
-                                <a class="btn btn-main text-center learn-more-button" href="https://raise.systems/en/communications">Learn More</a>
-                            </div>
+                            <a class="project-link">Communications</a>
                         </div>
                     
                         <div class="col col-centered">
-                            <div class="project-link menu-item">
-                                <span class="name">Cloud Automation</span>
-                                <img class="menu-image rounded" src="/images/websites/websites_1.jpg" alt="Cloud Automation Image">
-                                <a class="btn btn-main text-center learn-more-button" href="https://raise.systems/en/cloud-orchestration">Learn More</a>
-                            </div>
+                            <a class="project-link">Cloud Automation</a>
                         </div>
                     
                         <div class="col col-centered">
-                            <div class="project-link menu-item">
-                                <span class="name">Connected Devices</span>
-                                <img class="menu-image rounded" src="/images/websites/websites_1.jpg" alt="Connected Devices Image">
-                                <a class="btn btn-main text-center learn-more-button" href="https://raise.systems/en/connected-devices">Learn More</a>
-                            </div>
+                            <a class="project-link">Connected Devices</a>
                         </div>
                     
                         <div class="col col-centered">
-                            <div class="project-link menu-item">
-                                <span class="name">Artificial Intelligence</span>
-                                <img class="menu-image rounded" src="/images/websites/websites_1.jpg" alt="Artificial Intelligence Image">
-                                <a class="btn btn-main text-center learn-more-button" href="https://raise.systems/en/artificial-intelligence">Learn More</a>
-                            </div>
+                            <a class="project-link">Artificial Intelligence</a>
                         </div>
                     
                         <div class="col col-centered">
-                            <div class="project-link menu-item">
-                                <span class="name">Internet of Things</span>
-                                <img class="menu-image rounded" src="/images/websites/websites_1.jpg" alt="Internet of Things Image">
-                                <a class="btn btn-main text-center learn-more-button" href="https://raise.systems/en/internet-of-things">Learn More</a>
-                            </div>
+                            <a class="project-link">Internet of Things</a>
                         </div>
                     
                         <div class="col col-centered">
-                            <div class="project-link menu-item">
-                                <span class="name">Big Data</span>
-                                <img class="menu-image rounded" src="/images/websites/websites_1.jpg" alt="Big Data Image">
-                                <a class="btn btn-main text-center learn-more-button" href="https://raise.systems/en/big-data">Learn More</a>
-                            </div>
+                            <a class="project-link">Big Data</a>
                         </div>
                     
                 </div>
             </div>
-            <script>
-                const menuItems = document.querySelectorAll('.menu-item');
-
-                menuItems.forEach((menuItem) => {
-                    menuItem.addEventListener('click', () => {
-                        
-                        const isExpanded = menuItem.classList.contains('expanded');
-
-                        
-                        menuItems.forEach((item) => {
-                            item.classList.remove('expanded');
-                        });
-
-                        
-                        if (!isExpanded) {
-                            menuItem.classList.add('expanded');
-                        }
-                    });
-                });
-            </script>
+            <div class="row">
+                
+                <div class="col-sm-12 col-md-4 padding-0">
+                        <div class="portfolio-block">
+                            <img class="img-fluid" src="/images/projects/power2dm.png" alt="portfolio-image">
+                            <div class="caption">
+                                <a class="search-icon" href="/images/projects/power2dm.png" data-lightbox="image-1">
+                                    <i class="tf-ion-ios-search-strong"></i>
+                                <h4 style="display:inline">Power2DM Diabetes management</h4>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                
+                <div class="col-sm-12 col-md-4 padding-0">
+                        <div class="portfolio-block">
+                            <img class="img-fluid" src="/images/projects/influencer-analysis.png" alt="portfolio-image">
+                            <div class="caption">
+                                <a class="search-icon" href="/images/projects/influencer-analysis.png" data-lightbox="image-1">
+                                    <i class="tf-ion-ios-search-strong"></i>
+                                <h4 style="display:inline">Social Media Analysis</h4>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                
+                <div class="col-sm-12 col-md-4 padding-0">
+                        <div class="portfolio-block">
+                            <img class="img-fluid" src="/images/projects/sentiment-analysis.png" alt="portfolio-image">
+                            <div class="caption">
+                                <a class="search-icon" href="/images/projects/sentiment-analysis.png" data-lightbox="image-1">
+                                    <i class="tf-ion-ios-search-strong"></i>
+                                <h4 style="display:inline">Sentiment Analysis</h4>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                
+                <div class="col-sm-12 col-md-4 padding-0">
+                        <div class="portfolio-block">
+                            <img class="img-fluid" src="/images/projects/demand-forecasting.png" alt="portfolio-image">
+                            <div class="caption">
+                                <a class="search-icon" href="/images/projects/demand-forecasting.png" data-lightbox="image-1">
+                                    <i class="tf-ion-ios-search-strong"></i>
+                                <h4 style="display:inline">Product Demand Forecasting</h4>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                
+                <div class="col-sm-12 col-md-4 padding-0">
+                        <div class="portfolio-block">
+                            <img class="img-fluid" src="/images/projects/recommendation-systems.png" alt="portfolio-image">
+                            <div class="caption">
+                                <a class="search-icon" href="/images/projects/recommendation-systems.png" data-lightbox="image-1">
+                                    <i class="tf-ion-ios-search-strong"></i>
+                                <h4 style="display:inline">Recommender Systems</h4>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                
+                <div class="col-sm-12 col-md-4 padding-0">
+                        <div class="portfolio-block">
+                            <img class="img-fluid" src="/images/projects/text-classification.png" alt="portfolio-image">
+                            <div class="caption">
+                                <a class="search-icon" href="/images/projects/text-classification.png" data-lightbox="image-1">
+                                    <i class="tf-ion-ios-search-strong"></i>
+                                <h4 style="display:inline">Text Classification</h4>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                
+            </div>
+        </div>
         </div>
         
     </section>
@@ -754,58 +384,6 @@
 
 
   
-
-  
-<!-- Start About Section -->
-<section class="portfolio section bg-gray" id="about">
-    <div class="container">
-        <div div class="title text-center">
-        
-            <h2>COMPANIES THAT ALREADY TRUST US</h2>
-            
-            <span class="border"></span>
-            <p>Be our partner on our common journey to develop more sustainable technologies for a cleaner future.</p>
-        </div>
-        <style>
-             
-            @media (max-width: 768px) {
-              .img-responsive {
-                max-width: 30%;
-                height: auto;
-                padding: 5%;
-              }
-            }
-          </style>
-          
-          <div class="row mb-50 justify-content-center">
-              <div class="col-md-2 col-sm-2 text-center align-self-center">
-                  <img class="img-responsive img-fluid rounded" src="/images/companies/ihealth.jpg" alt="company-image"/>
-              </div>
-              <div class="col-md-2 col-sm-2 text-center align-self-center">
-                  <img class="img-responsive img-fluid rounded" src="/images/companies/inzpire.jpg" alt="company-image"/>
-              </div>
-              <div class="col-md-2 col-sm-2 text-center align-self-center">
-                  <img class="img-responsive img-fluid rounded" src="/images/companies/cecotec.jpg" alt="company-image"/>
-              </div>
-              <div class="col-md-2 col-sm-2 text-center align-self-center">
-                  <img class="img-responsive img-fluid rounded" src="/images/companies/power.jpg" alt="company-image"/>
-              </div>
-              <div class="col-md-2 col-sm-2 text-center align-self-center">
-                  <img class="img-responsive img-fluid rounded" src="/images/companies/nttdata.jpg" alt="company-image"/>
-              </div>
-              <div class="col-md-2 col-sm-2 text-center align-self-center">
-                  <img class="img-responsive img-fluid rounded" src="/images/companies/salzburg.jpg" alt="company-image"/>
-              </div>
-          </div>
-          
-        
-        
-                   
-        </div>
-    </div>
-</section>
-<!-- End About section -->
-
 
   
 <!-- Start Contact Us -->
@@ -883,7 +461,6 @@
     </div>
 </section>
 
-  
 
 
         </div><!-- Footer Start -->
@@ -893,22 +470,22 @@
             <div class="row">
                 <div class="col-sm-3 col-md-3 col-lg-3">
                     <h3>About</h3>
-                    <p>We are passionate about Artificial Intelligence and enhancing business performance. We have been working with Machine Learning and Big Data systems for years and have provided several companies with a competitive advantage.</p>
+                    
                 </div>
                 <div class="col-sm-3 col-md-3 col-lg-3">
                     <h3>Focus areas</h3>
                     <ul>
                         
                         <li>
-                            <a href="/en/contractors">Hire Experts</a>
+                            <a href="/en/services">Artificial Intelligence</a>
                         </li>
                         
                         <li>
-                            <a href="/en/jobs">Find Jobs</a>
+                            <a href="https://startups.raise.systems/">Blockchain</a>
                         </li>
                         
                         <li>
-                            <a href="/en/projects">Projects</a>
+                            <a href="/en/services">Big Data</a>
                         </li>
                         
                     </ul>
@@ -918,11 +495,15 @@
                     <ul>
                         
                         <li>
+                            <a href="/en/about">Partners</a>
+                        </li>
+                        
+                        <li>
                             <a href="/en/about">About</a>
                         </li>
                         
                         <li>
-                            <a href="/en/faqs">FAQ&#39;s</a>
+                            <a href="/en/about">FAQ&#39;s</a>
                         </li>
                         
                     </ul>
